@@ -111,3 +111,45 @@ h1 {
     font-weight: lighter;
     color: #3e4848;
 }
+
+/* New food page */
+
+.main-options {
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px; /* Adjust size */
+    height: 50px;
+    background-color: #e9ecef;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+/* Hide the radio button */
+.main-option input[type="radio"] {
+    display: none;
+}
+
+/* Make the label cover the entire div */
+.main-option label {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    line-height: 50px;
+    cursor: pointer;
+}
+
+/* Change background when selected */
+.main-option input[type="radio"]:checked + label {
+    background-color: #007bff;
+    color: white;
+    border-radius: 10px;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
+    <title>New food</title>
+    <script type="module" src="../scripts/newFood.js"></script>
+</head>
+
+<body>
+    <h1><span id="back">⬅️</span>Ajouter un repas</h1>
+
+    <form action="">
+        <div id="mainOptions" class="main-options">
+            <div class="main-option">
+                <input type="radio" id="breast" name="foodType" value="breast" />
+                <label for="breast">Tétée</label>
+            </div>
+            <div class="main-option">
+                <input type="radio" id="bottle" name="foodType" value="bottle" checked />
+                <label for="bottle">Biberon</label>
+            </div>
+        </div>
+        <div id="formBreast">Form Tétée</div>
+        <div id="formBottle">
+            <span> - </span> <span>25</span>mL <span> + </span>
+
+            <h3>Type de lait</h3>
+            <input type="radio" id="html" name="fav_language" value="HTML">
+            <label for="html">Lait maternel</label><br>
+            <input type="radio" id="html" name="fav_language" value="HTML">
+            <label for="html">Lait Artifiel</label><br>
+
+            <label for="start">Date</label>
+            <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2038-12-31" />
+
+            <label for="appointment">Heure</label>
+            <input type="time" id="appointment" name="appointment" min="09:00" max="18:00" required />
+
+            <label for="story">Ajouter une note</label>
+            <textarea id="story" name="story" rows="5" cols="33">
+                Marque de lait ...
+            </textarea>
+            <button type="submit">Enregistrer le biberon</button>
+        </div>
+    </form>
+
+</body>
+
+</html>
