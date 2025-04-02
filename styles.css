@@ -32,7 +32,7 @@ h1 {
     text-align: center;
     border-radius: 50%;
     color: #fff;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
     cursor: pointer;
 }
@@ -59,7 +59,7 @@ h1 {
 
 #back {
     cursor: pointer;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .info {
@@ -76,7 +76,7 @@ h1 {
 
 .info>.content>.data {
     margin: 0 10px;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 /* font */
@@ -85,24 +85,24 @@ h1 {
 }
 
 .small {
-    font-size: 12px;
+    font-size: 14px;
     color: #677677;
 }
 
 .title {
     padding: 6px 0;
-    font-size: 20px;
+    font-size: 22px;
     font-family: 'Times New Roman', Times, serif;
 }
 
 .sub-title {
-    font-size: 14px;
+    font-size: 16px;
     padding: 10px 0;
 }
 
 .right-data {
     padding: 10px;
-    font-size: 14px;
+    font-size: 16px;
     border-left: 1px solid rgb(170, 154, 154);
 }
 
