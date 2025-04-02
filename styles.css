@@ -123,13 +123,14 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 150px; /* Adjust size */
-    height: 50px;
+    width: 50%;
+    height: 48px;
     background-color: #e9ecef;
     border-radius: 10px;
     cursor: pointer;
     text-align: center;
     position: relative;
+    margin: 0 4px;
     transition: background-color 0.3s ease;
 }
 
@@ -147,8 +148,80 @@ h1 {
     cursor: pointer;
 }
 
+/* bootle
+#ffead2
+#e0af7c
+
+tétté
+#f1eafd
+#a896c9 */
+
 /* Change background when selected */
-.main-option input[type="radio"]:checked + label {
+.main-option input[type="radio"] + label {
+    color: white;
+    border-radius: 10px;
+}
+
+.main-option input[type="radio"] + label.bootle {
+    background-color: #ffead2b0;
+    color: #e0af7c;
+}
+
+.main-option input[type="radio"]:checked  + label.bootle {
+    background-color: #ffead2;
+    color: #e0af7c;
+    border: 1px solid;
+}
+
+.main-option input[type="radio"] + label.breast {
+    background-color: #f1eafdb0;
+    color: #a896c9;
+}
+
+.main-option input[type="radio"]:checked  + label.breast {
+    background-color: #f1eafd;
+    color: #a896c9;
+    border: 1px solid;
+}
+
+.milk-options {
+    padding: 6px;
+    border-radius: 6px;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+}
+
+.milk-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 28px;
+    background-color: #e9ecef;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+    margin: 0 4px;
+    transition: background-color 0.3s ease;
+}
+
+/* Hide the radio button */
+.milk-option input[type="radio"] {
+    display: none;
+}
+
+/* Make the label cover the entire div */
+.milk-option label {
+    position: absolute;
+    width: 100%;
+    padding: 2px 0px;
+    cursor: pointer;
+}
+
+/* Change background when selected */
+.milk-option input[type="radio"]:checked + label {
     background-color: #007bff;
     color: white;
     border-radius: 10px;

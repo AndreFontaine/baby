@@ -16,11 +16,11 @@
         <div id="mainOptions" class="main-options">
             <div class="main-option">
                 <input type="radio" id="breast" name="foodType" value="breast" />
-                <label for="breast">Tétée</label>
+                <label class="breast" for="breast">🤱 Tétée</label>
             </div>
             <div class="main-option">
                 <input type="radio" id="bottle" name="foodType" value="bottle" checked />
-                <label for="bottle">Biberon</label>
+                <label class="bootle" for="bottle">🍼 Biberon</label>
             </div>
         </div>
         <div id="formBreast">Form Tétée</div>
@@ -28,10 +28,16 @@
             <span> - </span> <span>25</span>mL <span> + </span>
 
             <h3>Type de lait</h3>
-            <input type="radio" id="html" name="fav_language" value="HTML">
-            <label for="html">Lait maternel</label><br>
-            <input type="radio" id="html" name="fav_language" value="HTML">
-            <label for="html">Lait Artifiel</label><br>
+            <div class="milk-options">
+                <div class="milk-option">
+                    <input type="radio" id="breastMilk" name="milkType" value="breastMilk">
+                    <label for="breastMilk">Lait maternel</label><br>
+                </div>
+                <div class="milk-option">
+                    <input type="radio" id="formula" name="milkType" value="formula">
+                    <label for="formula">Lait Artifiel</label><br>
+                </div>
+            </div>
 
             <label for="start">Date</label>
             <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2038-12-31" />
