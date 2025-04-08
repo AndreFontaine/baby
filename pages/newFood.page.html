@@ -24,31 +24,35 @@
             </div>
         </div>
         <div id="formBreast" class="hidden">
-            <div class="timers">
-                <div class="timer">
-                    <div>
-                        Sein gauche
-                    </div>
-                    <div>
-                        <input class="time-input" type="text" id="r-hours" name="r-hours" required minlength="1" maxlength="1" size="1"  value="0" max="2" min="0"/>
-                        <label class="time-label" for="r-hours">h</label>
-                        <input class="time-input" type="text" id="r-minutes" name="r-minutes" required minlength="1" maxlength="2" size="1"  value="0" max="60" min="0"/>
-                        <label class="time-label" for="r-minutes">m</label>
-                        <input class="time-input" type="text" id="r-seconds" name="r-seconds" required minlength="1" maxlength="2" size="1"  value="0" max="60" min="0"/>
-                        <label class="time-label" for="r-seconds">s</label>
+            <div class="timer-options">
+                <div class="timer-option">
+                    <div class="timer-left">
+                        <div class="timer-title left">
+                            Sein gauche
+                        </div>
+                        <div>
+                            <input class="time-input" type="text" id="r-hours" name="r-hours" required minlength="1" maxlength="1" size="1"  value="0" max="2" min="0"/>
+                            <label class="time-label" for="r-hours">h</label>
+                            <input class="time-input" type="text" id="r-minutes" name="r-minutes" required minlength="1" maxlength="2" size="1"  value="0" max="60" min="0"/>
+                            <label class="time-label" for="r-minutes">m</label>
+                            <input class="time-input" type="text" id="r-seconds" name="r-seconds" required minlength="1" maxlength="2" size="1"  value="0" max="60" min="0"/>
+                            <label class="time-label" for="r-seconds">s</label>
+                        </div>
                     </div>
                 </div>
-                <div class="timer">
+                <div class="timer-option">
                     <div>
-                        Sein gauche
-                    </div>
-                    <div>
-                        <input class="time-input" type="text" id="l-hours" name="l-hours" required minlength="1" maxlength="1" size="1" value="0" max="2" min="0"/>
-                        <label class="time-label" for="l-hours">h</label>
-                        <input class="time-input" type="text" id="l-minutes" name="l-minutes" required minlength="1" maxlength="2" size="2" value="0" max="60" min="0"/>
-                        <label class="time-label" for="l-minutes">m</label>
-                        <input class="time-input" type="text" id="l-seconds" name="l-seconds" required minlength="1" maxlength="2" size="2" value="0" max="60" min="0"/>
-                        <label class="time-label" for="l-seconds">s</label>
+                        <div class="timer-title">
+                            Sein droit
+                        </div>
+                        <div>
+                            <input class="time-input" type="text" id="l-hours" name="l-hours" required minlength="1" maxlength="1" size="1" value="0" max="2" min="0"/>
+                            <label class="time-label" for="l-hours">h</label>
+                            <input class="time-input" type="text" id="l-minutes" name="l-minutes" required minlength="1" maxlength="2" size="2" value="0" max="60" min="0"/>
+                            <label class="time-label" for="l-minutes">m</label>
+                            <input class="time-input" type="text" id="l-seconds" name="l-seconds" required minlength="1" maxlength="2" size="2" value="0" max="60" min="0"/>
+                            <label class="time-label" for="l-seconds">s</label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -63,7 +67,7 @@
             <div class="sub-title">Type de lait</div>
             <div class="milk-options">
                 <div class="milk-option">
-                    <input type="radio" id="breastMilk" name="milkType" value="breastMilk">
+                    <input type="radio" id="breastMilk" name="milkType" value="breastMilk" checked>
                     <label for="breastMilk">Lait maternel</label><br>
                 </div>
                 <div class="milk-option">
