@@ -183,10 +183,11 @@ button, .btn-submit {
     border: none;
     background-color: #ffead2b0;
     border-radius: 5px;
+    font-size: 0.8rem;
 }
 
 .time-label {
-    font-size: 0.65rem;
+    font-size: 0.8rem;
 }
 
 /* New food page */
@@ -327,6 +328,6 @@ textarea#story {
 }
 
 .timer-title {
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-family: 'Times New Roman', Times, serif;
 }
