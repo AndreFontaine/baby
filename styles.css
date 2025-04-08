@@ -125,12 +125,12 @@ h1 {
 
 /* General components */
 .quantity {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     padding: 10px 0px;
 }
 .quantity>.text {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
     padding: 10px 0px;
     font-size: 1.1rem;
@@ -163,17 +163,30 @@ h1 {
 }
 
 button, .btn-submit {
-    background: rgb(14, 54, 6);
+    background: rgb(11, 41, 5);
     border: none;
     color: #fff;
-    padding: 6px;
+    padding: 8px 20px;
     font: inherit;
     cursor: pointer;
-    border-radius: 6px;
+    border-radius: 22px;
+    font-size: 0.8rem;
 }
 
 .quantities {
     font-size: 0.8rem;
+}
+
+.time-input {
+    max-width: 0.8rem;
+    text-align: center;
+    border: none;
+    background-color: #d1d1d1;
+    border-radius: 5px;
+}
+
+.time-label {
+    font-size: 0.65rem;
 }
 
 /* New food page */
