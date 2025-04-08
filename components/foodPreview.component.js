@@ -47,6 +47,9 @@ export function createfoodPreviewContent(item) {
     totalText.classList.add("small");
     totalText.textContent = "Total aujourd'hui";
 
+    const quantitiesDiv = document.createElement("div");
+    quantitiesDiv.classList.add("quantities");
+
     const bottleCountIcon = document.createElement("span");
     bottleCountIcon.textContent = "🍼";
 
@@ -60,10 +63,17 @@ export function createfoodPreviewContent(item) {
     jarAmount.textContent = item.volume + " mL";
 
     footer.appendChild(totalText);
-    footer.appendChild(bottleCountIcon);
-    footer.appendChild(bottleCount);
-    footer.appendChild(jarIcon);
-    footer.appendChild(jarAmount);
+
+    quantitiesDiv.appendChild(bottleCountIcon);
+    quantitiesDiv.appendChild(bottleCount);
+    quantitiesDiv.appendChild(jarIcon);
+    quantitiesDiv.appendChild(jarAmount);
+    footer.appendChild(quantitiesDiv);
+
+    // footer.appendChild(bottleCountIcon);
+    // footer.appendChild(bottleCount);
+    // footer.appendChild(jarIcon);
+    // footer.appendChild(jarAmount);
 
     // Append everything to the main container
     previewContainer.appendChild(header);

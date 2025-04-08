@@ -10,6 +10,7 @@ body {
 }
 
 h1 {
+    font-size: 1.3rem;  
     color: #333;
 }
 
@@ -44,8 +45,8 @@ h1 {
 .preview {
     display: flex;
     flex-direction: column;
-    width: 100px;
-    height: 100px;
+    width: 5rem;
+    height: 5rem;
     background-color: #f2e0cd;
     border-radius: 50%;
     text-align: center;
@@ -54,6 +55,7 @@ h1 {
 }
 
 .preview>.duration {
+    font-size: 0.8rem;
     font-weight: bold;
 }
 
@@ -89,7 +91,7 @@ h1 {
 }
 
 .small {
-    font-size: 0.6rem;
+    font-size: 0.7rem;
     color: #677677;
 }
 
@@ -100,7 +102,7 @@ h1 {
 }
 
 .sub-title {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     padding: 10px 0;
     font-family: 'Times New Roman', Times, serif;
 }
@@ -123,8 +125,6 @@ h1 {
 
 /* General components */
 .quantity {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
     padding: 10px 0px;
 }
@@ -133,7 +133,7 @@ h1 {
     justify-content: space-between;
     align-items: center;
     padding: 10px 0px;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     font-weight: bold;
 }
 .text>.label {
@@ -152,7 +152,7 @@ h1 {
     padding: 6px 10px;
     border-radius: 6px;
     font-family: unset;
-    font-size: 0.6rem;
+    font-size: 0.7rem;
 }
 
 .button-wrapper {
@@ -170,6 +170,10 @@ button, .btn-submit {
     font: inherit;
     cursor: pointer;
     border-radius: 6px;
+}
+
+.quantities {
+    font-size: 0.8rem;
 }
 
 /* New food page */
@@ -239,6 +243,7 @@ button, .btn-submit {
     background-color: #fff;
     display: flex;
     justify-content: space-between;
+    font-size: 0.8rem;
 }
 
 .milk-option {
@@ -262,7 +267,7 @@ button, .btn-submit {
 .milk-option label {
     position: absolute;
     width: 100%;
-    padding: 4px 0px;
+    padding: 2px 0px;
     cursor: pointer;
 }
 
@@ -278,11 +283,6 @@ textarea#story {
     padding: 6px;
     border: none;
     font-family: unset;
-    font-size: 0.6rem;
+    font-size: 0.7rem;
     resize: none;
-}
-
-#formBottle .sub-title {
-    font-weight: 600;
-    font-size: 0.8rem;
 }
