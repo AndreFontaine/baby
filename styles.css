@@ -9,6 +9,10 @@ h1 {
     color: #333;
 }
 
+.btn-submit {
+    text-align: center;
+}
+
 .container {
     margin-bottom: 10px;
     padding: 10px;
@@ -98,6 +102,7 @@ h1 {
 .sub-title {
     font-size: 16px;
     padding: 10px 0;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .right-data {
@@ -140,8 +145,14 @@ h1 {
     justify-content: space-between;
     align-items: center;
     padding: 10px 0px;
-    font-size: 18px;
-    font-weight: bold;
+}
+
+.input-time {
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-family: unset;
+    font-size: 14px;
 }
 
 /* New food page */
@@ -166,12 +177,10 @@ h1 {
     transition: background-color 0.3s ease;
 }
 
-/* Hide the radio button */
 .main-option input[type="radio"] {
     display: none;
 }
 
-/* Make the label cover the entire div */
 .main-option label {
     position: absolute;
     width: 100%;
@@ -180,7 +189,6 @@ h1 {
     cursor: pointer;
 }
 
-/* Change background when selected */
 .main-option input[type="radio"] + label {
     color: white;
     border-radius: 10px;
@@ -222,7 +230,6 @@ h1 {
     justify-content: center;
     width: 50%;
     height: 28px;
-    background-color: #e9ecef;
     border-radius: 10px;
     cursor: pointer;
     text-align: center;
@@ -231,22 +238,29 @@ h1 {
     transition: background-color 0.3s ease;
 }
 
-/* Hide the radio button */
 .milk-option input[type="radio"] {
     display: none;
 }
 
-/* Make the label cover the entire div */
 .milk-option label {
     position: absolute;
     width: 100%;
-    padding: 2px 0px;
+    padding: 4px 0px;
     cursor: pointer;
 }
 
-/* Change background when selected */
 .milk-option input[type="radio"]:checked + label {
     background-color: #007bff;
     color: white;
-    border-radius: 10px;
+    border-radius: 6px;
+}
+
+textarea#story {
+    width: 100%;
+    border-radius: 8px;
+    padding: 6px;
+    border: none;
+    font-family: unset;
+    font-size: 16px;
+    resize: none;
 }
