@@ -331,3 +331,25 @@ textarea#story {
     font-size: 1rem;
     font-family: 'Times New Roman', Times, serif;
 }
+
+.main-option input[type="radio"] + label.poop {
+    background-color: #ffead2b0;
+    color: #e0af7c;
+}
+
+.main-option input[type="radio"]:checked  + label.poop {
+    background-color: #ffead2;
+    color: #e0af7c;
+    border: 1px solid;
+}
+
+.main-option input[type="radio"] + label.pee {
+    background-color: #ffead2b0;
+    color: #e0af7c;
+}
+
+.main-option input[type="radio"]:checked  + label.pee {
+    background-color: #ffead2;
+    color: #e0af7c;
+    border: 1px solid;
+}
