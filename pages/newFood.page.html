@@ -23,9 +23,17 @@
                 <label class="bootle" for="bottle">🍼 Biberon</label>
             </div>
         </div>
-        <div id="formBreast">Form Tétée</div>
+        <div id="formBreast" class="hidden">
+            <div>Form Tétée</div>
+            <span>Kame hame ha</span>
+        </div>
         <div id="formBottle">
-            <span> - </span> <span>25</span>mL <span> + </span>
+
+            <div class="quantity">
+                <span class="action"> - </span>
+                <span class="text">25 <span class="label">mL</span></span>
+                <span class="action"> + </span>
+            </div>
 
             <h3>Type de lait</h3>
             <div class="milk-options">
@@ -39,17 +47,26 @@
                 </div>
             </div>
 
-            <label for="start">Date</label>
-            <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2038-12-31" />
+            <div class="block">
+                <div>
+                    <div for="start">Date</div>
+                    <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2038-12-31" />
+                </div>
+                <div>
+                    <div for="appointment">Heure</div>
+                    <input type="time" id="appointment" name="appointment" min="09:00" max="18:00" required />
+                </div>
+            </div>
 
-            <label for="appointment">Heure</label>
-            <input type="time" id="appointment" name="appointment" min="09:00" max="18:00" required />
-
-            <label for="story">Ajouter une note</label>
-            <textarea id="story" name="story" rows="5" cols="33">
-                Marque de lait ...
-            </textarea>
-            <button type="submit">Enregistrer le biberon</button>
+            <div>
+                <div for="story">Ajouter une note</div>
+                <textarea id="story" name="story" rows="5" cols="33">
+                    Marque de lait ...
+                </textarea>
+            </div>
+            <div>
+                <button type="submit">Enregistrer le biberon</button>
+            </div>
         </div>
     </form>
 

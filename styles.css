@@ -112,6 +112,38 @@ h1 {
     color: #3e4848;
 }
 
+.hidden {
+    display: none;
+}
+
+/* General components */
+.quantity {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0px;
+}
+.quantity>.text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.text>.label {
+    padding: 0 4px;
+}
+
+.block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
 /* New food page */
 
 .main-options {
@@ -147,14 +179,6 @@ h1 {
     line-height: 50px;
     cursor: pointer;
 }
-
-/* bootle
-#ffead2
-#e0af7c
-
-tétté
-#f1eafd
-#a896c9 */
 
 /* Change background when selected */
 .main-option input[type="radio"] + label {
