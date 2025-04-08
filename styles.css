@@ -1,3 +1,7 @@
+html {
+    font-size: 24px;
+}
+
 body {
     font-family: system-ui;
     background-color: #faf4ef;
@@ -7,10 +11,6 @@ body {
 
 h1 {
     color: #333;
-}
-
-.btn-submit {
-    text-align: center;
 }
 
 .container {
@@ -36,7 +36,7 @@ h1 {
     text-align: center;
     border-radius: 50%;
     color: #fff;
-    font-size: 14px;
+    font-size: 0.6rem;
     font-weight: bold;
     cursor: pointer;
 }
@@ -63,7 +63,7 @@ h1 {
 
 #back {
     cursor: pointer;
-    font-size: 20px;
+    font-size: 0.8rem;
 }
 
 .info {
@@ -80,7 +80,7 @@ h1 {
 
 .info>.content>.data {
     margin: 0 10px;
-    font-size: 16px;
+    font-size: 0.7rem;
 }
 
 /* font */
@@ -89,25 +89,25 @@ h1 {
 }
 
 .small {
-    font-size: 14px;
+    font-size: 0.6rem;
     color: #677677;
 }
 
 .title {
     padding: 6px 0;
-    font-size: 22px;
+    font-size: 0.9rem;
     font-family: 'Times New Roman', Times, serif;
 }
 
 .sub-title {
-    font-size: 16px;
+    font-size: 0.8rem;
     padding: 10px 0;
     font-family: 'Times New Roman', Times, serif;
 }
 
 .right-data {
     padding: 10px;
-    font-size: 16px;
+    font-size: 0.8rem;
     border-left: 1px solid rgb(170, 154, 154);
 }
 
@@ -133,7 +133,7 @@ h1 {
     justify-content: space-between;
     align-items: center;
     padding: 10px 0px;
-    font-size: 18px;
+    font-size: 0.9rem;
     font-weight: bold;
 }
 .text>.label {
@@ -152,7 +152,24 @@ h1 {
     padding: 6px 10px;
     border-radius: 6px;
     font-family: unset;
-    font-size: 14px;
+    font-size: 0.6rem;
+}
+
+.button-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 6px 0px;
+}
+
+button, .btn-submit {
+    background: rgb(14, 54, 6);
+    border: none;
+    color: #fff;
+    padding: 6px;
+    font: inherit;
+    cursor: pointer;
+    border-radius: 6px;
 }
 
 /* New food page */
@@ -261,6 +278,11 @@ textarea#story {
     padding: 6px;
     border: none;
     font-family: unset;
-    font-size: 16px;
+    font-size: 0.6rem;
     resize: none;
+}
+
+#formBottle .sub-title {
+    font-weight: 600;
+    font-size: 0.8rem;
 }
