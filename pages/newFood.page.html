@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles.css">
     <title>New food</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script type="module" src="../scripts/newFood.js"></script>
 </head>
 
 <body>
-    <h1><span id="back">⬅️</span>Ajouter un repas</h1>
+    <h1><span id="back"><i class="fas fa-angle-left"></i></span> Ajouter un repas</h1>
 
     <form action="">
         <div id="mainOptions" class="main-options">
@@ -88,7 +89,7 @@
         </div>
         <div class="">
             <div class="sub-title" for="story">Ajouter une note</div>
-            <textarea id="story" name="story" rows="5" cols="33">Marque de lait ...</textarea>
+            <textarea placeholder="Marque de lait ..." id="story" name="story" rows="5" cols="33"></textarea>
         </div>
         <div class="button-wrapper">
             <button class="btn-submit" type="submit">Enregistrer le biberon</button>

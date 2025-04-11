@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles.css">
     <title>New diaper</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script type="module" src="../scripts/newDiaper.js"></script>
 </head>
 
 <body>
-    <h1><span id="back">⬅️</span>Couche</h1>
+    <h1><i id="back" class="fas fa-angle-left"></i> Couche</h1>
 
     <form action="">
         <div id="mainOptions" class="main-options">
@@ -35,7 +36,7 @@
         </div>
         <div class="">
             <div class="sub-title" for="story">Ajouter une note</div>
-            <textarea id="story" name="story" rows="5" cols="33">Couleur, aspect, anomalie ...</textarea>
+            <textarea placeholder="Couleur, aspect, anomalie ..." id="story" name="story" rows="5" cols="33"></textarea>
         </div>
         <div class="button-wrapper">
             <button class="btn-submit" type="submit">Enregistrer</button>

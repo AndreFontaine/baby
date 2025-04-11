@@ -31,15 +31,7 @@ h1 {
 }
 
 .action {
-    background-color: #083734;
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    border-radius: 50%;
-    color: #fff;
-    font-size: 0.6rem;
-    font-weight: bold;
-    cursor: pointer;
+    color: #022b09;
 }
 
 .preview {
@@ -352,4 +344,8 @@ textarea#story {
     background-color: #ffead2;
     color: #e0af7c;
     border: 1px solid;
+}
+
+.fa-angle-left {
+    font-size: 0.9rem;
 }

@@ -18,7 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
 const backBtn = document.querySelector("#back");
 
 backBtn.addEventListener("click", (event) => {
-    console.log("Hello", event.target.classList);
     window.location.href = "home.page.html";
 });
 

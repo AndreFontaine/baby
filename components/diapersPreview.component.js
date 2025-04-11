@@ -4,9 +4,6 @@ export function createDiapersPreviewContent(item) {
 
     const diapersPreview = document.createElement("div");
     diapersPreview.classList.add("container");
-    diapersPreview.addEventListener("click", (event) => {
-        window.location.href = "diapers.page.html";
-    });
 
     // Header Section
     const header = document.createElement("div");
@@ -19,7 +16,7 @@ export function createDiapersPreviewContent(item) {
 
     const action = actionBtn.cloneNode(true);
     action.addEventListener("click", (event) => {
-        window.location.href = "diapers.page.html";
+        window.location.href = "newDiaper.page.html";
     });
 
     header.appendChild(action);
@@ -42,6 +39,12 @@ export function createDiapersPreviewContent(item) {
     preview.appendChild(poopIcon);
     preview.appendChild(smallText);
     preview.appendChild(timeText);
+
+    const actionContainer = document.createElement("div");
+    actionContainer.appendChild(preview);
+    actionContainer.addEventListener("click", (event) => {
+        window.location.href = "diapers.page.html";
+    });
 
     // Footer Section
     const footer = document.createElement("div");
@@ -71,7 +74,7 @@ export function createDiapersPreviewContent(item) {
 
     // Append everything to the main container
     diapersPreview.appendChild(header);
-    diapersPreview.appendChild(preview);
+    diapersPreview.appendChild(actionContainer);
     diapersPreview.appendChild(footer);
 
    return diapersPreview;

@@ -22,6 +22,12 @@ document.addEventListener("DOMContentLoaded", () => {
     loadDateAndTime();
 });
 
+const backBtn = document.querySelector("#back");
+
+backBtn.addEventListener("click", (event) => {
+    window.location.href = "home.page.html";
+});
+
 function loadDateAndTime() {
     const timeInput = document.getElementById("timeInput");
     const dateInput = document.getElementById("dateInput");
