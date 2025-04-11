@@ -22,6 +22,39 @@ document.addEventListener("DOMContentLoaded", () => {
     loadDateAndTime();
 });
 
+document.getElementById("saveFood").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData.entries());
+    console.log(data); // Now you have your JSON object
+
+    if (data?.foodType === "breast") {
+        delete data.milkType;
+    }
+
+    if (data?.foodType === "bottle") {
+        delete data["r-hours"];
+        delete data["l-hours"];
+        delete data["r-minutes"];
+        delete data["l-minutes"];
+        delete data["r-seconds"];
+        delete data["l-seconds"];
+    }
+
+    // Optional: Convert to JSON string
+    const jsonString = JSON.stringify(data, null, 2);
+    console.log(jsonString);
+
+    const modal = document.getElementById("successModal");
+    modal.style.display = "block";
+
+    setTimeout(() => {
+        modal.style.display = "none";
+    }, 3000);
+
+});
+
 const backBtn = document.querySelector("#back");
 
 backBtn.addEventListener("click", (event) => {
@@ -45,3 +78,7 @@ function loadDateAndTime() {
     const day = now.getDate().toString().padStart(2, "0");
     dateInput.value = `${year}-${month}-${day}`;
 }
+
+document.querySelector(".close").addEventListener("click", function () {
+    document.getElementById("successModal").style.display = "none";
+});

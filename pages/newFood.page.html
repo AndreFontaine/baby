@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../modal.css">
     <title>New food</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script type="module" src="../scripts/newFood.js"></script>
@@ -13,7 +14,7 @@
 <body>
     <h1><span id="back"><i class="fas fa-angle-left"></i></span> Ajouter un repas</h1>
 
-    <form action="">
+    <form id="saveFood" action="javascript:void(0);">
         <div id="mainOptions" class="main-options">
             <div class="main-option">
                 <input type="radio" id="breast" name="foodType" value="breast" />
@@ -32,11 +33,14 @@
                             Sein gauche
                         </div>
                         <div>
-                            <input class="time-input" type="text" id="r-hours" name="r-hours" required minlength="1" maxlength="1" size="1"  value="0" max="2" min="0"/>
+                            <input class="time-input" type="text" id="r-hours" name="r-hours" required minlength="1"
+                                maxlength="1" size="1" value="0" max="2" min="0" />
                             <label class="time-label" for="r-hours">h</label>
-                            <input class="time-input" type="text" id="r-minutes" name="r-minutes" required minlength="1" maxlength="2" size="1"  value="0" max="60" min="0"/>
+                            <input class="time-input" type="text" id="r-minutes" name="r-minutes" required minlength="1"
+                                maxlength="2" size="1" value="0" max="60" min="0" />
                             <label class="time-label" for="r-minutes">m</label>
-                            <input class="time-input" type="text" id="r-seconds" name="r-seconds" required minlength="1" maxlength="2" size="1"  value="0" max="60" min="0"/>
+                            <input class="time-input" type="text" id="r-seconds" name="r-seconds" required minlength="1"
+                                maxlength="2" size="1" value="0" max="60" min="0" />
                             <label class="time-label" for="r-seconds">s</label>
                         </div>
                     </div>
@@ -47,17 +51,20 @@
                             Sein droit
                         </div>
                         <div>
-                            <input class="time-input" type="text" id="l-hours" name="l-hours" required minlength="1" maxlength="1" size="1" value="0" max="2" min="0"/>
+                            <input class="time-input" type="text" id="l-hours" name="l-hours" required minlength="1"
+                                maxlength="1" size="1" value="0" max="2" min="0" />
                             <label class="time-label" for="l-hours">h</label>
-                            <input class="time-input" type="text" id="l-minutes" name="l-minutes" required minlength="1" maxlength="2" size="2" value="0" max="60" min="0"/>
+                            <input class="time-input" type="text" id="l-minutes" name="l-minutes" required minlength="1"
+                                maxlength="2" size="2" value="0" max="60" min="0" />
                             <label class="time-label" for="l-minutes">m</label>
-                            <input class="time-input" type="text" id="l-seconds" name="l-seconds" required minlength="1" maxlength="2" size="2" value="0" max="60" min="0"/>
+                            <input class="time-input" type="text" id="l-seconds" name="l-seconds" required minlength="1"
+                                maxlength="2" size="2" value="0" max="60" min="0" />
                             <label class="time-label" for="l-seconds">s</label>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
         </div>
         <div id="formBottle">
             <div class="quantity">
@@ -80,7 +87,7 @@
         <div class="block">
             <div>
                 <div class="sub-title" for="dateInput">Date</div>
-                <input class="input-time" type="date" id="dateInput" name="dateInput" required/>
+                <input class="input-time" type="date" id="dateInput" name="dateInput" required />
             </div>
             <div>
                 <div class="sub-title" for="timeInput">Heure</div>
@@ -96,6 +103,13 @@
         </div>
 
     </form>
+
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>✅ Nouvel aliment enregistré avec succès !</p>
+        </div>
+    </div>
 
 </body>
 

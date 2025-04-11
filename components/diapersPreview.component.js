@@ -54,6 +54,9 @@ export function createDiapersPreviewContent(item) {
     totalText.classList.add("small");
     totalText.textContent = "Total aujourd'hui";
 
+    const quantitiesDiv = document.createElement("div");
+    quantitiesDiv.classList.add("quantities");
+
     const poopCountIcon = document.createElement("span");
     poopCountIcon.textContent = "💩";
 
@@ -66,11 +69,12 @@ export function createDiapersPreviewContent(item) {
     const peeAmount = document.createElement("span");
     peeAmount.textContent = item.pee;
 
-    footer.appendChild(totalText);
-    footer.appendChild(poopCountIcon);
-    footer.appendChild(poopAmount);
-    footer.appendChild(peeIcon);
-    footer.appendChild(peeAmount);
+    quantitiesDiv.appendChild(totalText);
+    quantitiesDiv.appendChild(poopCountIcon);
+    quantitiesDiv.appendChild(poopAmount);
+    quantitiesDiv.appendChild(peeIcon);
+    quantitiesDiv.appendChild(peeAmount);
+    footer.appendChild(quantitiesDiv);
 
     // Append everything to the main container
     diapersPreview.appendChild(header);
