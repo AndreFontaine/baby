@@ -68,10 +68,14 @@
         </div>
         <div id="formBottle">
             <div class="milk-quantity">
-                <span id="down-milk"><i class="action fa-solid fa-circle-minus"></i></span>
+                <span id="down-milk" role="button" tabindex="0" aria-label="Decrease milk">
+                    <i class="action fa-solid fa-circle-minus"></i>
+                </span>
                 <input class="quantity-input" type="text" id="milk-quantity" name="milk-quantity" required minlength="1"
                 maxlength="3" size="3" value="50" max="999" min="0" /><span class="label">mL</span>    
-                <span id="up-milk"><i class="action fa-solid fa-circle-plus"></i></span>
+                <span id="up-milk" role="button" tabindex="0" aria-label="Increase milk">
+                    <i class="action fa-solid fa-circle-plus"></i>
+                </span>
             </div>
             <div class="sub-title">Type de lait</div>
             <div class="milk-options">
@@ -96,8 +100,8 @@
             </div>
         </div>
         <div class="">
-            <div class="sub-title" for="story">Ajouter une note</div>
-            <textarea placeholder="Marque de lait ..." id="story" name="story" rows="5" cols="33"></textarea>
+            <div class="sub-title" for="note">Ajouter une note</div>
+            <textarea placeholder="Marque de lait ..." id="note" name="note" rows="5" cols="33"></textarea>
         </div>
         <div class="button-wrapper">
             <button class="btn-submit" type="submit">Enregistrer</button>

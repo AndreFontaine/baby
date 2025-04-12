@@ -24,27 +24,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.getElementById("up-milk").addEventListener("click", function (e) {
     e.preventDefault();
-    const input = document.getElementById("milk-quantity");
-    let current = parseInt(input.value, 10) || 0;
-    let newValue = current + 5;
-    const min = parseInt(input.min, 10);
-    const max = parseInt(input.max, 10);
-    newValue = Math.max(min, Math.min(max, newValue));
-    input.value = newValue;
-    console.log("up-milk!");
+    updateMilkQuantity();
 });
 
 document.getElementById("down-milk").addEventListener("click", function (e) {
     e.preventDefault();
+    updateMilkQuantity(-5);
+});
+
+function updateMilkQuantity(step = 5) {
     const input = document.getElementById("milk-quantity");
+    if (!input) {
+        console.error("Input element with id 'milk-quantity' not found.");
+        return;
+    }
     let current = parseInt(input.value, 10) || 0;
-    let newValue = current - 5;
-    const min = parseInt(input.min, 10);
-    const max = parseInt(input.max, 10);
+    const min = parseInt(input.min, 10) || 0;
+    const max = parseInt(input.max, 10) || 999;
+    let newValue = current + step;
     newValue = Math.max(min, Math.min(max, newValue));
     input.value = newValue;
-    console.log("down-milk");
-});
+};
 
 document.getElementById("saveFood").addEventListener("submit", function (e) {
     e.preventDefault();
@@ -55,6 +55,7 @@ document.getElementById("saveFood").addEventListener("submit", function (e) {
 
     if (data?.foodType === "breast") {
         delete data.milkType;
+        delete data["milk-quantity"];
     }
 
     if (data?.foodType === "bottle") {
