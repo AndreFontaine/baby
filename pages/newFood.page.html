@@ -67,10 +67,11 @@
 
         </div>
         <div id="formBottle">
-            <div class="quantity">
-                <span class="action"> - </span>
-                <span class="text">25 <span class="label">mL</span></span>
-                <span class="action"> + </span>
+            <div class="milk-quantity">
+                <span id="down-milk"><i class="action fa-solid fa-circle-minus"></i></span>
+                <input class="quantity-input" type="text" id="milk-quantity" name="milk-quantity" required minlength="1"
+                maxlength="3" size="3" value="50" max="999" min="0" /><span class="label">mL</span>    
+                <span id="up-milk"><i class="action fa-solid fa-circle-plus"></i></span>
             </div>
             <div class="sub-title">Type de lait</div>
             <div class="milk-options">
@@ -99,7 +100,7 @@
             <textarea placeholder="Marque de lait ..." id="story" name="story" rows="5" cols="33"></textarea>
         </div>
         <div class="button-wrapper">
-            <button class="btn-submit" type="submit">Enregistrer le biberon</button>
+            <button class="btn-submit" type="submit">Enregistrer</button>
         </div>
 
     </form>

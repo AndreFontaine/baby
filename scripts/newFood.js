@@ -22,6 +22,30 @@ document.addEventListener("DOMContentLoaded", () => {
     loadDateAndTime();
 });
 
+document.getElementById("up-milk").addEventListener("click", function (e) {
+    e.preventDefault();
+    const input = document.getElementById("milk-quantity");
+    let current = parseInt(input.value, 10) || 0;
+    let newValue = current + 5;
+    const min = parseInt(input.min, 10);
+    const max = parseInt(input.max, 10);
+    newValue = Math.max(min, Math.min(max, newValue));
+    input.value = newValue;
+    console.log("up-milk!");
+});
+
+document.getElementById("down-milk").addEventListener("click", function (e) {
+    e.preventDefault();
+    const input = document.getElementById("milk-quantity");
+    let current = parseInt(input.value, 10) || 0;
+    let newValue = current - 5;
+    const min = parseInt(input.min, 10);
+    const max = parseInt(input.max, 10);
+    newValue = Math.max(min, Math.min(max, newValue));
+    input.value = newValue;
+    console.log("down-milk");
+});
+
 document.getElementById("saveFood").addEventListener("submit", function (e) {
     e.preventDefault();
 
