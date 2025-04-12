@@ -86,6 +86,9 @@ h1 {
 .small {
     font-size: 0.7rem;
     color: #00777e;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .title {
@@ -369,4 +372,19 @@ textarea#note {
 
 .fa-angle-left {
     font-size: 0.9rem;
+}
+
+.note {
+   color: #777;
+}
+
+.badge {
+    background-color: #ffd7b5;
+    font-size: 0.5rem;
+    padding: 0px 7px 2px 7px;
+    border-radius: 0.5rem;
+}
+
+.badge-formula {
+    background-color: #ddd;
 }

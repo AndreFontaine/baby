@@ -29,7 +29,7 @@ function createFoodPre(container) {
     }
     // create food resume content   
     const foodPreview = {
-        date: '30 mars 2025',
+        date: new Date(),
         hour: '13h35',
         volume: totalVolume,
         times: totalTimes,
@@ -63,3 +63,23 @@ function createPoopPre(container) {
     container.appendChild(createDiapersPreviewContent(diapersPreview));
 }
 
+function upsateLastMealTime() {
+    const lastMeal = foodH[foodH.length - 1];
+    const currentDate = new Date();
+    const lastMealDate = new Date(lastMeal.date + " " + lastMeal.time);
+    const diffMs = currentDate - lastMealDate; // milliseconds
+    const diffMins = Math.floor(diffMs / 60000); // minutes
+    return diffMins;
+
+    const lastMealTime = new Date("2024-04-11T13:00:00"); 
+    const now = new Date();
+    const diffMsx = now - lastMealTime; // difference in milliseconds
+
+    const diffMinsx = Math.floor(diffMsx / 1000 / 60);
+    const hours = Math.floor(diffMinsx / 60);
+    const minutes = diffMinsx % 60;
+
+    const text = `${hours} hour${hours !== 1 ? 's' : ''} and ${minutes} minute${minutes !== 1 ? 's' : ''} since the last meal`;
+
+    document.getElementById("meal-time").textContent = text;
+}
