@@ -1,7 +1,11 @@
 import { createDiapersPreviewContent } from "../components/diapersPreview.component.js";
 import { createfoodPreviewContent } from "../components/foodPreview.component.js";
 
-import { foodHistorique, diapersHistorique } from "../data.js";
+import { diapersHistorique } from "../data.js";
+
+import { get } from "./db.js";
+
+const foodH = get("food");
 
 document.addEventListener("DOMContentLoaded", () => {
     
@@ -17,9 +21,9 @@ function createFoodPre(container) {
     // take total today from historique
     let totalVolume = 0; 
     let totalTimes = 0; 
-    for (let i = 0; i < foodHistorique.length; i++) {
-        if (foodHistorique[i].type === 'bottle') {
-            totalVolume += parseInt(foodHistorique[i].volume);
+    for (let i = 0; i < foodH.length; i++) {
+        if (foodH[i].type === 'bottle') {
+            totalVolume += parseInt(foodH[i].volume);
             totalTimes += 1;
         }
     }
