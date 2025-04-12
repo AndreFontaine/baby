@@ -33,7 +33,7 @@ function createFoodPre(container) {
         hour: '13h35',
         volume: totalVolume,
         times: totalTimes,
-        duration: '1h 36 min',
+        duration: foodH?.length >0 ? upsateLastMealTime() : '0h0m',
         type: 'bottle'
     };
     container.appendChild(createfoodPreviewContent(foodPreview));
@@ -64,22 +64,21 @@ function createPoopPre(container) {
 }
 
 function upsateLastMealTime() {
-    const lastMeal = foodH[foodH.length - 1];
-    const currentDate = new Date();
-    const lastMealDate = new Date(lastMeal.date + " " + lastMeal.time);
-    const diffMs = currentDate - lastMealDate; // milliseconds
-    const diffMins = Math.floor(diffMs / 60000); // minutes
-    return diffMins;
-
-    const lastMealTime = new Date("2024-04-11T13:00:00"); 
+    const lastMealTime = new Date(`${newestEntry.date}T${newestEntry.time}`); 
+    console.log(lastMealTime);
     const now = new Date();
+    console.log(now);
     const diffMsx = now - lastMealTime; // difference in milliseconds
-
     const diffMinsx = Math.floor(diffMsx / 1000 / 60);
     const hours = Math.floor(diffMinsx / 60);
     const minutes = diffMinsx % 60;
-
-    const text = `${hours} hour${hours !== 1 ? 's' : ''} and ${minutes} minute${minutes !== 1 ? 's' : ''} since the last meal`;
-
-    document.getElementById("meal-time").textContent = text;
+    const text = `${hours}h${minutes}m`;
+    return text;
 }
+
+const newestEntry = foodH?.reduce((latest, current) => {
+    const latestDate = new Date(`${latest.date}T${latest.time}`);
+    const currentDate = new Date(`${current.date}T${current.time}`);
+    return currentDate > latestDate ? current : latest;
+});
+

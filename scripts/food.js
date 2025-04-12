@@ -40,13 +40,13 @@ function createfoodTodayResume(container) {
     let totalBreastTimes = 0;
 
     for (let i = 0; i < foodH.length; i++) {
-        if (foodH[i].type === 'bottle') {
+        if (foodH[i].type === 'bottle' && isToday(foodH[i].date)) {
             if (foodH[i].volume) {
                 totalVolume += parseInt(foodH[i].volume, 10);
                 totalBottleTimes += 1;
             }
         }
-        if (foodH[i].type === 'breast') {
+        if (foodH[i].type === 'breast' && isToday(foodH[i].date)) {
             if (foodH[i].duration) {
                 totalDuration += parseInt(foodH[i].duration.left, 10) + parseInt(foodH[i].duration.right, 10);
                 totalBreastTimes += 1;
@@ -73,4 +73,10 @@ function createHisCon(container) {
     for (let i = 0; i < foodH.length; i++) {
         container.appendChild(createHistoriqueContent(foodH[i]));
     }
+}
+
+function isToday(date) {
+    const today = new Date();
+    const entryDate = new Date(date);
+    return entryDate.getDate() === today.getDate() && entryDate.getMonth() === today.getMonth() && entryDate.getFullYear() === today.getFullYear();
 }

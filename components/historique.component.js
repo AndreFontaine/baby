@@ -22,13 +22,15 @@ export function createHistoriqueContent(item) {
     const timeDiv = document.createElement("div");
     timeDiv.textContent = item.time;
 
-    const typeSpan = document.createElement("span");
-    console.log(item.milkType);
-    typeSpan.classList.add("badge");
-    if (item.milkType === 'formula') {
-        typeSpan.classList.add("badge-formula");
+    if (item.milkType) {
+        const typeSpan = document.createElement("span");
+        typeSpan.classList.add("badge");
+        if (item.milkType === 'formula') {
+            typeSpan.classList.add("badge-formula");
+        }
+        typeSpan.textContent = item.milkType;
+        smallDiv.appendChild(typeSpan);
     }
-    typeSpan.textContent = item.milkType;
 
     const noteDiv = document.createElement("div");
     noteDiv.classList.add("note");
@@ -38,7 +40,7 @@ export function createHistoriqueContent(item) {
     if (isFood(item.type)) rightInfo(rightDataDiv, item);
 
     dataDiv.appendChild(smallDiv);
-    smallDiv.appendChild(typeSpan);
+    
     dataDiv.appendChild(timeDiv);
     dataDiv.appendChild(noteDiv);
     contentDiv.appendChild(emojiDiv);
