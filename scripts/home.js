@@ -21,7 +21,7 @@ function createFoodPre(container) {
     // take total today from historique
     let totalVolume = 0; 
     let totalTimes = 0; 
-    for (let i = 0; i < foodH.length; i++) {
+    for (let i = 0; i < foodH?.length; i++) {
         if (foodH[i].type === 'bottle') {
             totalVolume += parseInt(foodH[i].volume);
             totalTimes += 1;
