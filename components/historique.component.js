@@ -20,7 +20,7 @@ export function createHistoriqueContent(item) {
     smallDiv.textContent = item.date;
 
     const timeDiv = document.createElement("div");
-    timeDiv.textContent = item.hour;
+    timeDiv.textContent = item.time;
 
     const rightDataDiv = document.createElement("div");
     if (isFood(item.type)) rightInfo(rightDataDiv, item);

@@ -1,8 +1,9 @@
 import { createfoodResumeContent } from "../components/foodResume.component.js";
 import { createfoodRTodayResumeContent } from "../components/foodToday.component.js";
 import { createHistoriqueContent } from "../components/historique.component.js";
+import { get } from "./db.js";
 
-import { foodHistorique } from "../data.js";
+const foodH = get("food");
 
 document.addEventListener("DOMContentLoaded", () => {
     const foodResumeContainer = document.querySelector("#foodResume");
@@ -38,16 +39,16 @@ function createfoodTodayResume(container) {
     let totalDuration = 0;
     let totalBreastTimes = 0;
 
-    for (let i = 0; i < foodHistorique.length; i++) {
-        if (foodHistorique[i].type === 'bottle') {
-            if (foodHistorique[i].volume) {
-                totalVolume += parseInt(foodHistorique[i].volume, 10);
+    for (let i = 0; i < foodH.length; i++) {
+        if (foodH[i].type === 'bottle') {
+            if (foodH[i].volume) {
+                totalVolume += parseInt(foodH[i].volume, 10);
                 totalBottleTimes += 1;
             }
         }
-        if (foodHistorique[i].type === 'breast') {
-            if (foodHistorique[i].duration) {
-                totalDuration += parseInt(foodHistorique[i].duration.left, 10) + parseInt(foodHistorique[i].duration.right, 10);
+        if (foodH[i].type === 'breast') {
+            if (foodH[i].duration) {
+                totalDuration += parseInt(foodH[i].duration.left, 10) + parseInt(foodH[i].duration.right, 10);
                 totalBreastTimes += 1;
             }
         }
@@ -69,7 +70,7 @@ function createfoodTodayResume(container) {
 }
 
 function createHisCon(container) {
-    for (let i = 0; i < foodHistorique.length; i++) {
-        container.appendChild(createHistoriqueContent(foodHistorique[i]));
+    for (let i = 0; i < foodH.length; i++) {
+        container.appendChild(createHistoriqueContent(foodH[i]));
     }
 }

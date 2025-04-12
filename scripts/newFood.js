@@ -1,3 +1,5 @@
+import { init, save } from "./db.js";
+
 const breastForm = document.querySelector("#formBreast");
 const bottleForm = document.querySelector("#formBottle");
 
@@ -33,9 +35,9 @@ document.getElementById("down-milk").addEventListener("click", function (e) {
 });
 
 function updateMilkQuantity(step = 5) {
-    const input = document.getElementById("milk-quantity");
+    const input = document.getElementById("volume");
     if (!input) {
-        console.error("Input element with id 'milk-quantity' not found.");
+        console.error("Input element with id 'volume' not found.");
         return;
     }
     let current = parseInt(input.value, 10) || 0;
@@ -50,26 +52,30 @@ document.getElementById("saveFood").addEventListener("submit", function (e) {
     e.preventDefault();
 
     const formData = new FormData(this);
-    const data = Object.fromEntries(formData.entries());
-    console.log(data); // Now you have your JSON object
+    const formObj = Object.fromEntries(formData.entries());
+    const data = {};
+    data.id = Date.now();
 
-    if (data?.foodType === "breast") {
-        delete data.milkType;
-        delete data["milk-quantity"];
+    if (formObj?.foodType === "breast") {
+        data.duration = {
+            left: parseInt((formObj["l-hours"] * 60), 10) + parseInt(formObj["l-minutes"], 10) + parseInt((formObj["l-seconds"] / 60), 10),
+            right: parseInt((formObj["r-hours"] * 60), 10) + parseInt(formObj["r-minutes"], 10) + parseInt((formObj["r-seconds"] / 60), 10),
+        }
     }
 
-    if (data?.foodType === "bottle") {
-        delete data["r-hours"];
-        delete data["l-hours"];
-        delete data["r-minutes"];
-        delete data["l-minutes"];
-        delete data["r-seconds"];
-        delete data["l-seconds"];
+    if (formObj?.foodType === "bottle") {
+        data.milkType = formObj?.milkType;
+        data.volume = formObj?.volume;
     }
 
-    // Optional: Convert to JSON string
-    const jsonString = JSON.stringify(data, null, 2);
-    console.log(jsonString);
+    data.type = formObj?.foodType;
+    data.date = formObj?.dateInput;
+    data.time = formObj?.timeInput;
+    data.note = formObj?.note;
+
+    // Save
+    init(data);
+    save("food", data);
 
     const modal = document.getElementById("successModal");
     modal.style.display = "block";
