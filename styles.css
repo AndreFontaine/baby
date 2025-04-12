@@ -1,5 +1,5 @@
 html {
-    font-size: 24px;
+    font-size: 28px;
 }
 
 body {
@@ -38,8 +38,8 @@ h1 {
 .preview {
     display: flex;
     flex-direction: column;
-    width: 5rem;
-    height: 5rem;
+    width: 6rem;
+    height: 6rem;
     background-color: #f2e0cd;
     border-radius: 50%;
     text-align: center;
@@ -86,7 +86,6 @@ h1 {
 .small {
     font-size: 0.7rem;
     color: #00777e;
-    display: flex;
     align-items: center;
     gap: 0.5rem;
 }
