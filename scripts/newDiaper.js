@@ -1,4 +1,4 @@
-import { init, save } from "./db.js";
+import { save } from "./db.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     loadDateAndTime();
@@ -27,7 +27,6 @@ document.getElementById("saveDiaper").addEventListener("submit", function (e) {
     console.log(data);
 
     // Save
-    init(data);
     save("diaper", data);
 
     const modal = document.getElementById("successModal");

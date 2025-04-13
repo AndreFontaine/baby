@@ -1,10 +1,7 @@
 import { createHistoriqueContent } from "../components/historique.component.js";
-
 import { get } from "./db.js";
 
 const diaperH = get("diaper");
-
-console.log("diaperH", diaperH);
 
 document.addEventListener("DOMContentLoaded", () => {
     const historiqueContainer = document.querySelector("#historiqueDiapers");

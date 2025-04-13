@@ -1,4 +1,4 @@
-import { init, save } from "./db.js";
+import { save } from "./db.js";
 
 const breastForm = document.querySelector("#formBreast");
 const bottleForm = document.querySelector("#formBottle");
@@ -74,7 +74,6 @@ document.getElementById("saveFood").addEventListener("submit", function (e) {
     data.note = formObj?.note;
 
     // Save
-    init(data);
     save("food", data);
 
     const modal = document.getElementById("successModal");
