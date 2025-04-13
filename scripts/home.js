@@ -1,6 +1,6 @@
 import { createDiapersPreviewContent } from "../components/diapersPreview.component.js";
 import { createfoodPreviewContent } from "../components/foodPreview.component.js";
-import { upsateLastMealTime } from "../services/historique.js";
+import { upsateLastDiaperTime, upsateLastMealTime } from "../services/historique.js";
 
 import { get } from "./db.js";
 
@@ -29,9 +29,9 @@ function createFoodPre(container) {
     }
     // create food resume content   
     const foodPreview = {
-        duration: foodH?.length >0 ? upsateLastMealTime('preview') : '0h0m',
+        duration: foodH?.length > 0 ? upsateLastMealTime('preview') : '0h0m',
         volume: totalVolume,
-        times: totalTimes,
+        times: totalTimes
     };
     container.appendChild(createfoodPreviewContent(foodPreview));
 }
@@ -40,7 +40,7 @@ function createPoopPre(container) {
     // take total today from historique
     let totalPoopTimes = 0; 
     let totalPeeTimes = 0;
-    for (let i = 0; i < diaperH.length; i++) {
+    for (let i = 0; i < diaperH?.length; i++) {
         if (diaperH[i].type === 'poop') {
             totalPoopTimes += 1;
         }
@@ -50,11 +50,9 @@ function createPoopPre(container) {
     }
     // create food preview content   
     const diapersPreview = {
-        date: '30 mars 2025',
-        hour: '13h35',
         pee: totalPeeTimes,
         poop: totalPoopTimes,
-        duration: '3h 42 min'
+        duration: diaperH?.length > 0 ? upsateLastDiaperTime() : '0h0m'
     };
 
     container.appendChild(createDiapersPreviewContent(diapersPreview));

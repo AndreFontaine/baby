@@ -1,4 +1,5 @@
 import { actionBtn } from "../actionButton.js";
+import { newesDiaperEntry } from "../services/historique.js";
 
 export function createDiapersPreviewContent(item) {
 
@@ -28,6 +29,9 @@ export function createDiapersPreviewContent(item) {
     const poopIcon = document.createElement("div");
     poopIcon.textContent = "💩";
 
+    const peeIcon = document.createElement("div");
+    peeIcon.textContent = "💧";
+
     const smallText = document.createElement("div");
     smallText.classList.add("preview-text");
     smallText.textContent = "Dernier couche";
@@ -36,7 +40,10 @@ export function createDiapersPreviewContent(item) {
     timeText.classList.add("duration");
     timeText.textContent = item.duration;
 
-    preview.appendChild(poopIcon);
+    console.log("newesDiaperEntry", newesDiaperEntry);
+    const showIcon = (newesDiaperEntry.type === "poop") ? poopIcon : peeIcon;
+
+    preview.appendChild(showIcon);
     preview.appendChild(smallText);
     preview.appendChild(timeText);
 
@@ -60,11 +67,11 @@ export function createDiapersPreviewContent(item) {
     const poopCountIcon = document.createElement("span");
     poopCountIcon.textContent = "💩";
 
+    const peeCountIcon = document.createElement("span");
+    peeCountIcon.textContent = "💧";
+
     const poopAmount = document.createElement("span");
     poopAmount.textContent = item.poop;
-
-    const peeIcon = document.createElement("span");
-    peeIcon.textContent = "💧";
 
     const peeAmount = document.createElement("span");
     peeAmount.textContent = item.pee;
@@ -72,7 +79,7 @@ export function createDiapersPreviewContent(item) {
     quantitiesDiv.appendChild(totalText);
     quantitiesDiv.appendChild(poopCountIcon);
     quantitiesDiv.appendChild(poopAmount);
-    quantitiesDiv.appendChild(peeIcon);
+    quantitiesDiv.appendChild(peeCountIcon);
     quantitiesDiv.appendChild(peeAmount);
     footer.appendChild(quantitiesDiv);
 
