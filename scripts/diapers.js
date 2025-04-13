@@ -1,7 +1,7 @@
 import { createHistoriqueContent } from "../components/historique.component.js";
 import { get } from "./db.js";
 
-const diaperH = get("diaper");
+const diaperH = get("diaper").sort((a, b) => new Date(b.date) - new Date(a.date));
 
 document.addEventListener("DOMContentLoaded", () => {
     const historiqueContainer = document.querySelector("#historiqueDiapers");

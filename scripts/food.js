@@ -4,7 +4,7 @@ import { createHistoriqueContent } from "../components/historique.component.js";
 import { newestFoodEntry, upsateLastMealTime } from "../services/historique.js";
 import { get } from "./db.js";
 
-const foodH = get("food");
+const foodH = get("food").sort((a, b) => new Date(b.date) - new Date(a.date));
 
 document.addEventListener("DOMContentLoaded", () => {
     const foodResumeContainer = document.querySelector("#foodResume");

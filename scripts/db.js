@@ -1,6 +1,3 @@
-let foodData = [];
-let diaperData = [];
-
 let initialFoodData = [
     {
         "id": 1744562344706,
@@ -159,15 +156,9 @@ export const init = () => {
     if (!localStorage.getItem("read")) {
         if (!localStorage.getItem("food")) {
             localStorage.setItem("food", JSON.stringify(initialFoodData, null, 2));
-            foodData = initialFoodData;
-        } else {
-            foodData = JSON.parse(localStorage.getItem("food"));
-        }
+        } 
         if (!localStorage.getItem("diaper")) {
             localStorage.setItem("diaper", JSON.stringify(initialDiaperData, null, 2));
-            diaperData = initialDiaperData;
-        } else {
-            diaperData = JSON.parse(localStorage.getItem("diaper"));
         }
     }
     localStorage.setItem("read", true);
@@ -183,13 +174,15 @@ export const save = (type, data) => {
         return;
     }
 
+    let newData = JSON.parse(localStorage.getItem(type)) || [];
+
     if (type === "food") {
-        foodData.push(data);
-        localStorage.setItem(type, JSON.stringify({}, null, 2));
+        newData.push(data);
+        localStorage.setItem(type, JSON.stringify(newData, null, 2));
     }
     if (type === "diaper") {
-        diaperData.push(data);
-        localStorage.setItem(type, JSON.stringify({}, null, 2));
+        newData.push(data);
+        localStorage.setItem(type, JSON.stringify(newData, null, 2));
     }
 }
 
