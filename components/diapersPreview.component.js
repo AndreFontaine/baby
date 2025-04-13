@@ -40,8 +40,7 @@ export function createDiapersPreviewContent(item) {
     timeText.classList.add("duration");
     timeText.textContent = item.duration;
 
-    console.log("newesDiaperEntry", newesDiaperEntry);
-    const showIcon = (newesDiaperEntry.type === "poop") ? poopIcon : peeIcon;
+    const showIcon = (newesDiaperEntry?.type === "poop") ? poopIcon : peeIcon;
 
     preview.appendChild(showIcon);
     preview.appendChild(smallText);
