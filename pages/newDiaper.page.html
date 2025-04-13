@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../modal.css">
     <title>New diaper</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script type="module" src="../scripts/newDiaper.js"></script>
@@ -13,14 +14,14 @@
 <body>
     <h1><i id="back" class="fas fa-angle-left"></i> Couche</h1>
 
-    <form action="">
+    <form id="saveDiaper" action="javascript:void(0);">	
         <div id="mainOptions" class="main-options">
             <div class="main-option">
-                <input type="radio" id="pee" name="xType" value="pee" />
-                <label class="pee" for="pee">🫗 Urine</label>
+                <input type="radio" id="pee" name="type" value="pee" />
+                <label class="pee" for="pee">💧 Urine</label>
             </div>
             <div class="main-option">
-                <input type="radio" id="poop" name="xType" value="poop" checked/>
+                <input type="radio" id="poop" name="type" value="poop" checked/>
                 <label class="poop" for="poop">💩 Selles</label>
             </div>
         </div>
@@ -43,6 +44,13 @@
         </div>
 
     </form>
+
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>✅ Nouvel couche enregistré avec succès !</p>
+        </div>
+    </div>
 
 </body>
 

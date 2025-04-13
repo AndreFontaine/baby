@@ -1,11 +1,11 @@
 import { createDiapersPreviewContent } from "../components/diapersPreview.component.js";
 import { createfoodPreviewContent } from "../components/foodPreview.component.js";
-
-import { diapersHistorique } from "../data.js";
+import { upsateLastMealTime } from "../services/historique.js";
 
 import { get } from "./db.js";
 
 const foodH = get("food");
+const diaperH = get("diaper");
 
 document.addEventListener("DOMContentLoaded", () => {
     
@@ -29,12 +29,9 @@ function createFoodPre(container) {
     }
     // create food resume content   
     const foodPreview = {
-        date: new Date(),
-        hour: '13h35',
+        duration: foodH?.length >0 ? upsateLastMealTime('preview') : '0h0m',
         volume: totalVolume,
         times: totalTimes,
-        duration: foodH?.length >0 ? upsateLastMealTime() : '0h0m',
-        type: 'bottle'
     };
     container.appendChild(createfoodPreviewContent(foodPreview));
 }
@@ -42,12 +39,12 @@ function createFoodPre(container) {
 function createPoopPre(container) {
     // take total today from historique
     let totalPoopTimes = 0; 
-    let totalPeeTimes = 0; 
-    for (let i = 0; i < diapersHistorique.length; i++) {
-        if (diapersHistorique[i].type === 'poop') {
+    let totalPeeTimes = 0;
+    for (let i = 0; i < diaperH.length; i++) {
+        if (diaperH[i].type === 'poop') {
             totalPoopTimes += 1;
         }
-        if (diapersHistorique[i].type === 'pee') {
+        if (diaperH[i].type === 'pee') {
             totalPeeTimes += 1;
         }
     }
@@ -62,23 +59,3 @@ function createPoopPre(container) {
 
     container.appendChild(createDiapersPreviewContent(diapersPreview));
 }
-
-function upsateLastMealTime() {
-    const lastMealTime = new Date(`${newestEntry.date}T${newestEntry.time}`); 
-    console.log(lastMealTime);
-    const now = new Date();
-    console.log(now);
-    const diffMsx = now - lastMealTime; // difference in milliseconds
-    const diffMinsx = Math.floor(diffMsx / 1000 / 60);
-    const hours = Math.floor(diffMinsx / 60);
-    const minutes = diffMinsx % 60;
-    const text = `${hours}h${minutes}m`;
-    return text;
-}
-
-const newestEntry = foodH?.reduce((latest, current) => {
-    const latestDate = new Date(`${latest.date}T${latest.time}`);
-    const currentDate = new Date(`${current.date}T${current.time}`);
-    return currentDate > latestDate ? current : latest;
-});
-

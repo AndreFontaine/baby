@@ -29,7 +29,7 @@ export function createDiapersPreviewContent(item) {
     poopIcon.textContent = "💩";
 
     const smallText = document.createElement("div");
-    smallText.classList.add("small");
+    smallText.classList.add("preview-text");
     smallText.textContent = "Dernier couche";
 
     const timeText = document.createElement("div");
@@ -51,7 +51,7 @@ export function createDiapersPreviewContent(item) {
     footer.classList.add("footer");
 
     const totalText = document.createElement("div");
-    totalText.classList.add("small");
+    totalText.classList.add("preview-text");
     totalText.textContent = "Total aujourd'hui";
 
     const quantitiesDiv = document.createElement("div");
@@ -64,7 +64,7 @@ export function createDiapersPreviewContent(item) {
     poopAmount.textContent = item.poop;
 
     const peeIcon = document.createElement("span");
-    peeIcon.textContent = "🫗";
+    peeIcon.textContent = "💧";
 
     const peeAmount = document.createElement("span");
     peeAmount.textContent = item.pee;

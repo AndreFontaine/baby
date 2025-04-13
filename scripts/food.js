@@ -1,6 +1,7 @@
 import { createfoodResumeContent } from "../components/foodResume.component.js";
 import { createfoodRTodayResumeContent } from "../components/foodToday.component.js";
 import { createHistoriqueContent } from "../components/historique.component.js";
+import { newestEntry, upsateLastMealTime } from "../services/historique.js";
 import { get } from "./db.js";
 
 const foodH = get("food");
@@ -25,8 +26,8 @@ backBtn.addEventListener("click", (event) => {
 function createFoodRes(container) {
     // create food resume content   
     const foodResume = {
-        lastTime: 'Il y a 2 heures',
-        type: 'bottle'
+        lastTime: upsateLastMealTime('resume'),
+        type: newestEntry.type,
     };
     container.appendChild(createfoodResumeContent(foodResume));
 }

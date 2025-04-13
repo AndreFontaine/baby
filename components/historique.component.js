@@ -86,7 +86,7 @@ function icon(type){
         return '💩';
     }
     if (type === 'pee') {
-        return '🫗';
+        return '💧';
     }
 }
 

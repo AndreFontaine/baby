@@ -13,7 +13,8 @@ export function createfoodResumeContent(item) {
     contentDiv.classList.add("content");
 
     const bottleIcon = document.createElement("div");
-    bottleIcon.textContent = "🍼";
+
+    bottleIcon.textContent = item.type === "breast" ? "🤱" : "🍼";
 
     const dataDiv = document.createElement("div");
     dataDiv.classList.add("data");
@@ -30,6 +31,12 @@ export function createfoodResumeContent(item) {
 
     infoDiv.appendChild(contentDiv);
     const action = actionBtn.cloneNode(true);
+
+    action.addEventListener("click", (event) => {
+        window.location.href = "newFood.page.html";
+    });
+
+
     infoDiv.appendChild(action);
     
     contentDiv.appendChild(bottleIcon);
