@@ -17,7 +17,7 @@ export function createPumpPreviewContent(item) {
 
     const action = actionBtn.cloneNode(true);
     action.addEventListener("click", (event) => {
-        window.location.href = "newDiaper.page.html";
+        window.location.href = "newPump.page.html";
     });
 
     header.appendChild(action);

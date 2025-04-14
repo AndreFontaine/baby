@@ -412,6 +412,24 @@ let initialDiaperData = [
         "note": "Pipí también"
     }
 ];
+let initialPumpData = [
+    {
+        "id": 1744562344400,
+        "duration": 25,
+        "volume": 105,
+        "date": "2025-04-05",
+        "time": "10:50",
+        "note": ""
+    },
+    {
+        "id": 1744562344401,
+        "duration": 25,
+        "volume": 83,
+        "date": "2025-04-05",
+        "time": "15:22",
+        "note": ""
+    },
+]
 
 export const init = () => {
     if (!localStorage.getItem("read")) {
@@ -420,6 +438,9 @@ export const init = () => {
         } 
         if (!localStorage.getItem("diaper")) {
             localStorage.setItem("diaper", JSON.stringify(initialDiaperData, null, 2));
+        }
+        if (!localStorage.getItem("pump")) {
+            localStorage.setItem("pump", JSON.stringify(initialPumpData, null, 2));
         }
     }
     localStorage.setItem("read", true);
@@ -436,15 +457,8 @@ export const save = (type, data) => {
     }
 
     let newData = JSON.parse(localStorage.getItem(type)) || [];
-
-    if (type === "food") {
-        newData.push(data);
-        localStorage.setItem(type, JSON.stringify(newData, null, 2));
-    }
-    if (type === "diaper") {
-        newData.push(data);
-        localStorage.setItem(type, JSON.stringify(newData, null, 2));
-    }
+    newData.push(data);
+    localStorage.setItem(type, JSON.stringify(newData, null, 2));
 }
 
 export const update = (data, type) => {

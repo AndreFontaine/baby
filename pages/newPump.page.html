@@ -14,7 +14,20 @@
 <body>
     <h1><i id="back" class="fas fa-angle-left"></i> Pumps</h1>
 
-    <form id="savePump" action="javascript:void(0);">	
+    <form id="savePump" action="javascript:void(0);">
+
+        <div class="sub-title" for="dateInput">Quantité</div>
+        <div class="volume-container volume">
+            <span id="down-quantity" role="button" tabindex="0" aria-label="Decrease quantity">
+                <i class="action fa-solid fa-circle-minus"></i>
+            </span>
+            <input class="quantity-input" type="text" id="volume" name="volume" required minlength="1" maxlength="3"
+                size="3" value="50" max="999" min="0" /><span class="label">mL</span>
+            <span id="up-quantity" role="button" tabindex="0" aria-label="Increase quantity">
+                <i class="action fa-solid fa-circle-plus"></i>
+            </span>
+        </div>
+
         <div class="block">
             <div>
                 <div class="sub-title" for="dateInput">Date</div>
@@ -27,7 +40,7 @@
         </div>
         <div class="">
             <div class="sub-title" for="note">Ajouter une note</div>
-            <textarea placeholder="Couleur, aspect, anomalie ..." id="note" name="note" rows="5" cols="33"></textarea>
+            <textarea placeholder="Note" id="note" name="note" rows="5" cols="33"></textarea>
         </div>
         <div class="button-wrapper">
             <button class="btn-submit" type="submit">Enregistrer</button>
@@ -38,7 +51,7 @@
     <div id="successModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <p>✅ Nouvel couche enregistré avec succès !</p>
+            <p>✅ Nouvel pompage enregistré avec succès !</p>
         </div>
     </div>
 

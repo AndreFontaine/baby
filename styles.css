@@ -1,5 +1,5 @@
 html {
-    font-size: 28px;
+    font-size: 27px;
 }
 
 body {
@@ -396,4 +396,9 @@ textarea#note {
 
 .badge-formula {
     background-color: #ddd;
+}
+
+.volume-container {
+    background-color: #fff;
+    border-radius: 6px;
 }
