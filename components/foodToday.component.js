@@ -1,4 +1,4 @@
-import { changeDateFormat } from "../scripts/utils.js";
+import { changeDateFormat } from "../services/utils.js";
 
 export function createfoodRTodayResumeContent(item) {
 

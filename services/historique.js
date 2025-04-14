@@ -1,26 +1,17 @@
-import { get } from "../scripts/db.js";
+import { get } from "../config/db.js";
 
-const foodH = get("food") || [];
-const diaperH = get("diaper") || [];
-const pumpH = get("pump") || [];
-
-foodH.sort((a, b) => {
-    const dateA = new Date(`${a.date}T${a.time}`);
-    const dateB = new Date(`${b.date}T${b.time}`);
-    return dateB - dateA;
-});
-
-diaperH.sort((a, b) => {
-    const dateA = new Date(`${a.date}T${a.time}`);
-    const dateB = new Date(`${b.date}T${b.time}`);
-    return dateB - dateA;
-});
-
-pumpH.sort((a, b) => {
-    const dateA = new Date(`${a.date}T${a.time}`);
-    const dateB = new Date(`${b.date}T${b.time}`);
-    return dateB - dateA;
-});
+const sortByDateTimeDesc = (arr) => {
+    return arr.sort((a, b) => {
+      const dateA = new Date(`${a.date}T${a.time}`);
+      const dateB = new Date(`${b.date}T${b.time}`);
+      return dateB - dateA;
+    });
+  };
+  
+// Get and sort data
+const foodH = sortByDateTimeDesc(get("food") || []);
+const diaperH = sortByDateTimeDesc(get("diaper") || []);
+const pumpH = sortByDateTimeDesc(get("pump") || []);
   
 export const newestFoodEntry = foodH[0];
 export const newestDiaperEntry = diaperH[0];
@@ -36,7 +27,9 @@ export const upsateLastMealTime = (view) => {
         const diffMinsx = Math.floor(diffMsx / 1000 / 60);
         const hours = Math.floor(diffMinsx / 60);
         const minutes = diffMinsx % 60;
-        text = (view === 'preview') ? `${hours}h${minutes}m` : "Il y a " + (hours > 0 ? hours + "h" : "") + (minutes > 0 ? minutes + "m" : "");
+        text = (view === 'preview') 
+            ? `${hours}h${minutes}m`
+            : "Il y a " + (hours > 0 ? hours + "h" : "") + (minutes > 0 ? minutes + "m" : "");
     }
     return text;
 }

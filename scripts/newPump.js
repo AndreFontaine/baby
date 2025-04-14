@@ -1,4 +1,4 @@
-import { save } from "./db.js";
+import { save } from "../config/db.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     loadDateAndTime();

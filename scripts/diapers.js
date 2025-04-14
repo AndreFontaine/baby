@@ -1,5 +1,5 @@
 import { createHistoriqueContent } from "../components/historique.component.js";
-import { get } from "./db.js";
+import { get } from "../config/db.js";
 
 const diaperH = get("diaper").sort((a, b) => new Date(b.date) - new Date(a.date));
 

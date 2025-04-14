@@ -2,8 +2,8 @@ import { createfoodResumeContent } from "../components/foodResume.component.js";
 import { createfoodRTodayResumeContent } from "../components/foodToday.component.js";
 import { createHistoriqueContent } from "../components/historique.component.js";
 import { newestFoodEntry, upsateLastMealTime } from "../services/historique.js";
-import { get } from "./db.js";
-import { changeDateFormat } from "./utils.js";
+import { get } from "../config/db.js";
+import { changeDateFormat, isToday } from "../services/utils.js";
 
 const foodH = get("food").sort((a, b) => new Date(b.date) - new Date(a.date));
 
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     createfoodTodayResume(foodTodayResumeContainer);
 
     const historiqueContainer = document.querySelector("#historiqueFood");
-    createHisCon(historiqueContainer);
+    historiqueContent(historiqueContainer);
 });
 
 const backBtn = document.querySelector("#back");
@@ -71,15 +71,10 @@ function createfoodTodayResume(container) {
     container.appendChild(createfoodRTodayResumeContent(todayResume));
 }
 
-function createHisCon(container) {
+function historiqueContent(container) {
     for (let i = 0; i < foodH.length; i++) {
         foodH[i].date = changeDateFormat(foodH[i].date);
         container.appendChild(createHistoriqueContent(foodH[i]));
     }
 }
 
-function isToday(date) {
-    const today = new Date();
-    const entryDate = new Date(date);
-    return entryDate.getDate() === today.getDate() && entryDate.getMonth() === today.getMonth() && entryDate.getFullYear() === today.getFullYear();
-}

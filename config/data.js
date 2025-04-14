@@ -1,4 +1,4 @@
-let initialFoodData = [
+export const initialFoodData = [
     {
         "id": 1744562344600,
         "milkType": "breast",
@@ -133,17 +133,6 @@ let initialFoodData = [
         "time": "23:30",
         "note": ""
     },
- // delete this one
-    {
-        "id": 1744562344613,
-        "milkType": "breast",
-        "volume": "80",
-        "type": "bottle",
-        "date": "2025-04-13",
-        "time": "23:30",
-        "note": ""
-    },
-
     {
         "id": 1744562344614,
         "milkType": "breast",
@@ -162,10 +151,6 @@ let initialFoodData = [
         "time": "19:15",
         "note": ""
     },
-
-
-
-
     {
         "id": 1744562344616,
         "duration": {
@@ -177,7 +162,6 @@ let initialFoodData = [
         "time": "19:01",
         "note": ""
     },
-
     {
         "id": 1744562344617,
         "milkType": "formula",
@@ -187,7 +171,6 @@ let initialFoodData = [
         "time": "15:20",
         "note": ""
     },
-
     {
         "id": 1744562344618,
         "duration": {
@@ -199,7 +182,6 @@ let initialFoodData = [
         "time": "11:18",
         "note": ""
     },
-
     {
         "id": 1744562344619,
         "milkType": "breast",
@@ -209,10 +191,8 @@ let initialFoodData = [
         "time": "10:00",
         "note": "+ Hierro"
     },
-
-
     {
-        "id": 1744562344615,
+        "id": 1744562344620,
         "milkType": "breast",
         "volume": "80",
         "type": "bottle",
@@ -220,68 +200,166 @@ let initialFoodData = [
         "time": "08:15",
         "note": ""
     },
-
     {
-        "id": 1744562344612,
+        "id": 1744562344621,
         "duration": {
-            "left": 5,
-            "right": 10
+            "left": 0,
+            "right": 8
         },
         "type": "breast",
-        "date": "2025-04-04",
-        "time": "03:47",
+        "date": "2025-04-03",
+        "time": "08:00",
         "note": ""
     },
-
     {
-        "id": 1744562344615,
+        "id": 1744562344622,
         "milkType": "breast",
-        "volume": "60",
+        "volume": "80",
         "type": "bottle",
         "date": "2025-04-03",
-        "time": "19:15",
-        "note": ""
+        "time": "03:15",
+        "note": "+ Calmosine"
     },
-
-
     {
-        "id": 1744562344612,
+        "id": 1744562344623,
         "duration": {
-            "left": 5,
-            "right": 10
+            "left": 10,
+            "right": 0
         },
         "type": "breast",
-        "date": "2025-04-04",
-        "time": "03:47",
-        "note": ""
-    },
-
-    {
-        "id": 1744562344612,
-        "duration": {
-            "left": 5,
-            "right": 10
-        },
-        "type": "breast",
-        "date": "2025-04-04",
-        "time": "03:47",
-        "note": ""
-    },
-
-    {
-        "id": 1744562344615,
-        "milkType": "breast",
-        "volume": "60",
-        "type": "bottle",
         "date": "2025-04-03",
-        "time": "19:15",
+        "time": "02:55",
         "note": ""
     },
-
-
+    {
+        "id": 1744562344624,
+        "duration": {
+            "left": 0,
+            "right": 10
+        },
+        "type": "breast",
+        "date": "2025-04-02",
+        "time": "23:00",
+        "note": ""
+    },
+    {
+        "id": 1744562344625,
+        "milkType": "breast",
+        "volume": "70",
+        "type": "bottle",
+        "date": "2025-04-02",
+        "time": "22:50",
+        "note": ""
+    },
+    {
+        "id": 1744562344626,
+        "duration": {
+            "left": 5,
+            "right": 0
+        },
+        "type": "breast",
+        "date": "2025-04-02",
+        "time": "22:25",
+        "note": ""
+    },
+    {
+        "id": 1744562344627,
+        "milkType": "breast",
+        "volume": "80",
+        "type": "bottle",
+        "date": "2025-04-02",
+        "time": "22:19",
+        "note": "+ Calmosine"
+    },
+    {
+        "id": 1744562344628,
+        "milkType": "breast",
+        "volume": "45",
+        "type": "bottle",
+        "date": "2025-04-02",
+        "time": "18:30",
+        "note": ""
+    },
+    {
+        "id": 1744562344629,
+        "milkType": "breast",
+        "volume": "10",
+        "type": "bottle",
+        "date": "2025-04-02",
+        "time": "13:25",
+        "note": ""
+    },
+    {
+        "id": 1744562344630,
+        "milkType": "breast",
+        "volume": "115",
+        "type": "bottle",
+        "date": "2025-04-02",
+        "time": "11:48",
+        "note": ""
+    },
+    {
+        "id": 1744562344631,
+        "duration": {
+            "left": 10,
+            "right": 10
+        },
+        "type": "breast",
+        "date": "2025-04-02",
+        "time": "08:30",
+        "note": ""
+    },
+    {
+        "id": 1744562344632,
+        "milkType": "breast",
+        "volume": "90",
+        "type": "bottle",
+        "date": "2025-04-02",
+        "time": "08:00",
+        "note": "+ Calmosine"
+    },
+    {
+        "id": 1744562344633,
+        "milkType": "breast",
+        "volume": "40",
+        "type": "bottle",
+        "date": "2025-04-02",
+        "time": "03:00",
+        "note": ""
+    },
+    {
+        "id": 1744562344634,
+        "milkType": "breast",
+        "volume": "40",
+        "type": "bottle",
+        "date": "2025-04-02",
+        "time": "02:46",
+        "note": ""
+    },
+    {
+        "id": 1744562344635,
+        "milkType": "breast",
+        "volume": "50",
+        "type": "bottle",
+        "date": "2025-04-02",
+        "time": "02:40",
+        "note": "+ Calmosine"
+    },
+    {
+        "id": 1744562344636,
+        "duration": {
+            "left": 5,
+            "right": 0
+        },
+        "type": "breast",
+        "date": "2025-04-02",
+        "time": "02:35",
+        "note": ""
+    },
 
 ];
-let initialDiaperData = [
+
+export const initialDiaperData = [
     {
         "id": 1744555710019,
         "type": "poop",
@@ -423,7 +501,8 @@ let initialDiaperData = [
         "note": "Pipí también"
     }
 ];
-let initialPumpData = [
+
+export const initialPumpData = [
     {
         "id": 1744562344400,
         "duration": 25,
@@ -443,50 +522,3 @@ let initialPumpData = [
         "note": "test"
     },
 ]
-
-export const init = () => {
-    console.log("Initializing local storage...");
-    if (!localStorage.getItem("read")) {
-        if (!localStorage.getItem("food")) {
-            localStorage.setItem("food", JSON.stringify(initialFoodData, null, 2));
-        } 
-        if (!localStorage.getItem("diaper")) {
-            localStorage.setItem("diaper", JSON.stringify(initialDiaperData, null, 2));
-        }
-        if (!localStorage.getItem("pump")) {
-            localStorage.setItem("pump", JSON.stringify(initialPumpData, null, 2));
-        }
-    }
-    localStorage.setItem("read", true);
-}
-
-export const save = (type, data) => {
-    if (!type || !data) {
-        console.error("Type and data are required to save to local storage.");
-        return;
-    }
-    if (typeof data !== "object") {
-        console.error("Type must be a string.");
-        return;
-    }
-
-    let newData = JSON.parse(localStorage.getItem(type)) || [];
-    newData.push(data);
-    localStorage.setItem(type, JSON.stringify(newData, null, 2));
-}
-
-export const update = (data, type) => {
-    localStorage.setItem(type, JSON.stringify(data, null, 2));
-    console.log("Updated data in local storage:", data);
-}
-
-export const get = (type) => {
-    const data = JSON.parse(localStorage.getItem(type));
-    console.log("Retrieved data from local storage:", data);
-    return data;
-}
-
-export const remove = (data, type) => {
-    localStorage.removeItem(type);
-    console.log("Removed data from local storage:", data);
-}

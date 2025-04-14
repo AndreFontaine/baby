@@ -1,27 +1,27 @@
 import { createDiapersPreviewContent } from "../components/diapersPreview.component.js";
 import { createfoodPreviewContent } from "../components/foodPreview.component.js";
 import { createPumpPreviewContent } from "../components/pumpPreview.component.js";
-import { get } from "./db.js";
+import { get } from "../config/db.js";
 import { upsateLastDiaperTime, upsateLastMealTime, upsateLastPumpTime } from "../services/historique.js";
 
 const foodH = get("food");
 const diaperH = get("diaper");
-const poopH = get("diaper");
+const pumpH = get("pump");
 
 document.addEventListener("DOMContentLoaded", () => {
     
     const foodPreviewContainer = document.querySelector("#foodPreview");
-    createFoodPre(foodPreviewContainer);
+    createFoodPreview(foodPreviewContainer);
 
     const diapersPreviewContainer = document.querySelector("#diapersPreview");
-    createPoopPre(diapersPreviewContainer);
+    createPoopPreview(diapersPreviewContainer);
 
     const pumpPreviewContainer = document.querySelector("#pumpPreview");
-    createPumpPre(pumpPreviewContainer);
+    createPumpPreview(pumpPreviewContainer);
 
 });
 
-function createFoodPre(container) {
+function createFoodPreview(container) {
     // take total today from historique
     let totalVolume = 0; 
     let totalTimes = 0;
@@ -40,7 +40,7 @@ function createFoodPre(container) {
     container.appendChild(createfoodPreviewContent(foodPreview));
 }
 
-function createPoopPre(container) {
+function createPoopPreview(container) {
     // take total today from historique
     let totalPoopTimes = 0; 
     let totalPeeTimes = 0;
@@ -62,14 +62,14 @@ function createPoopPre(container) {
     container.appendChild(createDiapersPreviewContent(diapersPreview));
 }
 
-function createPumpPre(container) {
+function createPumpPreview(container) {
     // take total today from historique
-    let totalPumpTimes = 5;
+    let totalPumpTimes = pumpH?.length;
 
     // create food preview content   
     const pumpsPreview = {
         times: totalPumpTimes,
-        duration: poopH?.length > 0 ? upsateLastPumpTime() : `à l'instant`
+        duration: pumpH?.length > 0 ? upsateLastPumpTime() : `à l'instant`
     };
 
     container.appendChild(createPumpPreviewContent(pumpsPreview));

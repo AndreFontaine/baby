@@ -7,3 +7,9 @@ export const changeDateFormat = (dateStr) => {
     }).format(date);
     return formatted;
 };
+
+export function isToday(date) {
+    const today = new Date();
+    const entryDate = new Date(date);
+    return entryDate.getDate() === today.getDate() && entryDate.getMonth() === today.getMonth() && entryDate.getFullYear() === today.getFullYear();
+}
