@@ -1,5 +1,6 @@
 import { createDiapersPreviewContent } from "../components/diapersPreview.component.js";
 import { createfoodPreviewContent } from "../components/foodPreview.component.js";
+import { createPumpPreviewContent } from "../components/pumpPreview.component.js";
 import { upsateLastDiaperTime, upsateLastMealTime } from "../services/historique.js";
 
 import { get, init } from "./db.js";
@@ -7,6 +8,7 @@ import { get, init } from "./db.js";
 init();
 const foodH = get("food");
 const diaperH = get("diaper");
+const poopH = get("diaper");
 
 document.addEventListener("DOMContentLoaded", () => {
     
@@ -16,12 +18,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const diapersPreviewContainer = document.querySelector("#diapersPreview");
     createPoopPre(diapersPreviewContainer);
 
+    const pumpPreviewContainer = document.querySelector("#pumpPreview");
+    createPumpPre(pumpPreviewContainer);
+
 });
 
 function createFoodPre(container) {
     // take total today from historique
     let totalVolume = 0; 
-    let totalTimes = 0; 
+    let totalTimes = 0;
     for (let i = 0; i < foodH?.length; i++) {
         if (foodH[i].type === 'bottle') {
             totalVolume += parseInt(foodH[i].volume);
@@ -57,4 +62,17 @@ function createPoopPre(container) {
     };
 
     container.appendChild(createDiapersPreviewContent(diapersPreview));
+}
+
+function createPumpPre(container) {
+    // take total today from historique
+    let totalPumpTimes = 5;
+
+    // create food preview content   
+    const pumpsPreview = {
+        times: totalPumpTimes,
+        duration: poopH?.length > 0 ? upsateLastDiaperTime() : '0h0m'
+    };
+
+    container.appendChild(createPumpPreviewContent(pumpsPreview));
 }

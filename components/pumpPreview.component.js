@@ -1,10 +1,10 @@
 import { actionBtn } from "../actionButton.js";
 import { newesDiaperEntry } from "../services/historique.js";
 
-export function createDiapersPreviewContent(item) {
+export function createPumpPreviewContent(item) {
 
-    const diapersPreview = document.createElement("div");
-    diapersPreview.classList.add("container");
+    const pumpPreview = document.createElement("div");
+    pumpPreview.classList.add("container");
 
     // Header Section
     const header = document.createElement("div");
@@ -26,30 +26,25 @@ export function createDiapersPreviewContent(item) {
     const preview = document.createElement("div");
     preview.classList.add("preview");
 
-    const poopIcon = document.createElement("div");
-    poopIcon.textContent = "💩";
-
     const peeIcon = document.createElement("div");
-    peeIcon.textContent = "💧";
+    peeIcon.textContent = "🍶";
 
     const smallText = document.createElement("div");
     smallText.classList.add("preview-text");
-    smallText.textContent = "Dernier couche";
+    smallText.textContent = "Dernier pompage";
 
     const timeText = document.createElement("div");
     timeText.classList.add("duration");
     timeText.textContent = item.duration;
 
-    const showIcon = (newesDiaperEntry?.type === "poop") ? poopIcon : peeIcon;
-
-    preview.appendChild(showIcon);
+    preview.appendChild(peeIcon);
     preview.appendChild(smallText);
     preview.appendChild(timeText);
 
     const actionContainer = document.createElement("div");
     actionContainer.appendChild(preview);
     actionContainer.addEventListener("click", (event) => {
-        window.location.href = "diapers.page.html";
+        window.location.href = "pump.page.html";
     });
 
     // Footer Section
@@ -63,30 +58,22 @@ export function createDiapersPreviewContent(item) {
     const quantitiesDiv = document.createElement("div");
     quantitiesDiv.classList.add("quantities");
 
-    const poopCountIcon = document.createElement("span");
-    poopCountIcon.textContent = "💩";
-
     const peeCountIcon = document.createElement("span");
-    peeCountIcon.textContent = "💧";
-
-    const poopAmount = document.createElement("span");
-    poopAmount.textContent = item.poop;
+    peeCountIcon.textContent = "🍶";
 
     const peeAmount = document.createElement("span");
-    peeAmount.textContent = item.pee;
+    peeAmount.textContent = item.times;
 
     quantitiesDiv.appendChild(totalText);
-    quantitiesDiv.appendChild(poopCountIcon);
-    quantitiesDiv.appendChild(poopAmount);
     quantitiesDiv.appendChild(peeCountIcon);
     quantitiesDiv.appendChild(peeAmount);
     footer.appendChild(quantitiesDiv);
 
     // Append everything to the main container
-    diapersPreview.appendChild(header);
-    diapersPreview.appendChild(actionContainer);
-    diapersPreview.appendChild(footer);
+    pumpPreview.appendChild(header);
+    pumpPreview.appendChild(actionContainer);
+    pumpPreview.appendChild(footer);
 
-   return diapersPreview;
+   return pumpPreview;
     
 }
