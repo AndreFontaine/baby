@@ -1,5 +1,5 @@
 import { actionBtn } from "../actionButton.js";
-import { newesDiaperEntry } from "../services/historique.js";
+import { newestDiaperEntry } from "../services/historique.js";
 
 export function createDiapersPreviewContent(item) {
 
@@ -40,7 +40,8 @@ export function createDiapersPreviewContent(item) {
     timeText.classList.add("duration");
     timeText.textContent = item.duration;
 
-    const showIcon = (newesDiaperEntry?.type === "poop") ? poopIcon : peeIcon;
+    console.log("xxnewestDiaperEntry", newestDiaperEntry)
+    const showIcon = (newestDiaperEntry?.type === "poop") ? poopIcon : peeIcon;
 
     preview.appendChild(showIcon);
     preview.appendChild(smallText);

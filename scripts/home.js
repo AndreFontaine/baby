@@ -1,7 +1,7 @@
 import { createDiapersPreviewContent } from "../components/diapersPreview.component.js";
 import { createfoodPreviewContent } from "../components/foodPreview.component.js";
 import { createPumpPreviewContent } from "../components/pumpPreview.component.js";
-import { upsateLastDiaperTime, upsateLastMealTime } from "../services/historique.js";
+import { upsateLastDiaperTime, upsateLastMealTime, upsateLastPumpTime } from "../services/historique.js";
 
 import { get, init } from "./db.js";
 
@@ -35,7 +35,7 @@ function createFoodPre(container) {
     }
     // create food resume content   
     const foodPreview = {
-        duration: foodH?.length > 0 ? upsateLastMealTime('preview') : '0h0m',
+        duration: foodH?.length > 0 ? upsateLastMealTime('preview') : 'à linstant',
         volume: totalVolume,
         times: totalTimes
     };
@@ -58,7 +58,7 @@ function createPoopPre(container) {
     const diapersPreview = {
         pee: totalPeeTimes,
         poop: totalPoopTimes,
-        duration: diaperH?.length > 0 ? upsateLastDiaperTime() : '0h0m'
+        duration: diaperH?.length > 0 ? upsateLastDiaperTime() : 'à linstant'
     };
 
     container.appendChild(createDiapersPreviewContent(diapersPreview));
@@ -71,7 +71,7 @@ function createPumpPre(container) {
     // create food preview content   
     const pumpsPreview = {
         times: totalPumpTimes,
-        duration: poopH?.length > 0 ? upsateLastDiaperTime() : '0h0m'
+        duration: poopH?.length > 0 ? upsateLastPumpTime() : `à l'instant`
     };
 
     container.appendChild(createPumpPreviewContent(pumpsPreview));

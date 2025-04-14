@@ -3,6 +3,7 @@ import { createfoodRTodayResumeContent } from "../components/foodToday.component
 import { createHistoriqueContent } from "../components/historique.component.js";
 import { newestFoodEntry, upsateLastMealTime } from "../services/historique.js";
 import { get } from "./db.js";
+import { changeDateFormat } from "./utils.js";
 
 const foodH = get("food").sort((a, b) => new Date(b.date) - new Date(a.date));
 
@@ -72,6 +73,7 @@ function createfoodTodayResume(container) {
 
 function createHisCon(container) {
     for (let i = 0; i < foodH.length; i++) {
+        foodH[i].date = changeDateFormat(foodH[i].date);
         container.appendChild(createHistoriqueContent(foodH[i]));
     }
 }

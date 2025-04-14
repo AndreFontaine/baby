@@ -1,3 +1,5 @@
+import { changeDateFormat } from "../scripts/utils.js";
+
 export function createfoodRTodayResumeContent(item) {
 
     const container = document.createElement("div");
@@ -5,9 +7,9 @@ export function createfoodRTodayResumeContent(item) {
 
     // Sub-title
     const subTitle = document.createElement("div");
-    subTitle.classList.add("sub-title");
+    subTitle.classList.add("today-title");
 
-    const today = new Date().toLocaleDateString();
+    const today = changeDateFormat(new Date());
 
     subTitle.textContent = `Aujourd'hui, ${today}`;
 

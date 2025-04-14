@@ -1,5 +1,4 @@
 import { actionBtn } from "../actionButton.js";
-import { newesDiaperEntry } from "../services/historique.js";
 
 export function createPumpPreviewContent(item) {
 

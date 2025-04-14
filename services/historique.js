@@ -1,24 +1,30 @@
 import { get } from "../scripts/db.js";
 
-const foodH = get("food");
-const diaperH = get("diaper");
-console.log("diaperH", diaperH);
+const foodH = get("food") || [];
+const diaperH = get("diaper") || [];
+const pumpH = get("pump") || [];
 
-// export const newestFoodEntry = [foodH]?.reduce((latest, current) => {
-//     const latestDate = new Date(`${latest.date}T${latest.time}`);
-//     const currentDate = new Date(`${current.date}T${current.time}`);
-//     return currentDate > latestDate ? current : latest;
-// });
+foodH.sort((a, b) => {
+    const dateA = new Date(`${a.date}T${a.time}`);
+    const dateB = new Date(`${b.date}T${b.time}`);
+    return dateB - dateA;
+});
 
-export const newestFoodEntry = {
-    "id": 1744562344706,
-    "milkType": "breast",
-    "volume": "50",
-    "type": "bottle",
-    "date": "2025-04-13",
-    "time": "18:39",
-    "note": ""
-};
+diaperH.sort((a, b) => {
+    const dateA = new Date(`${a.date}T${a.time}`);
+    const dateB = new Date(`${b.date}T${b.time}`);
+    return dateB - dateA;
+});
+
+pumpH.sort((a, b) => {
+    const dateA = new Date(`${a.date}T${a.time}`);
+    const dateB = new Date(`${b.date}T${b.time}`);
+    return dateB - dateA;
+});
+  
+export const newestFoodEntry = foodH[0];
+export const newestDiaperEntry = diaperH[0];
+export const newestPumpEntry = pumpH[0];
 
 export const upsateLastMealTime = (view) => {
     const lastMealTime = new Date(`${newestFoodEntry.date}T${newestFoodEntry.time}`); 
@@ -31,24 +37,19 @@ export const upsateLastMealTime = (view) => {
     return text;
 }
 
-export const newesDiaperEntry = {
-    "id": 1744555710019,
-    "type": "poop",
-    "date": "2025-04-13",
-    "time": "14:33",
-    "note": ""
-};
-
-// export const newesDiaperEntry = diaperH?.reduce((latest, current) => {
-//     console.log("current", current);
-//     console.log("latest", latest);
-//     const latestDate = new Date(`${latest.date}T${latest.time}`);
-//     const currentDate = new Date(`${current.date}T${current.time}`);
-//     return currentDate > latestDate ? current : latest;
-// });
-
 export const upsateLastDiaperTime = () => {
-    const lastDiaperTime = new Date(`${newesDiaperEntry.date}T${newesDiaperEntry.time}`); 
+    const lastDiaperTime = new Date(`${newestDiaperEntry.date}T${newestDiaperEntry.time}`); 
+    const now = new Date();
+    const diffMsx = now - lastDiaperTime; // difference in milliseconds
+    const diffMinsx = Math.floor(diffMsx / 1000 / 60);
+    const hours = Math.floor(diffMinsx / 60);
+    const minutes = diffMinsx % 60;
+    const text = `${hours}h${minutes}m`;
+    return text;
+}
+
+export const upsateLastPumpTime = () => {
+    const lastDiaperTime = new Date(`${newestPumpEntry.date}T${newestPumpEntry.time}`); 
     const now = new Date();
     const diffMsx = now - lastDiaperTime; // difference in milliseconds
     const diffMinsx = Math.floor(diffMsx / 1000 / 60);

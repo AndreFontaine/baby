@@ -133,6 +133,17 @@ let initialFoodData = [
         "time": "23:30",
         "note": ""
     },
+ // delete this one
+    {
+        "id": 1744562344613,
+        "milkType": "breast",
+        "volume": "80",
+        "type": "bottle",
+        "date": "2025-04-13",
+        "time": "23:30",
+        "note": ""
+    },
+
     {
         "id": 1744562344614,
         "milkType": "breast",

@@ -402,3 +402,7 @@ textarea#note {
     background-color: #fff;
     border-radius: 6px;
 }
+
+.today-title {
+    font-size: 0.8rem;
+}
