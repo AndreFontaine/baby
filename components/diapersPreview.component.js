@@ -1,7 +1,6 @@
 import { actionBtn } from "../actionButton.js";
-import { newestDiaperEntry } from "../services/historique.js";
 
-export function createDiapersPreviewContent(item) {
+export function createDiapersPreviewContent(item, newestDiaperEntry) {
 
     const diapersPreview = document.createElement("div");
     diapersPreview.classList.add("container");

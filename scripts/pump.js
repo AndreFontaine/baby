@@ -1,7 +1,8 @@
 import { createHistoriqueContent } from "../components/historique.component.js";
 import { get } from "../config/db.js";
+import { sortByDateTimeDesc } from "../services/utils.js";
 
-const pumpH = get("pump").sort((a, b) => new Date(b.date) - new Date(a.date));
+const pumpH = sortByDateTimeDesc(get("pump") || []);
 
 document.addEventListener("DOMContentLoaded", () => {
     const historiqueContainer = document.querySelector("#historiquePump");

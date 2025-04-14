@@ -3,11 +3,15 @@ import { createfoodPreviewContent } from "../components/foodPreview.component.js
 import { createPumpPreviewContent } from "../components/pumpPreview.component.js";
 import { get } from "../config/db.js";
 import { upsateLastDiaperTime, upsateLastMealTime, upsateLastPumpTime } from "../services/historique.js";
-import { isToday } from "../services/utils.js";
+import { isToday, sortByDateTimeDesc } from "../services/utils.js";
 
-const foodH = get("food");
-const diaperH = get("diaper");
-const pumpH = get("pump");
+const foodH = sortByDateTimeDesc(get("food") || []);
+const diaperH = sortByDateTimeDesc(get("diaper") || []);
+const pumpH = sortByDateTimeDesc(get("pump") || []);
+
+const newestFoodEntry = foodH[0];
+const newestDiaperEntry = diaperH[0];
+const newestPumpEntry = pumpH[0];
 
 document.addEventListener("DOMContentLoaded", () => {
     
@@ -34,7 +38,7 @@ function createFoodPreview(container) {
     }
     // create food resume content   
     const foodPreview = {
-        duration: foodH?.length > 0 ? upsateLastMealTime('preview') : 'à linstant',
+        duration: foodH?.length > 0 ? upsateLastMealTime(newestFoodEntry, 'preview') : 'à linstant',
         volume: totalVolume,
         times: totalTimes
     };
@@ -57,20 +61,24 @@ function createPoopPreview(container) {
     const diapersPreview = {
         pee: totalPeeTimes,
         poop: totalPoopTimes,
-        duration: diaperH?.length > 0 ? upsateLastDiaperTime() : 'à linstant'
+        duration: diaperH?.length > 0 ? upsateLastDiaperTime(newestDiaperEntry) : 'à linstant'
     };
 
-    container.appendChild(createDiapersPreviewContent(diapersPreview));
+    container.appendChild(createDiapersPreviewContent(diapersPreview, newestDiaperEntry));
 }
 
 function createPumpPreview(container) {
     // take total today from historique
-    let totalPumpTimes = pumpH?.length;
+    let totalPumpTimes = 0;
+
+    for (let i = 0; i < pumpH?.length; i++) {
+        if ( isToday(pumpH[i].date)) totalPumpTimes += 1;
+    }
 
     // create food preview content   
     const pumpsPreview = {
         times: totalPumpTimes,
-        duration: pumpH?.length > 0 ? upsateLastPumpTime() : `à l'instant`
+        duration: pumpH?.length > 0 ? upsateLastPumpTime(newestPumpEntry) : `à l'instant`
     };
 
     container.appendChild(createPumpPreviewContent(pumpsPreview));

@@ -29,6 +29,7 @@ export const save = (type, data) => {
     let newData = JSON.parse(localStorage.getItem(type)) || [];
     newData.push(data);
     localStorage.setItem(type, JSON.stringify(newData, null, 2));
+    console.log("Saved data in local storage:", data);
 }
 
 export const update = (data, type) => {

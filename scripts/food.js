@@ -1,11 +1,12 @@
 import { createfoodResumeContent } from "../components/foodResume.component.js";
 import { createfoodRTodayResumeContent } from "../components/foodToday.component.js";
 import { createHistoriqueContent } from "../components/historique.component.js";
-import { newestFoodEntry, upsateLastMealTime } from "../services/historique.js";
+import { upsateLastMealTime } from "../services/historique.js";
 import { get } from "../config/db.js";
-import { changeDateFormat, isToday } from "../services/utils.js";
+import { changeDateFormat, isToday, sortByDateTimeDesc } from "../services/utils.js";
 
-const foodH = get("food").sort((a, b) => new Date(b.date) - new Date(a.date));
+const foodH = sortByDateTimeDesc(get("food") || []);
+const newestFoodEntry = foodH[0];
 
 document.addEventListener("DOMContentLoaded", () => {
     const foodResumeContainer = document.querySelector("#foodResume");
