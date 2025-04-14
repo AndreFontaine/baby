@@ -1,11 +1,9 @@
 import { createDiapersPreviewContent } from "../components/diapersPreview.component.js";
 import { createfoodPreviewContent } from "../components/foodPreview.component.js";
 import { createPumpPreviewContent } from "../components/pumpPreview.component.js";
+import { get } from "./db.js";
 import { upsateLastDiaperTime, upsateLastMealTime, upsateLastPumpTime } from "../services/historique.js";
 
-import { get, init } from "./db.js";
-
-init();
 const foodH = get("food");
 const diaperH = get("diaper");
 const poopH = get("diaper");

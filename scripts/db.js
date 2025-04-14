@@ -445,6 +445,7 @@ let initialPumpData = [
 ]
 
 export const init = () => {
+    console.log("Initializing local storage...");
     if (!localStorage.getItem("read")) {
         if (!localStorage.getItem("food")) {
             localStorage.setItem("food", JSON.stringify(initialFoodData, null, 2));
