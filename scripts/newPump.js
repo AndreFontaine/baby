@@ -24,6 +24,7 @@ document.getElementById("savePump").addEventListener("submit", function (e) {
     data.time = formObj?.timeInput;
     data.volume = formObj?.volume;
     data.note = formObj?.note;
+    data.type = "pump";
 
     console.log(data);
 

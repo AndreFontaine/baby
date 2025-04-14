@@ -22,7 +22,7 @@ pumpH.sort((a, b) => {
     return dateB - dateA;
 });
   
-export const newestFoodEntry = foodH[0] || null;
+export const newestFoodEntry = foodH[0];
 export const newestDiaperEntry = diaperH[0];
 export const newestPumpEntry = pumpH[0];
 
