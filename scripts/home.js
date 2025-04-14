@@ -3,6 +3,7 @@ import { createfoodPreviewContent } from "../components/foodPreview.component.js
 import { createPumpPreviewContent } from "../components/pumpPreview.component.js";
 import { get } from "../config/db.js";
 import { upsateLastDiaperTime, upsateLastMealTime, upsateLastPumpTime } from "../services/historique.js";
+import { isToday } from "../services/utils.js";
 
 const foodH = get("food");
 const diaperH = get("diaper");
@@ -26,7 +27,7 @@ function createFoodPreview(container) {
     let totalVolume = 0; 
     let totalTimes = 0;
     for (let i = 0; i < foodH?.length; i++) {
-        if (foodH[i].type === 'bottle') {
+        if (foodH[i].type === 'bottle' && isToday(foodH[i].date)) {
             totalVolume += parseInt(foodH[i].volume);
             totalTimes += 1;
         }
@@ -45,10 +46,10 @@ function createPoopPreview(container) {
     let totalPoopTimes = 0; 
     let totalPeeTimes = 0;
     for (let i = 0; i < diaperH?.length; i++) {
-        if (diaperH[i].type === 'poop') {
+        if (diaperH[i].type === 'poop' && isToday(diaperH[i].date)) {
             totalPoopTimes += 1;
         }
-        if (diaperH[i].type === 'pee') {
+        if (diaperH[i].type === 'pee' && isToday(diaperH[i].date)) {
             totalPeeTimes += 1;
         }
     }

@@ -502,23 +502,4 @@ export const initialDiaperData = [
     }
 ];
 
-export const initialPumpData = [
-    {
-        "id": 1744562344400,
-        "duration": 25,
-        "volume": 105,
-        "date": "2025-04-05",
-        "time": "10:50",
-        "type": "pump",
-        "note": ""
-    },
-    {
-        "id": 1744562344401,
-        "duration": 25,
-        "volume": 83,
-        "date": "2025-04-05",
-        "time": "15:22",
-        "type": "pump",
-        "note": "test"
-    },
-]
+export const initialPumpData = [];
