@@ -61,7 +61,7 @@ function rightInfo(rightDataDiv, item){
     const sideDivL = document.createElement("div");
     sideDivL.classList.add("side");
 
-    if (item.type === 'bottle') {
+    if (item.type === 'bottle'|| item.type === 'pump') {
         sideDivR.textContent = item.volume;
     }
     
@@ -88,8 +88,11 @@ function icon(type){
     if (type === 'pee') {
         return '💧';
     }
+    if (type === 'pump') {
+        return '🍶';
+    }
 }
 
 function isFood (type){
-    return type === 'bottle' || type === 'breast';
+    return type === 'bottle' || type === 'breast' || type === 'pump';
 }

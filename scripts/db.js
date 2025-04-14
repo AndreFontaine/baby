@@ -419,6 +419,7 @@ let initialPumpData = [
         "volume": 105,
         "date": "2025-04-05",
         "time": "10:50",
+        "type": "pump",
         "note": ""
     },
     {
@@ -427,7 +428,8 @@ let initialPumpData = [
         "volume": 83,
         "date": "2025-04-05",
         "time": "15:22",
-        "note": ""
+        "type": "pump",
+        "note": "test"
     },
 ]
 
