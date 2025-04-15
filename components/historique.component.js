@@ -62,7 +62,7 @@ function rightInfo(rightDataDiv, item){
     sideDivL.classList.add("side");
 
     if (item.type === 'bottle'|| item.type === 'pump') {
-        sideDivR.textContent = item.volume;
+        sideDivR.textContent = item.volume + " mL";
     }
     
     if (item.type === 'breast') {
