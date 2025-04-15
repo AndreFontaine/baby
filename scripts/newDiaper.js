@@ -34,7 +34,8 @@ document.getElementById("saveDiaper").addEventListener("submit", function (e) {
 
     setTimeout(() => {
         modal.style.display = "none";
-    }, 3000);
+        window.location.href = "./home.page.html";
+    }, 1200);
 
 });
 
