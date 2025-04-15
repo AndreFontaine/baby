@@ -23,10 +23,7 @@ document.getElementById("savePump").addEventListener("submit", function (e) {
     data.date = formObj?.dateInput;
     data.time = formObj?.timeInput;
     data.volume = formObj?.volume;
-    data.note = formObj?.note;
     data.type = "pump";
-
-    console.log(data);
 
     // Save
     save("pump", data);

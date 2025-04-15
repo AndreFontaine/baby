@@ -21,3 +21,27 @@ export const sortByDateTimeDesc = (arr) => {
         return dateB - dateA;
     });
 };
+
+export const addMinutesToTime = (timeStr, minutesToAdd) => {
+    console.log(`${timeStr}k${minutesToAdd}`)
+    if (!timeStr || !minutesToAdd) {
+        return timeStr; // Return the original time if inputs are invalid
+    }
+
+    if (typeof minutesToAdd !== "number") {
+        minutesToAdd = parseInt(minutesToAdd);
+    }
+
+    // Split the time string into hours and minutes
+    const [hours, minutes] = timeStr.split(":").map(Number);
+  
+    // Create a Date object for today with that time
+    const date = new Date();
+    date.setHours(hours);
+    date.setMinutes(minutes + minutesToAdd);
+
+    const newHour = date.getHours().toString().padStart(2, "0");
+    const newMin = date.getMinutes().toString().padStart(2, "0");
+    console.log(`${newHour}:${newMin}`)
+    return `${newHour}:${newMin}`;
+  }

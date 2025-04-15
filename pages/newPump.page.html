@@ -16,7 +16,7 @@
 
     <form id="savePump" action="javascript:void(0);">
 
-        <div class="sub-title" for="dateInput">Quantité</div>
+        <div class="sub-title">Quantité</div>
         <div class="volume-container volume">
             <span id="down-quantity" role="button" tabindex="0" aria-label="Decrease quantity">
                 <i class="action fa-solid fa-circle-minus"></i>
@@ -28,6 +28,12 @@
             </span>
         </div>
 
+        <div class="sub-title">Duration</div>
+        <div class="duration-container duration">
+            <input class="duration-input" type="number" id="duration" name="duration" required minlength="1" maxlength="3"
+                size="3" value="20" max="120" min="0" /><span class="label-small"> minutes</span>
+        </div>
+
         <div class="block">
             <div>
                 <div class="sub-title" for="dateInput">Date</div>
@@ -37,10 +43,6 @@
                 <div class="sub-title" for="timeInput">Heure</div>
                 <input class="input-time" type="time" id="timeInput" name="timeInput" required />
             </div>
-        </div>
-        <div class="">
-            <div class="sub-title" for="note">Ajouter une note</div>
-            <textarea placeholder="Note" id="note" name="note" rows="5" cols="33"></textarea>
         </div>
         <div class="button-wrapper">
             <button class="btn-submit" type="submit">Enregistrer</button>

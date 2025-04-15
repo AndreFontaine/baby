@@ -1,3 +1,5 @@
+import { addMinutesToTime } from "../services/utils.js";
+
 export function createHistoriqueContent(item) {
 
     const containerDiv = document.createElement("div");
@@ -20,8 +22,15 @@ export function createHistoriqueContent(item) {
     smallDiv.textContent = item.date;
 
     const timeDiv = document.createElement("div");
-    timeDiv.textContent = item.time;
 
+    console.log(item.duration, item.type)
+
+    if( item.duration && item.type === 'pump'){
+        timeDiv.textContent = `${item.time} - ${addMinutesToTime(item.time, item.duration)}`;
+    } else {
+        timeDiv.textContent = item.time;
+    }
+       
     if (item.milkType) {
         const typeSpan = document.createElement("span");
         typeSpan.classList.add("badge");
@@ -34,7 +43,13 @@ export function createHistoriqueContent(item) {
 
     const noteDiv = document.createElement("div");
     noteDiv.classList.add("note");
-    noteDiv.textContent = item.note;
+
+    if (item.type === "pump" && item.duration) {
+        noteDiv.textContent = `${item.duration} minutes`;
+    } else {
+        noteDiv.textContent = item.note;
+    }
+
 
     const rightDataDiv = document.createElement("div");
     if (isFood(item.type)) rightInfo(rightDataDiv, item);
@@ -96,3 +111,4 @@ function icon(type){
 function isFood (type){
     return type === 'bottle' || type === 'breast' || type === 'pump';
 }
+

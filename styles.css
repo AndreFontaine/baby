@@ -134,6 +134,13 @@ h1 {
     padding: 10px 0px;
 }
 
+.duration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
 .volume {
     display: flex;
     justify-content: center;
@@ -155,6 +162,13 @@ h1 {
 }
 
 .volume > input[type="text"] {
+    all: unset;
+    font-size: 1rem;
+    width: fit-content;
+    text-align: center;
+}
+
+.quantity > input[type="text"] {
     all: unset;
     font-size: 1rem;
     width: fit-content;
@@ -410,4 +424,27 @@ textarea#note {
 .danger {
     background-color: #cc0d0d;
     font-size: 0.8rem;
+}
+
+
+
+
+
+
+
+
+input[type=number] {
+    all: unset;
+    text-align: center;
+    width: 2rem;
+}
+
+.label-small {
+    font-size: 0.8rem;
+    padding: 10px;
+}
+
+.duration-container {
+    background-color: #fff;
+    border-radius: 6px;
 }
