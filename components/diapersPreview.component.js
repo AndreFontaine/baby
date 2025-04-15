@@ -10,7 +10,7 @@ export function createDiapersPreviewContent(item, newestDiaperEntry) {
     header.classList.add("header");
 
     const headerTitle = document.createElement("span");
-    headerTitle.textContent = "Pompages";
+    headerTitle.textContent = "Couches";
 
     header.appendChild(headerTitle);
 

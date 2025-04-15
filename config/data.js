@@ -14,14 +14,14 @@ export const initialFoodData = [
             "left": 5,
             "right": 5
         },
-        "type": "breast",
+        "type": "maternel",
         "date": "2025-04-05",
         "time": "10:50",
         "note": ""
     },
     {
         "id": 1744562344602,
-        "milkType": "breast",
+        "milkType": "maternel",
         "volume": "70",
         "type": "bottle",
         "date": "2025-04-05",
@@ -43,7 +43,7 @@ export const initialFoodData = [
             "left": 15,
             "right": 15
         },
-        "type": "breast",
+        "type": "maternel",
         "date": "2025-04-04",
         "time": "23:20",
         "note": ""
@@ -59,7 +59,7 @@ export const initialFoodData = [
     },
     {
         "id": 1744562344606,
-        "milkType": "breast",
+        "milkType": "maternel",
         "volume": "90",
         "type": "bottle",
         "date": "2025-04-04",
@@ -68,7 +68,7 @@ export const initialFoodData = [
     },
     {
         "id": 1744562344607,
-        "milkType": "breast",
+        "milkType": "maternel",
         "volume": "85",
         "type": "bottle",
         "date": "2025-04-04",
@@ -81,14 +81,14 @@ export const initialFoodData = [
             "left": 10,
             "right": 10
         },
-        "type": "breast",
+        "type": "maternel",
         "date": "2025-04-04",
         "time": "15:39",
         "note": ""
     },
     {
         "id": 1744562344609,
-        "milkType": "breast",
+        "milkType": "maternel",
         "volume": "70",
         "type": "bottle",
         "date": "2025-04-04",
@@ -106,7 +106,7 @@ export const initialFoodData = [
     },
     {
         "id": 1744562344611,
-        "milkType": "breast",
+        "milkType": "maternel",
         "volume": "60",
         "type": "bottle",
         "date": "2025-04-04",
@@ -119,7 +119,7 @@ export const initialFoodData = [
             "left": 5,
             "right": 10
         },
-        "type": "breast",
+        "type": "maternel",
         "date": "2025-04-04",
         "time": "03:47",
         "note": ""
@@ -144,7 +144,7 @@ export const initialFoodData = [
     },
     {
         "id": 1744562344615,
-        "milkType": "breast",
+        "milkType": "maternel",
         "volume": "60",
         "type": "bottle",
         "date": "2025-04-03",
@@ -157,7 +157,7 @@ export const initialFoodData = [
             "left": 0,
             "right": 15
         },
-        "type": "breast",
+        "type": "maternel",
         "date": "2025-04-04",
         "time": "19:01",
         "note": ""
@@ -177,14 +177,14 @@ export const initialFoodData = [
             "left": 5,
             "right": 0
         },
-        "type": "breast",
+        "type": "maternel",
         "date": "2025-04-03",
         "time": "11:18",
         "note": ""
     },
     {
         "id": 1744562344619,
-        "milkType": "breast",
+        "milkType": "maternel",
         "volume": "40",
         "type": "bottle",
         "date": "2025-04-03",
@@ -193,7 +193,7 @@ export const initialFoodData = [
     },
     {
         "id": 1744562344620,
-        "milkType": "breast",
+        "milkType": "maternel",
         "volume": "80",
         "type": "bottle",
         "date": "2025-04-03",
@@ -206,7 +206,7 @@ export const initialFoodData = [
             "left": 0,
             "right": 8
         },
-        "type": "breast",
+        "type": "maternel",
         "date": "2025-04-03",
         "time": "08:00",
         "note": ""
@@ -226,7 +226,7 @@ export const initialFoodData = [
             "left": 10,
             "right": 0
         },
-        "type": "breast",
+        "type": "maternel",
         "date": "2025-04-03",
         "time": "02:55",
         "note": ""
@@ -237,7 +237,7 @@ export const initialFoodData = [
             "left": 0,
             "right": 10
         },
-        "type": "breast",
+        "type": "maternel",
         "date": "2025-04-02",
         "time": "23:00",
         "note": ""
@@ -257,7 +257,7 @@ export const initialFoodData = [
             "left": 5,
             "right": 0
         },
-        "type": "breast",
+        "type": "maternel",
         "date": "2025-04-02",
         "time": "22:25",
         "note": ""
@@ -273,7 +273,7 @@ export const initialFoodData = [
     },
     {
         "id": 1744562344628,
-        "milkType": "breast",
+        "milkType": "maternel",
         "volume": "45",
         "type": "bottle",
         "date": "2025-04-02",
@@ -304,14 +304,14 @@ export const initialFoodData = [
             "left": 10,
             "right": 10
         },
-        "type": "breast",
+        "type": "maternel",
         "date": "2025-04-02",
         "time": "08:30",
         "note": ""
     },
     {
         "id": 1744562344632,
-        "milkType": "breast",
+        "milkType": "maternel",
         "volume": "90",
         "type": "bottle",
         "date": "2025-04-02",
@@ -338,7 +338,7 @@ export const initialFoodData = [
     },
     {
         "id": 1744562344635,
-        "milkType": "breast",
+        "milkType": "maternel",
         "volume": "50",
         "type": "bottle",
         "date": "2025-04-02",
@@ -351,7 +351,7 @@ export const initialFoodData = [
             "left": 5,
             "right": 0
         },
-        "type": "breast",
+        "type": "maternel",
         "date": "2025-04-02",
         "time": "02:35",
         "note": ""
@@ -362,7 +362,7 @@ export const initialFoodData = [
             "left": 15,
             "right": 15
         },
-        "type": "breast",
+        "type": "maternel",
         "date": "2025-04-01",
         "time": "22:51",
         "note": ""
@@ -378,7 +378,7 @@ export const initialFoodData = [
     },
     {
         "id": 1744562344639,
-        "milkType": "breast",
+        "milkType": "maternel",
         "volume": "50",
         "type": "bottle",
         "date": "2025-04-01",
@@ -396,7 +396,7 @@ export const initialFoodData = [
     },
     {
         "id": 1744562344641,
-        "milkType": "breast",
+        "milkType": "maternel",
         "volume": "50",
         "type": "bottle",
         "date": "2025-04-01",
@@ -405,7 +405,7 @@ export const initialFoodData = [
     },
     {
         "id": 1744562344642,
-        "milkType": "breast",
+        "milkType": "maternel",
         "volume": "50",
         "type": "bottle",
         "date": "2025-04-01",
@@ -418,7 +418,7 @@ export const initialFoodData = [
             "left": 17,
             "right": 0
         },
-        "type": "breast",
+        "type": "maternel",
         "date": "2025-04-01",
         "time": "12:08",
     },
@@ -428,13 +428,13 @@ export const initialFoodData = [
             "left": 0,
             "right": 9
         },
-        "type": "breast",
+        "type": "maternel",
         "date": "2025-04-01",
         "time": "11:37",
     },
     {
         "id": 1744562344645,
-        "milkType": "breast",
+        "milkType": "maternel",
         "volume": "60",
         "type": "bottle",
         "date": "2025-04-01",
