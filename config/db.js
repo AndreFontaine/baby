@@ -53,3 +53,28 @@ export const reset = () => {
     location.reload();
     console.log("Reset data from local storage:", data);
 }
+
+
+export function saveLocalStorageToJson(filename = "data.json") {
+    // 1. Get all localStorage data
+    const data = {};
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      data[key] = JSON.parse(localStorage.getItem(key));
+    }
+  
+    // 2. Convert to JSON string
+    const json = JSON.stringify(data, null, 2); // pretty-printed
+  
+    // 3. Create a blob and a temporary download link
+    const blob = new Blob([json], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+  
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    a.click();
+  
+    // 4. Clean up
+    URL.revokeObjectURL(url);
+  }
