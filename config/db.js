@@ -50,5 +50,6 @@ export const remove = (data, type) => {
 
 export const reset = () => {
     localStorage.clear();
+    location.reload();
     console.log("Reset data from local storage:", data);
 }

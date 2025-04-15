@@ -86,5 +86,4 @@ function createPumpPreview(container) {
 
 document.getElementById("reset-btn").addEventListener("click", () => {
     reset();
-    console.log("test");
 });

@@ -1,7 +1,7 @@
 export const initialFoodData = [
     {
         "id": 1744562344600,
-        "milkType": "breast",
+        "milkType": "formula",
         "volume": "70",
         "type": "bottle",
         "date": "2025-04-05",
@@ -30,7 +30,7 @@ export const initialFoodData = [
     },
     {
         "id": 1744562344603,
-        "milkType": "breast",
+        "milkType": "formula",
         "volume": "130",
         "type": "bottle",
         "date": "2025-04-05",
@@ -50,7 +50,7 @@ export const initialFoodData = [
     },
     {
         "id": 1744562344605,
-        "milkType": "breast",
+        "milkType": "formula",
         "volume": "10",
         "type": "bottle",
         "date": "2025-04-04",
@@ -97,7 +97,7 @@ export const initialFoodData = [
     },
     {
         "id": 1744562344610,
-        "milkType": "breast",
+        "milkType": "formula",
         "volume": "110",
         "type": "bottle",
         "date": "2025-04-04",
@@ -126,7 +126,7 @@ export const initialFoodData = [
     },
     {
         "id": 1744562344613,
-        "milkType": "breast",
+        "milkType": "formula",
         "volume": "80",
         "type": "bottle",
         "date": "2025-04-03",
@@ -135,7 +135,7 @@ export const initialFoodData = [
     },
     {
         "id": 1744562344614,
-        "milkType": "breast",
+        "milkType": "formula",
         "volume": "50",
         "type": "bottle",
         "date": "2025-04-03",
@@ -213,7 +213,7 @@ export const initialFoodData = [
     },
     {
         "id": 1744562344622,
-        "milkType": "breast",
+        "milkType": "formula",
         "volume": "80",
         "type": "bottle",
         "date": "2025-04-03",
@@ -244,7 +244,7 @@ export const initialFoodData = [
     },
     {
         "id": 1744562344625,
-        "milkType": "breast",
+        "milkType": "formula",
         "volume": "70",
         "type": "bottle",
         "date": "2025-04-02",
@@ -264,7 +264,7 @@ export const initialFoodData = [
     },
     {
         "id": 1744562344627,
-        "milkType": "breast",
+        "milkType": "formula",
         "volume": "80",
         "type": "bottle",
         "date": "2025-04-02",
@@ -282,7 +282,7 @@ export const initialFoodData = [
     },
     {
         "id": 1744562344629,
-        "milkType": "breast",
+        "milkType": "formula",
         "volume": "10",
         "type": "bottle",
         "date": "2025-04-02",
@@ -291,7 +291,7 @@ export const initialFoodData = [
     },
     {
         "id": 1744562344630,
-        "milkType": "breast",
+        "milkType": "formula",
         "volume": "115",
         "type": "bottle",
         "date": "2025-04-02",
@@ -320,7 +320,7 @@ export const initialFoodData = [
     },
     {
         "id": 1744562344633,
-        "milkType": "breast",
+        "milkType": "formula",
         "volume": "40",
         "type": "bottle",
         "date": "2025-04-02",
@@ -329,7 +329,7 @@ export const initialFoodData = [
     },
     {
         "id": 1744562344634,
-        "milkType": "breast",
+        "milkType": "formula",
         "volume": "40",
         "type": "bottle",
         "date": "2025-04-02",
@@ -356,21 +356,118 @@ export const initialFoodData = [
         "time": "02:35",
         "note": ""
     },
-
-
-
     {
-        "id": 1744562344636,
+        "id": 1744562344637,
         "duration": {
-            "left": 5,
+            "left": 15,
+            "right": 15
+        },
+        "type": "breast",
+        "date": "2025-04-01",
+        "time": "22:51",
+        "note": ""
+    },
+    {
+        "id": 1744562344638,
+        "milkType": "formula",
+        "volume": "70",
+        "type": "bottle",
+        "date": "2025-04-01",
+        "time": "22:30",
+        "note": ""
+    },
+    {
+        "id": 1744562344639,
+        "milkType": "breast",
+        "volume": "50",
+        "type": "bottle",
+        "date": "2025-04-01",
+        "time": "22:04",
+        "note": ""
+    },
+    {
+        "id": 1744562344640,
+        "milkType": "formula",
+        "volume": "80",
+        "type": "bottle",
+        "date": "2025-04-01",
+        "time": "19:45",
+        "note": "Con calmosine"
+    },
+    {
+        "id": 1744562344641,
+        "milkType": "breast",
+        "volume": "50",
+        "type": "bottle",
+        "date": "2025-04-01",
+        "time": "16:30",
+        "note": ""
+    },
+    {
+        "id": 1744562344642,
+        "milkType": "breast",
+        "volume": "50",
+        "type": "bottle",
+        "date": "2025-04-01",
+        "time": "13:09",
+        "note": "+ Hierro"
+    },
+    {
+        "id": 1744562344643,
+        "duration": {
+            "left": 17,
             "right": 0
         },
         "type": "breast",
-        "date": "2025-04-02",
-        "time": "02:35",
+        "date": "2025-04-01",
+        "time": "12:08",
+    },
+    {
+        "id": 1744562344644,
+        "duration": {
+            "left": 0,
+            "right": 9
+        },
+        "type": "breast",
+        "date": "2025-04-01",
+        "time": "11:37",
+    },
+    {
+        "id": 1744562344645,
+        "milkType": "breast",
+        "volume": "60",
+        "type": "bottle",
+        "date": "2025-04-01",
+        "time": "10:13",
         "note": ""
     },
-
+    {
+        "id": 1744562344646,
+        "milkType": "formula",
+        "volume": "40",
+        "type": "bottle",
+        "date": "2025-04-01",
+        "time": "06:32",
+        "note": ""
+    },
+    {
+        "id": 1744562344647,
+        "milkType": "formula",
+        "volume": "80",
+        "type": "bottle",
+        "date": "2025-04-01",
+        "time": "06:08",
+        "note": ""
+    },
+    {
+        "id": 1744562344648,
+        "milkType": "formula",
+        "volume": "80",
+        "type": "bottle",
+        "date": "2025-04-01",
+        "time": "01:45",
+        "note": "+ Calmosine"
+    }
 ];
 
 export const initialDiaperData = [
