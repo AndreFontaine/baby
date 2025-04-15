@@ -1,7 +1,7 @@
 import { createDiapersPreviewContent } from "../components/diapersPreview.component.js";
 import { createfoodPreviewContent } from "../components/foodPreview.component.js";
 import { createPumpPreviewContent } from "../components/pumpPreview.component.js";
-import { get } from "../config/db.js";
+import { get, reset } from "../config/db.js";
 import { upsateLastDiaperTime, upsateLastMealTime, upsateLastPumpTime } from "../services/historique.js";
 import { isToday, sortByDateTimeDesc } from "../services/utils.js";
 
@@ -83,3 +83,8 @@ function createPumpPreview(container) {
 
     container.appendChild(createPumpPreviewContent(pumpsPreview));
 }
+
+document.getElementById("reset-btn").addEventListener("click", () => {
+    reset();
+    console.log("test");
+});

@@ -47,3 +47,8 @@ export const remove = (data, type) => {
     localStorage.removeItem(type);
     console.log("Removed data from local storage:", data);
 }
+
+export const reset = () => {
+    localStorage.clear();
+    console.log("Reset data from local storage:", data);
+}
