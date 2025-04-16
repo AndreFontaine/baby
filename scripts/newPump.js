@@ -26,7 +26,7 @@ document.getElementById("savePump").addEventListener("submit", function (e) {
     data.type = "pump";
 
     // Save
-    save("pump", data);
+    save(data.id, data);
 
     const modal = document.getElementById("successModal");
     modal.style.display = "block";
