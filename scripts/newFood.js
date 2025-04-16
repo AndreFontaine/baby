@@ -3,6 +3,8 @@ import { save } from "../config/db.js";
 const breastForm = document.querySelector("#formBreast");
 const bottleForm = document.querySelector("#formBottle");
 
+const foodObj = {};
+
 document.addEventListener("DOMContentLoaded", () => {
     const radioButtons = document.querySelectorAll('input[name="foodType"]');
 
@@ -22,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     loadDateAndTime();
+    isEdit();
 });
 
 document.getElementById("up-milk").addEventListener("click", function (e) {
@@ -113,3 +116,19 @@ function loadDateAndTime() {
 document.querySelector(".close").addEventListener("click", function () {
     document.getElementById("successModal").style.display = "none";
 });
+
+function loadParams(params) {
+    const id = params.get("id");
+    if (!id) return;
+    foodObj.id = id;
+    console.log("foodObj => ", foodObj);
+}
+
+function isEdit() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.size !== 0)  {
+        loadParams(params);
+        return true;
+    }
+    return false;
+}

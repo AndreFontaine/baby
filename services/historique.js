@@ -44,3 +44,21 @@ export const upsateLastPumpTime = (newestPumpEntry) => {
     return text;
 }
 
+export const actionByType = (item) => {
+    const params = new URLSearchParams({ "id": item.id }).toString();
+    let page = 'home.html';
+    switch (item.type) {
+        case 'bottle':
+        case 'breast':
+            page = 'newFood';
+            break;
+        case 'pump':
+            page = 'newPump';
+            break;
+        case 'pee':
+        case 'poop':
+            page = 'newDiaper';
+            break;
+    }
+    window.location.href = `${page}.page.html?${params}`;
+} 

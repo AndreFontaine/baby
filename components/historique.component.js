@@ -1,9 +1,15 @@
+import { actionByType } from "../services/historique.js";
 import { addMinutesToTime } from "../services/utils.js";
 
 export function createHistoriqueContent(item) {
 
     const containerDiv = document.createElement("div");
     containerDiv.classList.add("container");
+
+    containerDiv.addEventListener("click", (event) => {
+        console.log("item => ", item)
+        console.log(actionByType(item));
+    });
 
     const infoDiv = document.createElement("div");
     infoDiv.classList.add("info");
@@ -23,8 +29,6 @@ export function createHistoriqueContent(item) {
 
     const timeDiv = document.createElement("div");
 
-    console.log(item.duration, item.type)
-
     if( item.duration && item.type === 'pump'){
         timeDiv.textContent = `${item.time} - ${addMinutesToTime(item.time, item.duration)}`;
     } else {
@@ -37,7 +41,7 @@ export function createHistoriqueContent(item) {
         if (item.milkType === 'formula') {
             typeSpan.classList.add("badge-formula");
         }
-        typeSpan.textContent = item.milkType;
+        typeSpan.textContent = item.milkType === 'breast' ? 'maternel' : item.milkType;
         smallDiv.appendChild(typeSpan);
     }
 
