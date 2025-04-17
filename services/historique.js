@@ -45,7 +45,17 @@ export const upsateLastPumpTime = (newestPumpEntry) => {
 }
 
 export const actionByType = (item) => {
-    const params = new URLSearchParams({ "id": item.id }).toString();
+    const params = new URLSearchParams();
+
+    if (item.id) params.set("id", item.id);
+    if (item.milkType) params.set("milkType", item.milkType);
+    if (item.volume) params.set("volume", item.volume);
+    if (item.type) params.set("type", item.type);
+    if (item.date) params.set("date", item.date);
+    if (item.time) params.set("time", item.time);
+    if (item.note) params.set("note", item.note);
+    if (item.duration) params.set("duration", JSON.stringify(item.duration));
+ 
     let page = 'home.html';
     switch (item.type) {
         case 'bottle':

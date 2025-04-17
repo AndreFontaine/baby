@@ -21,7 +21,7 @@
                 <label class="breast" for="breast">🤱 Tétée</label>
             </div>
             <div class="main-option">
-                <input type="radio" id="bottle" name="foodType" value="bottle" checked />
+                <input type="radio" id="bottle" name="foodType" value="bottle" />
                 <label class="bootle" for="bottle">🍼 Biberon</label>
             </div>
         </div>
@@ -33,14 +33,11 @@
                             Sein gauche
                         </div>
                         <div>
-                            <input class="time-input" type="text" id="r-hours" name="r-hours" required minlength="1"
-                                maxlength="1" size="1" value="0" max="2" min="0" />
+                            <input class="time-input" type="text" id="r-hours" name="r-hours" />
                             <label class="time-label" for="r-hours">h</label>
-                            <input class="time-input" type="text" id="r-minutes" name="r-minutes" required minlength="1"
-                                maxlength="2" size="1" value="0" max="60" min="0" />
+                            <input class="time-input" type="text" id="r-minutes" name="r-minutes"/>
                             <label class="time-label" for="r-minutes">m</label>
-                            <input class="time-input" type="text" id="r-seconds" name="r-seconds" required minlength="1"
-                                maxlength="2" size="1" value="0" max="60" min="0" />
+                            <input class="time-input" type="text" id="r-seconds" name="r-seconds"/>
                             <label class="time-label" for="r-seconds">s</label>
                         </div>
                     </div>
@@ -51,14 +48,11 @@
                             Sein droit
                         </div>
                         <div>
-                            <input class="time-input" type="text" id="l-hours" name="l-hours" required minlength="1"
-                                maxlength="1" size="1" value="0" max="2" min="0" />
+                            <input class="time-input" type="text" id="l-hours" name="l-hours"/>
                             <label class="time-label" for="l-hours">h</label>
-                            <input class="time-input" type="text" id="l-minutes" name="l-minutes" required minlength="1"
-                                maxlength="2" size="2" value="0" max="60" min="0" />
+                            <input class="time-input" type="text" id="l-minutes" name="l-minutes"/>
                             <label class="time-label" for="l-minutes">m</label>
-                            <input class="time-input" type="text" id="l-seconds" name="l-seconds" required minlength="1"
-                                maxlength="2" size="2" value="0" max="60" min="0" />
+                            <input class="time-input" type="text" id="l-seconds" name="l-seconds"/>
                             <label class="time-label" for="l-seconds">s</label>
                         </div>
                     </div>
@@ -92,16 +86,16 @@
         <div class="block">
             <div>
                 <div class="sub-title" for="dateInput">Date</div>
-                <input class="input-time" type="date" id="dateInput" name="dateInput" required />
+                <input class="input-time" type="date" id="dateInput" name="dateInput" />
             </div>
             <div>
                 <div class="sub-title" for="timeInput">Heure</div>
-                <input class="input-time" type="time" id="timeInput" name="timeInput" required />
+                <input class="input-time" type="time" id="timeInput" name="timeInput" />
             </div>
         </div>
         <div class="">
             <div class="sub-title" for="note">Ajouter une note</div>
-            <textarea placeholder="Écrit une note" id="note" name="note" rows="5" cols="33"></textarea>
+            <textarea id="note" name="note"></textarea>
         </div>
         <div class="button-wrapper">
             <button class="btn-submit" type="submit">Enregistrer</button>
