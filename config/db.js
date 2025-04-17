@@ -3,22 +3,22 @@ import { initialDiaperData, initialFoodData, initialPumpData } from "./data.js";
 export const init = () => {
     console.log("Initializing local storage...");
     if (!localStorage.getItem("read")) {
-        initialFoodData.forEach((item) => {
-            localStorage.setItem(item.id, JSON.stringify(item, null));
-        });
-        initialDiaperData.forEach((item) => {
-            localStorage.setItem(item.id, JSON.stringify(item, null));
-        });
-        initialPumpData.forEach((item) => {
-            localStorage.setItem(item.id, JSON.stringify(item, null));
-        });
+        if (!localStorage.getItem("food")) {
+            localStorage.setItem("food", JSON.stringify(initialFoodData, null, 2));
+        } 
+        if (!localStorage.getItem("diaper")) {
+            localStorage.setItem("diaper", JSON.stringify(initialDiaperData, null, 2));
+        }
+        if (!localStorage.getItem("pump")) {
+            localStorage.setItem("pump", JSON.stringify(initialPumpData, null, 2));
+        }
     }
     localStorage.setItem("read", true);
 }
 
-export const save = (id, data) => {
-    if (!id || !data) {
-        console.error("Id and data are required to save to local storage.");
+export const save = (type, data) => {
+    if (!type || !data) {
+        console.error("Type and data are required to save to local storage.");
         return;
     }
     if (typeof data !== "object") {
@@ -26,7 +26,9 @@ export const save = (id, data) => {
         return;
     }
 
-    localStorage.setItem(id, JSON.stringify(data, null));
+    let newData = JSON.parse(localStorage.getItem(type)) || [];
+    newData.push(data);
+    localStorage.setItem(type, JSON.stringify(newData, null, 2));
     console.log("Saved data in local storage:", data);
 }
 
@@ -55,12 +57,12 @@ export const reset = () => {
 
 export function saveLocalStorageToJson(filename = "data.json") {
     // 1. Get all localStorage data
-    const data = [];
+    const data = {};
     for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      data.push(JSON.parse(localStorage.getItem(key)));
+        const key = localStorage.key(i);
+        data[key] = JSON.parse(localStorage.getItem(key));
     }
-  
+
     // 2. Convert to JSON string
     const json = JSON.stringify(data, null, 2); // pretty-printed
   

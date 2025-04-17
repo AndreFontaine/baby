@@ -27,7 +27,7 @@ document.getElementById("saveDiaper").addEventListener("submit", function (e) {
     console.log(data);
 
     // Save
-    save(data.id, data);
+    save("diaper", data);
 
     const modal = document.getElementById("successModal");
     modal.style.display = "block";

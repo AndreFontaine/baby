@@ -77,7 +77,7 @@ document.getElementById("saveFood").addEventListener("submit", function (e) {
     data.note = formObj?.note;
 
     // Save
-    save(data.id, data);
+    save("food", data);
 
     const modal = document.getElementById("successModal");
     modal.style.display = "block";
