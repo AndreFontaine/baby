@@ -1,10 +1,11 @@
 import { save } from "../config/db.js";
 import { dateConfig, hourConfig, lHoursConfig, lMinutesConfig, lSecondsConfig, noteConfig, rHoursConfig, rMinutesConfig, rSecondsConfig, volumeConfig } from "../config/forms.js";
 import { setInputAttributes } from "../services/formUtils.js";
+import { convertToInputDate } from "../services/utils.js";
 
 const breastForm = document.querySelector("#formBreast");
 const bottleForm = document.querySelector("#formBottle");
-
+let isEditForm = false;
 const foodObj = {};
 
 let milkType;
@@ -15,53 +16,13 @@ let time;
 let note;
 let durationParam;
 
-/* Init form configuration */
+const DEFAULT_FOOD_TYPE = "bottle"; // breast or bottle
+const DEFAULT_MILK_TYPE = "breast"; // breast or formula
 
-// Type
-const foodType = "bottle"
-setSelectedForm(foodType);
-const foodTypeEl = document.querySelector(`input[name="foodType"][value="${foodType}"]`);
-if (foodTypeEl) foodTypeEl.checked = true;
+let foodTypeValue = DEFAULT_FOOD_TYPE;
+let milkTypeValue = DEFAULT_MILK_TYPE;
 
-// Breast
-const rHoursInput = document.getElementById("r-hours");
-const rMinutesInput = document.getElementById("r-minutes");
-const rSecondsInput = document.getElementById("r-seconds");
-
-setInputAttributes(rHoursInput, rHoursConfig);
-setInputAttributes(rMinutesInput, rMinutesConfig);
-setInputAttributes(rSecondsInput, rSecondsConfig);
-
-const lHoursInput = document.getElementById("l-hours");
-const lMinutesInput = document.getElementById("l-minutes");
-const lSecondsInput = document.getElementById("l-seconds");
-
-setInputAttributes(lHoursInput, lHoursConfig);
-setInputAttributes(lMinutesInput, lMinutesConfig);
-setInputAttributes(lSecondsInput, lSecondsConfig);
-
-// Volume
-const volumeInput = document.getElementById("volume");
-setInputAttributes(volumeInput, volumeConfig);
-
-// Milk type
-const milkTypeInput = "breast"
-setSelectedForm(foodType);
-const milkTypeEl = document.querySelector(`input[name="milkType"][value="${milkTypeInput}"]`);
-if (milkTypeInput && milkTypeEl) milkTypeEl.checked = true;
-
-// Date
-const dateInput = document.getElementById("volume");
-setInputAttributes(dateInput, dateConfig);
-
-// Hour
-const hourInput = document.getElementById("volume");
-setInputAttributes(hourInput, hourConfig);
-
-// Note
-const noteInput = document.getElementById("note");
-setInputAttributes(noteInput, noteConfig);
-
+/* Listeners */
 
 document.addEventListener("DOMContentLoaded", () => {
     const radioButtons = document.querySelectorAll('input[name="foodType"]');
@@ -74,19 +35,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
     loadDateAndTime();
-    isEdit();
+    isEditForm = isEdit();
+    initForm();
 });
-
-function setSelectedForm(rdioValue) {
-    if (rdioValue === "breast") {
-        breastForm.style.display = "block";
-        bottleForm.style.display = "none";
-    }
-    if (rdioValue === "bottle") {
-        bottleForm.style.display = "block";
-        breastForm.style.display = "none";
-    }
-}
 
 document.getElementById("up-milk").addEventListener("click", function (e) {
     e.preventDefault();
@@ -97,6 +48,126 @@ document.getElementById("down-milk").addEventListener("click", function (e) {
     e.preventDefault();
     updateMilkQuantity(-5);
 });
+
+document.querySelector("#back").addEventListener("click", (event) => {
+    window.location.href = "./home.page.html";
+});
+
+document.getElementById("saveFood").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+    const formObj = Object.fromEntries(formData.entries());
+
+    const data = loadData(formObj);
+
+    // Save
+    save("food", data);
+
+    const modal = document.getElementById("successModal");
+    modal.style.display = "block";
+
+    setTimeout(() => {
+        modal.style.display = "none";
+        window.location.href = "./home.page.html";
+    }, 1200);
+
+});
+
+function initForm() {
+    /* Get all form inputs */
+    // volume integer
+    const volumeInput = document.getElementById("volume");
+    // date: i.e. 18/04/2025 (2025-04-18)
+    const dateInput = document.getElementById("dateInput");
+    // time: i.e. 11:30
+    const hourInput = document.getElementById("timeInput");
+    // note: string
+    const noteInput = document.getElementById("note");
+    // duration: r (right), l (left) both in hours, mibutes and seconds
+    const rHoursInput = document.getElementById("r-hours");
+    const rMinutesInput = document.getElementById("r-minutes");
+    const rSecondsInput = document.getElementById("r-seconds");
+    const lHoursInput = document.getElementById("l-hours");
+    const lMinutesInput = document.getElementById("l-minutes");
+    const lSecondsInput = document.getElementById("l-seconds");
+
+    // update 
+    console.log("isEditForm", isEditForm)
+    if (isEditForm) {
+        if (type === "breast") {
+            rMinutesConfig.value = foodObj.right;
+            lMinutesConfig.value = foodObj.left;
+        }
+
+        if (type === "bottle") {
+            volumeConfig.value = Number(foodObj.volume);
+            milkTypeValue = foodObj.milkType;
+        }
+
+        hourConfig.value = foodObj.time;
+        dateConfig.value = convertToInputDate(foodObj.date);
+        noteConfig.value = (foodObj.note) ? foodObj.note : '';
+
+        foodTypeValue = foodObj.type;
+    }
+
+    // foodType: bootle, breast
+    const foodTypeInput = document.querySelector(`input[name="foodType"][value="${foodTypeValue}"]`);
+    // milktype: breast, formula
+    const milkTypeInput = document.querySelector(`input[name="milkType"][value="${milkTypeValue}"]`);
+    setSelectedForm(foodTypeValue);
+    if (foodTypeInput && foodTypeValue) foodTypeInput.checked = true;
+    if (milkTypeInput && milkTypeValue) milkTypeInput.checked = true;
+
+    setInputAttributes(rHoursInput, rHoursConfig);
+    setInputAttributes(rMinutesInput, rMinutesConfig);
+    setInputAttributes(rSecondsInput, rSecondsConfig);
+    setInputAttributes(lHoursInput, lHoursConfig);
+    setInputAttributes(lMinutesInput, lMinutesConfig);
+    setInputAttributes(lSecondsInput, lSecondsConfig);
+    setInputAttributes(volumeInput, volumeConfig);
+    setInputAttributes(dateInput, dateConfig);
+    setInputAttributes(hourInput, hourConfig);
+    setInputAttributes(noteInput, noteConfig);
+
+}
+
+function loadData(form) {
+
+    if (!form) {
+        console.log('Invalid from');
+        return;
+    };
+
+    const data = {};
+    data.id = Number(foodObj.id ?? Date.now());
+
+    data.type = form.foodType;
+    data.date = form.dateInput;
+    data.time = form.timeInput;
+    data.note = form.note;
+
+    if (form?.foodType === "breast") {
+        data.duration = {
+            left: parseInt((form["l-hours"] * 60), 10) + parseInt(form["l-minutes"], 10) + parseInt((form["l-seconds"] / 60), 10),
+            right: parseInt((form["r-hours"] * 60), 10) + parseInt(form["r-minutes"], 10) + parseInt((form["r-seconds"] / 60), 10),
+        }
+    }
+
+    if (form?.foodType === "bottle") {
+        data.milkType = form?.milkType;
+        data.volume = form?.volume;
+    }
+
+    return data;
+}
+
+document.querySelector(".close").addEventListener("click", function () {
+    document.getElementById("successModal").style.display = "none";
+});
+
+/* Helpers */
 
 function updateMilkQuantity(step = 5) {
     const input = document.getElementById("volume");
@@ -112,49 +183,17 @@ function updateMilkQuantity(step = 5) {
     input.value = newValue;
 };
 
-document.getElementById("saveFood").addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const formData = new FormData(this);
-    const formObj = Object.fromEntries(formData.entries());
-    const data = {};
-    data.id = Date.now();
-
-    if (formObj?.foodType === "breast") {
-        data.duration = {
-            left: parseInt((formObj["l-hours"] * 60), 10) + parseInt(formObj["l-minutes"], 10) + parseInt((formObj["l-seconds"] / 60), 10),
-            right: parseInt((formObj["r-hours"] * 60), 10) + parseInt(formObj["r-minutes"], 10) + parseInt((formObj["r-seconds"] / 60), 10),
-        }
+function setSelectedForm(rdioValue) {
+    if (rdioValue === "breast") {
+        breastForm.style.display = "block";
+        bottleForm.style.display = "none";
     }
-
-    if (formObj?.foodType === "bottle") {
-        data.milkType = formObj?.milkType;
-        data.volume = formObj?.volume;
+    if (rdioValue === "bottle") {
+        bottleForm.style.display = "block";
+        breastForm.style.display = "none";
     }
+}
 
-    data.type = formObj?.foodType;
-    data.date = formObj?.dateInput;
-    data.time = formObj?.timeInput;
-    data.note = formObj?.note;
-
-    // Save
-    save("food", data);
-
-    const modal = document.getElementById("successModal");
-    modal.style.display = "block";
-
-    setTimeout(() => {
-        modal.style.display = "none";
-        window.location.href = "./home.page.html";
-    }, 1200);
-
-});
-
-const backBtn = document.querySelector("#back");
-
-backBtn.addEventListener("click", (event) => {
-    window.location.href = "./home.page.html";
-});
 
 function loadDateAndTime(isUpdate = false) {
     const timeInput = document.getElementById("timeInput");
@@ -174,10 +213,6 @@ function loadDateAndTime(isUpdate = false) {
     const day = time.getDate().toString().padStart(2, "0");
     dateInput.value = `${year}-${month}-${day}`;
 }
-
-document.querySelector(".close").addEventListener("click", function () {
-    document.getElementById("successModal").style.display = "none";
-});
 
 function loadParams(params) {
     let durationObj = {};
@@ -227,4 +262,5 @@ function isEdit() {
         loadParams(params);
         return true;
     }
+    return false;
 }

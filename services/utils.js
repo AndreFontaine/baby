@@ -34,7 +34,7 @@ export const addMinutesToTime = (timeStr, minutesToAdd) => {
 
     // Split the time string into hours and minutes
     const [hours, minutes] = timeStr.split(":").map(Number);
-  
+
     // Create a Date object for today with that time
     const date = new Date();
     date.setHours(hours);
@@ -44,4 +44,17 @@ export const addMinutesToTime = (timeStr, minutesToAdd) => {
     const newMin = date.getMinutes().toString().padStart(2, "0");
     console.log(`${newHour}:${newMin}`)
     return `${newHour}:${newMin}`;
-  }
+}
+
+// Map French months to numbers
+const monthMap = {
+    janvier: "01", février: "02", mars: "03", avril: "04",
+    mai: "05", juin: "06", juillet: "07", août: "08",
+    septembre: "09", octobre: "10", novembre: "11", décembre: "12"
+};
+
+export function convertToInputDate(frenchDate) {
+    const [day, monthName, year] = frenchDate.split(" ");
+    const month = monthMap[monthName.toLowerCase()];
+    return `${year}-${month}-${day.padStart(2, "0")}`;
+}
