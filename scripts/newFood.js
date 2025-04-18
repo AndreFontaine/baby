@@ -1,11 +1,10 @@
 import { save } from "../config/db.js";
 import { dateConfig, hourConfig, lHoursConfig, lMinutesConfig, lSecondsConfig, noteConfig, rHoursConfig, rMinutesConfig, rSecondsConfig, volumeConfig } from "../config/forms.js";
 import { setInputAttributes } from "../services/formUtils.js";
-import { convertToInputDate } from "../services/utils.js";
+import { convertToInputDate, isEdit, loadDateAndTime } from "../services/utils.js";
 
 const breastForm = document.querySelector("#formBreast");
 const bottleForm = document.querySelector("#formBottle");
-let isEditForm = false;
 const foodObj = {};
 
 let milkType;
@@ -15,6 +14,8 @@ let date;
 let time;
 let note;
 let durationParam;
+
+let params = null;
 
 const DEFAULT_FOOD_TYPE = "bottle"; // breast or bottle
 const DEFAULT_MILK_TYPE = "breast"; // breast or formula
@@ -34,8 +35,8 @@ document.addEventListener("DOMContentLoaded", () => {
             setSelectedForm(radio.value);
         });
     });
-    loadDateAndTime();
-    isEditForm = isEdit();
+    params = isEdit(window.location.search);
+    if(params) loadParams(params);
     initForm();
 });
 
@@ -92,9 +93,10 @@ function initForm() {
     const lMinutesInput = document.getElementById("l-minutes");
     const lSecondsInput = document.getElementById("l-seconds");
 
+    loadDateAndTime(hourInput, dateInput);
+
     // update 
-    console.log("isEditForm", isEditForm)
-    if (isEditForm) {
+    if (params) {
         if (type === "breast") {
             rMinutesConfig.value = foodObj.right;
             lMinutesConfig.value = foodObj.left;
@@ -111,6 +113,7 @@ function initForm() {
 
         foodTypeValue = foodObj.type;
     }
+    // end update
 
     // foodType: bootle, breast
     const foodTypeInput = document.querySelector(`input[name="foodType"][value="${foodTypeValue}"]`);
@@ -195,24 +198,6 @@ function setSelectedForm(rdioValue) {
 }
 
 
-function loadDateAndTime(isUpdate = false) {
-    const timeInput = document.getElementById("timeInput");
-    const dateInput = document.getElementById("dateInput");
-
-    let time = new Date();
-    if (isUpdate) time = new Date();
-
-    // Format time as HH:MM
-    const hours = time.getHours().toString().padStart(2, "0");
-    const minutes = time.getMinutes().toString().padStart(2, "0");
-    timeInput.value = `${hours}:${minutes}`;
-
-    // Format date as YYYY-MM-DD
-    const year = time.getFullYear();
-    const month = (time.getMonth() + 1).toString().padStart(2, "0"); // Months are 0-based
-    const day = time.getDate().toString().padStart(2, "0");
-    dateInput.value = `${year}-${month}-${day}`;
-}
 
 function loadParams(params) {
     let durationObj = {};
@@ -254,13 +239,4 @@ function loadParams(params) {
 
     console.log("foodObj => ", foodObj);
 
-}
-
-function isEdit() {
-    const params = new URLSearchParams(window.location.search);
-    if (params.size !== 0) {
-        loadParams(params);
-        return true;
-    }
-    return false;
 }

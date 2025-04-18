@@ -58,3 +58,26 @@ export function convertToInputDate(frenchDate) {
     const month = monthMap[monthName.toLowerCase()];
     return `${year}-${month}-${day.padStart(2, "0")}`;
 }
+
+export function isEdit(searchParams) {
+    const params = new URLSearchParams(searchParams);
+    if (params.size !== 0) {
+        return params;
+    }
+    return null;
+}
+
+export function loadDateAndTime(timeInput, dateInput) {
+    const time = new Date();
+
+    // Format time as HH:MM
+    const hours = time.getHours().toString().padStart(2, "0");
+    const minutes = time.getMinutes().toString().padStart(2, "0");
+    timeInput.value = `${hours}:${minutes}`;
+
+    // Format date as YYYY-MM-DD
+    const year = time.getFullYear();
+    const month = (time.getMonth() + 1).toString().padStart(2, "0"); // Months are 0-based
+    const day = time.getDate().toString().padStart(2, "0");
+    dateInput.value = `${year}-${month}-${day}`;
+}
