@@ -1,7 +1,8 @@
 import { createHistoriqueContent } from "../components/historique.component.js";
 import { get } from "../config/db.js";
+import { changeDateFormat } from "../services/utils.js";
 
-const diaperH = get("diaper").sort((a, b) => new Date(b.date) - new Date(a.date));
+const diaperH = get("diaper")?.sort((a, b) => new Date(b.date) - new Date(a.date));
 
 document.addEventListener("DOMContentLoaded", () => {
     const historiqueContainer = document.querySelector("#historiqueDiapers");
@@ -15,7 +16,11 @@ backBtn.addEventListener("click", (event) => {
 });
 
 function createHisPoopCon(container) {
-    for (let i = 0; i < diaperH.length; i++) {
-        container.appendChild(createHistoriqueContent(diaperH[i]));
+    if(diaperH) {
+        for (let i = 0; i < diaperH.length; i++) {
+            diaperH[i].date = changeDateFormat(diaperH[i].date);
+            container.appendChild(createHistoriqueContent(diaperH[i]));
+        }
     }
+    // TODO: mensaje cuando no hay registros
 }

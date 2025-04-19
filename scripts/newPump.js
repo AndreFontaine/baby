@@ -98,7 +98,7 @@ function initForm() {
     setInputAttributes(hourInput, hourConfig);
     setInputAttributes(durationInput, durationConfig);
 
-} // 2025-04-18
+}
 
 function loadParams(params) {
 
