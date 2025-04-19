@@ -61,7 +61,7 @@ function createPoopPreview(container) {
     const diapersPreview = {
         pee: totalPeeTimes,
         poop: totalPoopTimes,
-        duration: diaperH?.length > 0 ? upsateLastDiaperTime(newestDiaperEntry) : 'à linstant'
+        duration: diaperH?.length > 0 ? upsateLastDiaperTime(newestDiaperEntry, 'preview') : 'à linstant'
     };
 
     container.appendChild(createDiapersPreviewContent(diapersPreview, newestDiaperEntry));

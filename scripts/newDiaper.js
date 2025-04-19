@@ -21,7 +21,7 @@ document.getElementById("saveDiaper").addEventListener("submit", function (e) {
     const data = {};
 
     // map object
-    data.id = Date.now();
+    data.id = Number(foodObj.id ?? Date.now());
     data.type = formObj?.type;
     data.date = formObj?.dateInput;
     data.time = formObj?.timeInput;

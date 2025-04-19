@@ -16,20 +16,32 @@ export const init = () => {
     localStorage.setItem("read", true);
 }
 
-export const save = (type, data) => {
-    if (!type || !data) {
+export const save = (type, newData) => {
+    if (!type || !newData) {
         console.error("Type and data are required to save to local storage.");
         return;
     }
-    if (typeof data !== "object") {
+    if (typeof newData !== "object") {
         console.error("Type must be a string.");
         return;
     }
 
-    let newData = JSON.parse(localStorage.getItem(type)) || [];
-    newData.push(data);
-    localStorage.setItem(type, JSON.stringify(newData, null, 2));
-    console.log("Saved data in local storage:", data);
+    let data = JSON.parse(localStorage.getItem(type)) || [];
+    const index = data.findIndex(item => item.id === newData.id);
+
+    if (index !== -1) {
+        // Update fields
+        console.log("Found");
+        console.log('update');
+        data[index] = newData;
+    } else {
+        console.log("Object not found");
+        console.log('create');
+        data.push(newData);
+    }
+
+    localStorage.setItem(type, JSON.stringify(data, null, 2));
+    console.log("Saved data in local storage:", newData);
 }
 
 export const update = (data, type) => {

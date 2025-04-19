@@ -1,7 +1,7 @@
 import { save } from "../config/db.js";
 import { dateConfig, hourConfig, lHoursConfig, lMinutesConfig, lSecondsConfig, noteConfig, rHoursConfig, rMinutesConfig, rSecondsConfig, volumeConfig } from "../config/forms.js";
 import { setInputAttributes } from "../services/formUtils.js";
-import { convertToInputDate, isEdit, loadDateAndTime } from "../services/utils.js";
+import { convertToInputDate, isEdit, loadDateAndTime, loadModal } from "../services/utils.js";
 
 const breastForm = document.querySelector("#formBreast");
 const bottleForm = document.querySelector("#formBottle");
@@ -59,20 +59,12 @@ document.getElementById("saveFood").addEventListener("submit", function (e) {
 
     const formData = new FormData(this);
     const formObj = Object.fromEntries(formData.entries());
-
     const data = loadData(formObj);
 
     // Save
     save("food", data);
-
     const modal = document.getElementById("successModal");
-    modal.style.display = "block";
-
-    setTimeout(() => {
-        modal.style.display = "none";
-        window.location.href = "./home.page.html";
-    }, 1200);
-
+    loadModal(modal);
 });
 
 function initForm() {
@@ -197,8 +189,6 @@ function setSelectedForm(rdioValue) {
     }
 }
 
-
-
 function loadParams(params) {
     let durationObj = {};
     let left;
@@ -227,7 +217,6 @@ function loadParams(params) {
         console.error("Invalid duration object", e);
     }
 
-    if (id) foodObj.id = id;
     if (milkType) foodObj.milkType = milkType;
     if (volume) foodObj.volume = volume;
     if (type) foodObj.type = type;

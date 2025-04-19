@@ -30,7 +30,7 @@ export const upsateLastDiaperTime = (newestDiaperEntry) => {
     return text;
 }
 
-export const upsateLastPumpTime = (newestPumpEntry) => {
+export const upsateLastPumpTime = (newestPumpEntry, view) => {
     let text = "Aucun pompage enregistré";
     if (newestPumpEntry?.date) {
         const lastDiaperTime = new Date(`${newestPumpEntry.date}T${newestPumpEntry.time}`); 
@@ -39,7 +39,9 @@ export const upsateLastPumpTime = (newestPumpEntry) => {
         const diffMinsx = Math.floor(diffMsx / 1000 / 60);
         const hours = Math.floor(diffMinsx / 60);
         const minutes = diffMinsx % 60;
-        text = `${hours}h${minutes}m`;
+        text = (view === 'preview') 
+            ? `${hours}h${minutes}m`
+            : "Il y a " + (hours > 0 ? hours + "h" : "") + (minutes > 0 ? minutes + "m" : "");
     }
     return text;
 }
@@ -54,15 +56,17 @@ export const actionByType = (item) => {
     if (item.date) params.set("date", item.date);
     if (item.time) params.set("time", item.time);
     if (item.note) params.set("note", item.note);
-    if (item.duration) params.set("duration", JSON.stringify(item.duration));
+   
  
     let page = 'home.html';
     switch (item.type) {
         case 'bottle':
         case 'breast':
+            if (item.duration) params.set("duration", JSON.stringify(item.duration));
             page = 'newFood';
             break;
         case 'pump':
+            if (item.duration) params.set("duration", item.duration);
             page = 'newPump';
             break;
         case 'pee':

@@ -1,10 +1,25 @@
 import { save } from "../config/db.js";
-import { loadDateAndTime } from "../services/utils.js";
+import { dateConfig, durationConfig, hourConfig, volumeConfig } from "../config/forms.js";
+import { setInputAttributes } from "../services/formUtils.js";
+import { convertToInputDate, isEdit, loadDateAndTime, loadModal } from "../services/utils.js";
+
+const pumpObj = {};
+let params = null;
+
+let volume;
+let type;
+let date;
+let time;
+let duration;
 
 document.addEventListener("DOMContentLoaded", () => {
     const timeInput = document.getElementById("timeInput");
     const dateInput = document.getElementById("dateInput");
     loadDateAndTime(timeInput, dateInput);
+
+    params = isEdit(window.location.search);
+    if(params) loadParams(params);
+    initForm();
 });
 
 const backBtn = document.querySelector("#back");
@@ -18,26 +33,12 @@ document.getElementById("savePump").addEventListener("submit", function (e) {
 
     const formData = new FormData(this);
     const formObj = Object.fromEntries(formData.entries());
-    const data = {};
-
-    // map object
-    data.id = Date.now();
-    data.duration = formObj?.duration;
-    data.date = formObj?.dateInput;
-    data.time = formObj?.timeInput;
-    data.volume = formObj?.volume;
-    data.type = "pump";
+    const data = loadData(formObj);;
 
     // Save
     save("pump", data);
-
     const modal = document.getElementById("successModal");
-    modal.style.display = "block";
-
-    setTimeout(() => {
-        modal.style.display = "none";
-        window.location.href = "./home.page.html";
-    }, 1200);
+    loadModal(modal);
 
 });
 
@@ -69,3 +70,77 @@ function updatequantityQuantity(step = 5) {
 document.querySelector(".close").addEventListener("click", function () {
     document.getElementById("successModal").style.display = "none";
 });
+
+function initForm() {
+    /* Get all form inputs */
+    // volume integer
+    const volumeInput = document.getElementById("volume");
+    // date: i.e. 18/04/2025 (2025-04-18)
+    const dateInput = document.getElementById("dateInput");
+    // time: i.e. 11:30
+    const hourInput = document.getElementById("timeInput");
+    // duration: pumping minutes
+    const durationInput = document.getElementById("duration");
+
+    loadDateAndTime(hourInput, dateInput);
+
+    // update 
+    if (params) {
+        hourConfig.value = pumpObj.time;
+        dateConfig.value = convertToInputDate(pumpObj.date);
+        volumeConfig.value = Number(pumpObj.volume);
+        durationConfig.value = Number(pumpObj.duration);
+    }
+    // end update
+
+    setInputAttributes(volumeInput, volumeConfig);
+    setInputAttributes(dateInput, dateConfig);
+    setInputAttributes(hourInput, hourConfig);
+    setInputAttributes(durationInput, durationConfig);
+
+} // 2025-04-18
+
+function loadParams(params) {
+
+    console.log("params", params)
+
+    const id = params.get("id");
+    if (!id) return;
+    pumpObj.id = id;
+
+    // get all paramas
+    volume = params.get("volume");
+    type = params.get("type");
+    date = params.get("date");
+    time = params.get("time");
+    duration = params.get("duration");
+
+    if (volume) pumpObj.volume = Number(volume);
+    if (type) pumpObj.type = type;
+    if (date) pumpObj.date = date;
+    if (time) pumpObj.time = time;
+    if (duration) pumpObj.duration = Number(duration);
+
+    console.log("pumpObj => ", pumpObj);
+
+}
+
+function loadData(form) {
+
+    if (!form) {
+        console.log('Invalid from');
+        return;
+    };
+
+    const data = {};
+    // map object
+    data.id = Number(pumpObj.id ?? Date.now());
+
+    data.duration = form.duration;
+    data.date = form.dateInput;
+    data.time = form.timeInput;
+    data.volume = form.volume;
+    data.type = "pump";
+
+    return data;
+}

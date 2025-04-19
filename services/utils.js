@@ -81,3 +81,13 @@ export function loadDateAndTime(timeInput, dateInput) {
     const day = time.getDate().toString().padStart(2, "0");
     dateInput.value = `${year}-${month}-${day}`;
 }
+
+export function loadModal(modal) {
+    
+    modal.style.display = "block";
+
+    setTimeout(() => {
+        modal.style.display = "none";
+        window.location.href = "./home.page.html";
+    }, 1200);
+}

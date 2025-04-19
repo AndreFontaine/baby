@@ -12,3 +12,5 @@ export const noteConfig = { placeholder:"Écrit une note", rows:5, cols:33 };
 
 export const dateConfig = { required: true };
 export const hourConfig = { required: true };
+
+export const durationConfig = { size: 3, value: 25, max: 120, min: 0, minLength: 1, maxLength: 3, required: true };

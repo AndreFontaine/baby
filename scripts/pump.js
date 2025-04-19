@@ -1,6 +1,6 @@
 import { createHistoriqueContent } from "../components/historique.component.js";
 import { get } from "../config/db.js";
-import { sortByDateTimeDesc } from "../services/utils.js";
+import { changeDateFormat, sortByDateTimeDesc } from "../services/utils.js";
 
 const pumpH = sortByDateTimeDesc(get("pump") || []);
 
@@ -17,6 +17,7 @@ backBtn.addEventListener("click", (event) => {
 
 function createHisPumpCon(container) {
     for (let i = 0; i < pumpH.length; i++) {
+        pumpH[i].date = changeDateFormat(pumpH[i].date);
         container.appendChild(createHistoriqueContent(pumpH[i]));
     }
 }
