@@ -112,7 +112,7 @@ function initForm() {
         console.log(":----", diaperObj)
         hourConfig.value = diaperObj.time;
         dateConfig.value = convertToInputDate(diaperObj.date);
-        noteConfig.value = diaperObj.note;
+        noteConfig.value = diaperObj.note ?? '';
     }
     // end update
 

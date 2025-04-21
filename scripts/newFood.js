@@ -101,7 +101,7 @@ function initForm() {
 
         hourConfig.value = foodObj.time;
         dateConfig.value = convertToInputDate(foodObj.date);
-        noteConfig.value = (foodObj.note) ? foodObj.note : '';
+        noteConfig.value = foodObj.note ?? '';
 
         foodTypeValue = foodObj.type;
     }

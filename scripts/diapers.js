@@ -1,8 +1,8 @@
 import { createHistoriqueContent } from "../components/historique.component.js";
 import { get } from "../config/db.js";
-import { changeDateFormat } from "../services/utils.js";
+import { changeDateFormat, sortByDateTimeDesc } from "../services/utils.js";
 
-const diaperH = get("diaper")?.sort((a, b) => new Date(b.date) - new Date(a.date));
+const diaperH = sortByDateTimeDesc(get("diaper") || []);
 
 document.addEventListener("DOMContentLoaded", () => {
     const historiqueContainer = document.querySelector("#historiqueDiapers");
