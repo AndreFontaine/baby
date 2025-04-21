@@ -7,8 +7,7 @@ export function createHistoriqueContent(item) {
     containerDiv.classList.add("container");
 
     containerDiv.addEventListener("click", (event) => {
-        console.log("item => ", item)
-        console.log(actionByType(item));
+        actionByType(item);
     });
 
     const infoDiv = document.createElement("div");

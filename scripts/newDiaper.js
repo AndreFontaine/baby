@@ -53,7 +53,6 @@ document.querySelector(".close").addEventListener("click", function () {
 
 
 function loadParams(params) {
-
     const id = params.get("id");
     if (!id) return;
     diaperObj.id = id;
@@ -68,9 +67,6 @@ function loadParams(params) {
     if (date) diaperObj.date = date;
     if (time) diaperObj.time = time;
     if (note) diaperObj.note = note;
-
-    console.log("diaperObj => ", diaperObj);
-
 }
 
 function loadData(form) {
@@ -105,18 +101,12 @@ function initForm() {
 
     // update 
     if (params) {
-        // id=1744555710019
-        // type=poop
-        // date=2025-04-13
-        // time=14%3A33
-        console.log(":----", diaperObj)
         hourConfig.value = diaperObj.time;
         dateConfig.value = convertToInputDate(diaperObj.date);
         noteConfig.value = diaperObj.note ?? '';
     }
     // end update
 
-    
     const diaperTypeInput = document.querySelector(`input[name="diaperType"][value="${diaperTypeValue}"]`);
     if (diaperTypeInput && diaperTypeValue) diaperTypeInput.checked = true;
     setInputAttributes(dateInput, dateConfig);

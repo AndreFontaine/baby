@@ -23,7 +23,6 @@ export const sortByDateTimeDesc = (arr) => {
 };
 
 export const addMinutesToTime = (timeStr, minutesToAdd) => {
-    console.log(`${timeStr}k${minutesToAdd}`)
     if (!timeStr || !minutesToAdd) {
         return timeStr; // Return the original time if inputs are invalid
     }
@@ -42,7 +41,6 @@ export const addMinutesToTime = (timeStr, minutesToAdd) => {
 
     const newHour = date.getHours().toString().padStart(2, "0");
     const newMin = date.getMinutes().toString().padStart(2, "0");
-    console.log(`${newHour}:${newMin}`)
     return `${newHour}:${newMin}`;
 }
 

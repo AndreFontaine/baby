@@ -102,8 +102,6 @@ function initForm() {
 
 function loadParams(params) {
 
-    console.log("params", params)
-
     const id = params.get("id");
     if (!id) return;
     pumpObj.id = id;
