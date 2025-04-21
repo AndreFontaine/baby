@@ -32,7 +32,7 @@ export function createfoodPreviewContent(item) {
     smallText.textContent = "Dernier biberon";
 
     const timeText = document.createElement("div");
-    timeText.classList.add("duration");
+    timeText.classList.add("preview-duration");
     timeText.textContent = item.duration;
 
     preview.appendChild(bottleIcon);

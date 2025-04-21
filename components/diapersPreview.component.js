@@ -36,7 +36,7 @@ export function createDiapersPreviewContent(item, newestDiaperEntry) {
     smallText.textContent = "Dernier couche";
 
     const timeText = document.createElement("div");
-    timeText.classList.add("duration");
+    timeText.classList.add("preview-duration");
     timeText.textContent = item.duration;
 
     const showIcon = (newestDiaperEntry?.type === "poop") ? poopIcon : peeIcon;

@@ -90,8 +90,8 @@ function initForm() {
     // update 
     if (params) {
         if (type === "breast") {
-            rMinutesConfig.value = foodObj.right;
-            lMinutesConfig.value = foodObj.left;
+            rMinutesConfig.value = foodObj.right ?? 0;
+            lMinutesConfig.value = foodObj.left ?? 0;
         }
 
         if (type === "bottle") {

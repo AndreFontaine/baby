@@ -28,7 +28,7 @@ backBtn.addEventListener("click", (event) => {
 function createFoodRes(container) {
     // create food resume content   
     const foodResume = {
-        lastTime: upsateLastMealTime('resume'),
+        lastTime: upsateLastMealTime(newestFoodEntry, 'resume'),
         type: newestFoodEntry.type,
     };
     container.appendChild(createfoodResumeContent(foodResume));

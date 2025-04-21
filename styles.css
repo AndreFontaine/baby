@@ -47,7 +47,7 @@ h1 {
     justify-content: center;
 }
 
-.preview>.duration {
+.preview-duration {
     font-size: 0.8rem;
     font-weight: bold;
 }
@@ -132,6 +132,12 @@ h1 {
 .quantity {
     align-items: center;
     padding: 10px 0px;
+}
+
+.preview-duration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .duration {

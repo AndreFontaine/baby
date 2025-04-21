@@ -33,7 +33,7 @@ export function createPumpPreviewContent(item) {
     smallText.textContent = "Dernier pompage";
 
     const timeText = document.createElement("div");
-    timeText.classList.add("duration");
+    timeText.classList.add("preview-duration");
     timeText.textContent = item.duration;
 
     preview.appendChild(peeIcon);
@@ -63,9 +63,19 @@ export function createPumpPreviewContent(item) {
     const peeAmount = document.createElement("span");
     peeAmount.textContent = item.times;
 
+    const jarIcon = document.createElement("span");
+    jarIcon.textContent = "🫙";
+
+    const jarAmount = document.createElement("span");
+    jarAmount.textContent = item.volume + " mL";
+
     quantitiesDiv.appendChild(totalText);
     quantitiesDiv.appendChild(peeCountIcon);
     quantitiesDiv.appendChild(peeAmount);
+
+    quantitiesDiv.appendChild(jarIcon);
+    quantitiesDiv.appendChild(jarAmount);
+
     footer.appendChild(quantitiesDiv);
 
     // Append everything to the main container

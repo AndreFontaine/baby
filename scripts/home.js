@@ -70,14 +70,19 @@ function createPoopPreview(container) {
 function createPumpPreview(container) {
     // take total today from historique
     let totalPumpTimes = 0;
+    let totalVolume = 0;
 
     for (let i = 0; i < pumpH?.length; i++) {
-        if ( isToday(pumpH[i].date)) totalPumpTimes += 1;
+        if (isToday(pumpH[i].date)) {
+            totalPumpTimes += 1;
+            totalVolume += parseInt(pumpH[i].volume);
+        }
     }
 
     // create food preview content   
     const pumpsPreview = {
         times: totalPumpTimes,
+        volume: totalVolume,
         duration: pumpH?.length > 0 ? upsateLastPumpTime(newestPumpEntry) : `à l'instant`
     };
 
