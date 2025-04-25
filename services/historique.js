@@ -53,11 +53,10 @@ export const upsateLastBathTime = (newestBathEntry, view) => {
         const now = new Date();
         const diffMsx = now - lastDiaperTime; // difference in milliseconds
         const diffMinsx = Math.floor(diffMsx / 1000 / 60);
-        const hours = Math.floor(diffMinsx / 60);
-        const minutes = diffMinsx % 60;
+        const days = Math.round(Math.floor(diffMinsx / 60) / 24);
         text = (view === 'preview') 
-            ? `${hours}h${minutes}m`
-            : "Il y a " + (hours > 0 ? hours + "h" : "") + (minutes > 0 ? minutes + "m" : "");
+            ? `${days} jours`
+            : "Il y a " + (days > 0 ? days + " jours" : "");
     }
     return text;
 }
