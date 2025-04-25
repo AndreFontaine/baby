@@ -46,6 +46,22 @@ export const upsateLastPumpTime = (newestPumpEntry, view) => {
     return text;
 }
 
+export const upsateLastBathTime = (newestBathEntry, view) => {
+    let text = "Aucun bains enregistré";
+    if (newestBathEntry?.date) {
+        const lastDiaperTime = new Date(`${newestBathEntry.date}T${newestBathEntry.time}`); 
+        const now = new Date();
+        const diffMsx = now - lastDiaperTime; // difference in milliseconds
+        const diffMinsx = Math.floor(diffMsx / 1000 / 60);
+        const hours = Math.floor(diffMinsx / 60);
+        const minutes = diffMinsx % 60;
+        text = (view === 'preview') 
+            ? `${hours}h${minutes}m`
+            : "Il y a " + (hours > 0 ? hours + "h" : "") + (minutes > 0 ? minutes + "m" : "");
+    }
+    return text;
+}
+
 export const actionByType = (item) => {
     const params = new URLSearchParams();
 
@@ -72,6 +88,9 @@ export const actionByType = (item) => {
         case 'pee':
         case 'poop':
             page = 'newDiaper';
+            break;
+        case 'bath':
+            page = 'newBath';
             break;
     }
     window.location.href = `${page}.page.html?${params}`;

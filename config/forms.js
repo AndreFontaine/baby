@@ -8,7 +8,7 @@ export const lSecondsConfig = { size: 1, value: 0, max: 60, min: 0, minLength: 1
 
 export const volumeConfig = { size: 3, value: 50, max: 999, min: 0, minLength: 1, maxLength: 3, required: true };
 
-export const noteConfig = { placeholder:"Écrit une note", rows:5, cols:33 };
+export const noteConfig = { placeholder:"Écrire une note", rows:5, cols:33 };
 
 export const dateConfig = { required: true };
 export const hourConfig = { required: true };

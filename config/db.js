@@ -1,4 +1,4 @@
-import { initialDiaperData, initialFoodData, initialPumpData } from "./data.js";
+import { initialBathData, initialDiaperData, initialFoodData, initialPumpData } from "./data.js";
 
 export const init = () => {
     console.log("Initializing local storage...");
@@ -11,6 +11,9 @@ export const init = () => {
         }
         if (!localStorage.getItem("pump")) {
             localStorage.setItem("pump", JSON.stringify(initialPumpData, null, 2));
+        }
+        if (!localStorage.getItem("bath")) {
+            localStorage.setItem("bath", JSON.stringify(initialBathData, null, 2));
         }
     }
     localStorage.setItem("read", true);

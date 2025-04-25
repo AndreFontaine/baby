@@ -109,6 +109,9 @@ function icon(type){
     if (type === 'pump') {
         return '🍶';
     }
+    if (type === 'bath') {
+        return '🛀';
+    }
 }
 
 function isFood (type){

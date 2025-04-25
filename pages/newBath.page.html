@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../modal.css">
+    <title>New bath</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script type="module" src="../scripts/newBath.js"></script>
+</head>
+
+<body>
+    <h1><i id="back" class="fas fa-angle-left"></i> Bath</h1>
+
+    <form id="saveBath" action="javascript:void(0);">
+
+        <div class="block">
+            <div>
+                <div class="sub-title" for="dateInput">Date</div>
+                <input class="input-time" type="date" id="dateInput" name="dateInput" required/>
+            </div>
+            <div>
+                <div class="sub-title" for="timeInput">Heure</div>
+                <input class="input-time" type="time" id="timeInput" name="timeInput" required />
+            </div>
+        </div>
+        <div class="">
+            <div class="sub-title" for="note">Ajouter une note</div>
+            <textarea placeholder="Pleur ou pas ?" id="note" name="note"></textarea>
+        </div>
+        <div class="button-wrapper">
+            <button class="btn-submit" type="submit">Enregistrer</button>
+        </div>
+
+    </form>
+
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>✅ Bain enregistré avec succès !</p>
+        </div>
+    </div>
+
+</body>
+
+</html>

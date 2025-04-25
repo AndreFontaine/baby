@@ -14,6 +14,16 @@ export function isToday(date) {
     return entryDate.getDate() === today.getDate() && entryDate.getMonth() === today.getMonth() && entryDate.getFullYear() === today.getFullYear();
 }
 
+export function isThisMonth(date) {
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth();
+    const currentYear = currentDate.getFullYear();
+    const itemDate = new Date(date);
+    if (itemDate.getMonth() === currentMonth && itemDate.getFullYear() === currentYear) {
+        return true;
+    }   
+}
+
 export const sortByDateTimeDesc = (arr) => {
     return arr.sort((a, b) => {
         const dateA = new Date(`${a.date}T${a.time}`);

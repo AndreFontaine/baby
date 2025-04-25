@@ -1,17 +1,20 @@
+import { createBathPreviewContent } from "../components/bathPreview.component.js";
 import { createDiapersPreviewContent } from "../components/diapersPreview.component.js";
 import { createfoodPreviewContent } from "../components/foodPreview.component.js";
 import { createPumpPreviewContent } from "../components/pumpPreview.component.js";
 import { get } from "../config/db.js";
-import { upsateLastDiaperTime, upsateLastMealTime, upsateLastPumpTime } from "../services/historique.js";
-import { isToday, sortByDateTimeDesc } from "../services/utils.js";
+import { upsateLastBathTime, upsateLastDiaperTime, upsateLastMealTime, upsateLastPumpTime } from "../services/historique.js";
+import { isThisMonth, isToday, sortByDateTimeDesc } from "../services/utils.js";
 
 const foodH = sortByDateTimeDesc(get("food") || []);
 const diaperH = sortByDateTimeDesc(get("diaper") || []);
 const pumpH = sortByDateTimeDesc(get("pump") || []);
+const bathH = sortByDateTimeDesc(get("bath") || []);
 
 const newestFoodEntry = foodH[0];
 const newestDiaperEntry = diaperH[0];
 const newestPumpEntry = pumpH[0];
+const newestBathEntry = bathH[0];
 
 document.addEventListener("DOMContentLoaded", () => {
     
@@ -23,6 +26,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const pumpPreviewContainer = document.querySelector("#pumpPreview");
     createPumpPreview(pumpPreviewContainer);
+
+    const bathPreviewContainer = document.querySelector("#bathPreview");
+    createBathPreview(bathPreviewContainer);
 
 });
 
@@ -87,4 +93,23 @@ function createPumpPreview(container) {
     };
 
     container.appendChild(createPumpPreviewContent(pumpsPreview));
+}
+
+function createBathPreview(container) {
+    // take total today from historique
+    let totalBathTimes = 0;
+
+    for (let i = 0; i < bathH?.length; i++) {
+        if (isThisMonth(bathH[i].date)) {
+            totalBathTimes += 1;
+        }
+    }
+
+    // create food preview content   
+    const bathPreview = {
+        times: totalBathTimes,
+        duration: bathH?.length > 0 ? upsateLastBathTime(newestBathEntry) : `à l'instant`
+    };
+
+    container.appendChild(createBathPreviewContent(bathPreview));
 }
