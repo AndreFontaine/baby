@@ -2,22 +2,21 @@ import { createBathPreviewContent } from "../components/bathPreview.component.js
 import { createDiapersPreviewContent } from "../components/diapersPreview.component.js";
 import { createfoodPreviewContent } from "../components/foodPreview.component.js";
 import { createPumpPreviewContent } from "../components/pumpPreview.component.js";
-import { get } from "../config/db.js";
 import { upsateLastBathTime, upsateLastDiaperTime, upsateLastMealTime, upsateLastPumpTime } from "../services/historique.js";
-import { isThisMonth, isToday, sortByDateTimeDesc } from "../services/utils.js";
+import { isThisMonth, isToday } from "../services/utils.js";
+import { get } from "../config/db.js";
 
-const foodH = sortByDateTimeDesc(get("food") || []);
-const diaperH = sortByDateTimeDesc(get("diaper") || []);
-const pumpH = sortByDateTimeDesc(get("pump") || []);
-const bathH = sortByDateTimeDesc(get("bath") || []);
+let foodHistoric = get('food') || [];
+let diaperHistoric = get('diaper') || [];
+let pumpHistoric = get('pump') || [];
+let bathHistoric = get('bath') || [];
 
-const newestFoodEntry = foodH[0];
-const newestDiaperEntry = diaperH[0];
-const newestPumpEntry = pumpH[0];
-const newestBathEntry = bathH[0];
+let newestFoodEntry = foodHistoric[0] || {};
+let newestDiaperEntry = diaperHistoric[0] || {};
+let newestBathEntry =bathHistoric[0] || {};
+let newestPumpEntry = pumpHistoric[0] || {};
 
-document.addEventListener("DOMContentLoaded", () => {
-    
+function loadContent() {
     const foodPreviewContainer = document.querySelector("#foodPreview");
     createFoodPreview(foodPreviewContainer);
 
@@ -29,22 +28,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const bathPreviewContainer = document.querySelector("#bathPreview");
     createBathPreview(bathPreviewContainer);
+}
 
+document.addEventListener("DOMContentLoaded", async () => {
+    //const loadPromises = TYPES.map(type => loadData(type));
+    //await Promise.all(loadPromises);
+    console.log('✅ All data loaded');
+    loadContent();
 });
 
 function createFoodPreview(container) {
     // take total today from historique
-    let totalVolume = 0; 
+    let totalVolume = 0;
     let totalTimes = 0;
-    for (let i = 0; i < foodH?.length; i++) {
-        if (foodH[i].type === 'bottle' && isToday(foodH[i].date)) {
-            totalVolume += parseInt(foodH[i].volume);
+    for (let i = 0; i < foodHistoric?.length; i++) {
+        if (foodHistoric[i].type === 'bottle' && isToday(foodHistoric[i].date)) {
+            totalVolume += parseInt(foodHistoric[i].volume);
             totalTimes += 1;
         }
     }
     // create food resume content   
     const foodPreview = {
-        duration: foodH?.length > 0 ? upsateLastMealTime(newestFoodEntry, 'preview') : 'à linstant',
+        duration: foodHistoric?.length > 0 ? upsateLastMealTime(newestFoodEntry, 'preview') : 'à linstant',
         volume: totalVolume,
         times: totalTimes
     };
@@ -53,13 +58,13 @@ function createFoodPreview(container) {
 
 function createPoopPreview(container) {
     // take total today from historique
-    let totalPoopTimes = 0; 
+    let totalPoopTimes = 0;
     let totalPeeTimes = 0;
-    for (let i = 0; i < diaperH?.length; i++) {
-        if (diaperH[i].type === 'poop' && isToday(diaperH[i].date)) {
+    for (let i = 0; i < diaperHistoric?.length; i++) {
+        if (diaperHistoric[i].type === 'poop' && isToday(diaperHistoric[i].date)) {
             totalPoopTimes += 1;
         }
-        if (diaperH[i].type === 'pee' && isToday(diaperH[i].date)) {
+        if (diaperHistoric[i].type === 'pee' && isToday(diaperHistoric[i].date)) {
             totalPeeTimes += 1;
         }
     }
@@ -67,21 +72,23 @@ function createPoopPreview(container) {
     const diapersPreview = {
         pee: totalPeeTimes,
         poop: totalPoopTimes,
-        duration: diaperH?.length > 0 ? upsateLastDiaperTime(newestDiaperEntry, 'preview') : 'à linstant'
+        duration: diaperHistoric?.length > 0 ? upsateLastDiaperTime(newestDiaperEntry, 'preview') : 'à linstant'
     };
 
     container.appendChild(createDiapersPreviewContent(diapersPreview, newestDiaperEntry));
 }
 
 function createPumpPreview(container) {
+
+    console.log('createPumpPreview:', pumpHistoric);
     // take total today from historique
     let totalPumpTimes = 0;
     let totalVolume = 0;
 
-    for (let i = 0; i < pumpH?.length; i++) {
-        if (isToday(pumpH[i].date)) {
+    for (let i = 0; i < pumpHistoric?.length; i++) {
+        if (isToday(pumpHistoric[i].date)) {
             totalPumpTimes += 1;
-            totalVolume += parseInt(pumpH[i].volume);
+            totalVolume += parseInt(pumpHistoric[i].volume);
         }
     }
 
@@ -89,7 +96,7 @@ function createPumpPreview(container) {
     const pumpsPreview = {
         times: totalPumpTimes,
         volume: totalVolume,
-        duration: pumpH?.length > 0 ? upsateLastPumpTime(newestPumpEntry) : `à l'instant`
+        duration: pumpHistoric?.length > 0 ? upsateLastPumpTime(newestPumpEntry) : `à l'instant`
     };
 
     container.appendChild(createPumpPreviewContent(pumpsPreview));
@@ -99,8 +106,8 @@ function createBathPreview(container) {
     // take total today from historique
     let totalBathTimes = 0;
 
-    for (let i = 0; i < bathH?.length; i++) {
-        if (isThisMonth(bathH[i].date)) {
+    for (let i = 0; i < bathHistoric?.length; i++) {
+        if (isThisMonth(bathHistoric[i].date)) {
             totalBathTimes += 1;
         }
     }
@@ -108,7 +115,7 @@ function createBathPreview(container) {
     // create food preview content   
     const bathPreview = {
         times: totalBathTimes,
-        duration: bathH?.length > 0 ? upsateLastBathTime(newestBathEntry) : `à l'instant`
+        duration: bathHistoric?.length > 0 ? upsateLastBathTime(newestBathEntry) : `à l'instant`
     };
 
     container.appendChild(createBathPreviewContent(bathPreview));

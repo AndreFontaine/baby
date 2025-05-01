@@ -26,12 +26,14 @@ backBtn.addEventListener("click", (event) => {
 });
 
 function createFoodRes(container) {
-    // create food resume content   
-    const foodResume = {
-        lastTime: upsateLastMealTime(newestFoodEntry, 'resume'),
-        type: newestFoodEntry.type,
-    };
-    container.appendChild(createfoodResumeContent(foodResume));
+    // create food resume content
+    if (newestFoodEntry) {
+        const foodResume = {
+            lastTime: upsateLastMealTime(newestFoodEntry, 'resume'),
+            type: newestFoodEntry.type,
+        };
+        container.appendChild(createfoodResumeContent(foodResume));
+    }  
 }
 
 function createfoodTodayResume(container) {

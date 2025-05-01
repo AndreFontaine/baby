@@ -1,8 +1,21 @@
-import { initialBathData, initialDiaperData, initialFoodData, initialPumpData } from "./data.js";
+import { getDataByType } from "../services/data.service.js";
 
-export const init = () => {
+let initialFoodData = [];
+let initialDiaperData = [];
+let initialPumpData = [];
+let initialBathData = [];
+
+async function getInitialData() {
+    initialFoodData = await getDataByType("food");
+    initialDiaperData = await getDataByType("diaper");
+    initialPumpData = await getDataByType("pump");
+    initialBathData = await getDataByType("bath");
+}
+
+export const init = async () => {
     console.log("Initializing local storage...");
     if (!localStorage.getItem("read")) {
+        await getInitialData();
         if (!localStorage.getItem("food")) {
             localStorage.setItem("food", JSON.stringify(initialFoodData, null, 2));
         } 
@@ -54,7 +67,7 @@ export const update = (data, type) => {
 
 export const get = (type) => {
     const data = JSON.parse(localStorage.getItem(type));
-    console.log("Retrieved data from local storage:", data);
+    //console.log("Retrieved data from local storage:", data);
     return data;
 }
 

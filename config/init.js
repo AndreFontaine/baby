@@ -1,3 +1,3 @@
 import { init } from "./db.js";
 
-init();
+await init();

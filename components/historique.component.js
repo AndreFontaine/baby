@@ -84,8 +84,8 @@ function rightInfo(rightDataDiv, item){
     }
     
     if (item.type === 'breast') {
-        sideDivR.textContent = "D " + item.duration.right;
-        sideDivL.textContent = "G " + item.duration.left;
+        sideDivR.textContent = "D " + (item.right_duration ?? '0');
+        sideDivL.textContent = "G " + (item.left_duration ?? '0');
     }
 
     rightDataDiv.appendChild(sideDivR);
