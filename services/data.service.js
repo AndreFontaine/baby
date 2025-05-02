@@ -18,6 +18,6 @@ export async function getDataByType(type) {
         // Fetch data from lcal storage if the API call fails
         console.error('Error fetching data:', error);
         console.warn('⚠️ Fetch failed, using local data:', error.message);
-        return get(type);
+        return get(type) || [];
     }
 }
