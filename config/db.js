@@ -5,6 +5,8 @@ let initialDiaperData = [];
 let initialPumpData = [];
 let initialBathData = [];
 
+const BASE_URL ='http://192.168.31.68/api/';
+
 async function getInitialData() {
     initialFoodData = await getDataByType("food");
     initialDiaperData = await getDataByType("diaper");
@@ -18,7 +20,7 @@ export const init = async () => {
         await getInitialData();
         if (!localStorage.getItem("food")) {
             localStorage.setItem("food", JSON.stringify(initialFoodData, null, 2));
-        } 
+        }
         if (!localStorage.getItem("diaper")) {
             localStorage.setItem("diaper", JSON.stringify(initialDiaperData, null, 2));
         }
@@ -32,7 +34,7 @@ export const init = async () => {
     localStorage.setItem("read", true);
 }
 
-export const save = (type, newData) => {
+export const save = async (type, newData) => {
     if (!type || !newData) {
         console.error("Type and data are required to save to local storage.");
         return;
@@ -42,23 +44,61 @@ export const save = (type, newData) => {
         return;
     }
 
-    let data = JSON.parse(localStorage.getItem(type)) || [];
-    const index = data.findIndex(item => item.id === newData.id);
+    try {
+        // save in DB
+        const res = await saveInDb(type, newData);
+        if (res === null) data.p_operation === "yes"
+        // save in local storage
+        saveInLocalStorage(type, newData);
+        return res;
+    } catch (error) {
+        console.error(`❌ Failed to save ${type} entry:`, error);
+    }
+}
 
+async function saveInDb(type, data) {
+    const response = await fetch(`${BASE_URL}${type}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+
+    if (!response.ok) {
+       return null;
+    } else {
+        const result = await response.json();
+        console.log('✅ Data saved:', result);
+    }
+    return response;
+}
+
+function saveInLocalStorage(type, obj) {
+    let data = JSON.parse(localStorage.getItem(type)) || [];
+    const index = data.findIndex(item => item.id === data.id);
+    
     if (index !== -1) {
         // Update fields
         console.log("Found");
         console.log('update');
-        data[index] = newData;
+        if (obj.p_operation === "yes") {
+            obj.p_operation = "update";
+        }
+        data[index] = obj;
     } else {
         console.log("Object not found");
         console.log('create');
-        data.push(newData);
+        if (obj.p_operation === "yes") {
+            obj.p_operation = "create";
+        }
+        data.push(obj);
     }
-
+    
     localStorage.setItem(type, JSON.stringify(data, null, 2));
-    console.log("Saved data in local storage:", newData);
+    console.log("Saved data in local storage:", data);
 }
+
 
 export const update = (data, type) => {
     localStorage.setItem(type, JSON.stringify(data, null, 2));
@@ -93,16 +133,16 @@ export function saveLocalStorageToJson(filename = "data.json") {
 
     // 2. Convert to JSON string
     const json = JSON.stringify(data, null, 2); // pretty-printed
-  
+
     // 3. Create a blob and a temporary download link
     const blob = new Blob([json], { type: "application/json" });
     const url = URL.createObjectURL(blob);
-  
+
     const a = document.createElement("a");
     a.href = url;
     a.download = filename;
     a.click();
-  
+
     // 4. Clean up
     URL.revokeObjectURL(url);
-  }
+}

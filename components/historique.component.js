@@ -84,6 +84,7 @@ function rightInfo(rightDataDiv, item){
     }
     
     if (item.type === 'breast') {
+        console.log("item", item);
         sideDivR.textContent = "D " + (item.right_duration ?? '0');
         sideDivL.textContent = "G " + (item.left_duration ?? '0');
     }

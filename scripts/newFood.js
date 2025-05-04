@@ -144,10 +144,8 @@ function loadData(form) {
     data.note = form.note;
 
     if (form?.foodType === "breast") {
-        data.duration = {
-            left: parseInt((form["l-hours"] * 60), 10) + parseInt(form["l-minutes"], 10) + parseInt((form["l-seconds"] / 60), 10),
-            right: parseInt((form["r-hours"] * 60), 10) + parseInt(form["r-minutes"], 10) + parseInt((form["r-seconds"] / 60), 10),
-        }
+        data.left_duration = parseInt((form["l-hours"] * 60), 10) + parseInt(form["l-minutes"], 10) + parseInt((form["l-seconds"] / 60), 10);
+        data.right_duration = parseInt((form["r-hours"] * 60), 10) + parseInt(form["r-minutes"], 10) + parseInt((form["r-seconds"] / 60), 10);
     }
 
     if (form?.foodType === "bottle") {

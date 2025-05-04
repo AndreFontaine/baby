@@ -2,14 +2,14 @@ import { createBathPreviewContent } from "../components/bathPreview.component.js
 import { createDiapersPreviewContent } from "../components/diapersPreview.component.js";
 import { createfoodPreviewContent } from "../components/foodPreview.component.js";
 import { createPumpPreviewContent } from "../components/pumpPreview.component.js";
-import { upsateLastBathTime, upsateLastDiaperTime, upsateLastMealTime, upsateLastPumpTime } from "../services/historique.js";
-import { isThisMonth, isToday } from "../services/utils.js";
+import { updateLastBathTime, updateLastDiaperTime, updateLastMealTime, updateLastPumpTime } from "../services/historique.js";
+import { isThisMonth, isToday, sortByDateTimeDesc } from "../services/utils.js";
 import { get } from "../config/db.js";
 
-let foodHistoric = get('food') || [];
-let diaperHistoric = get('diaper') || [];
-let pumpHistoric = get('pump') || [];
-let bathHistoric = get('bath') || [];
+let foodHistoric = sortByDateTimeDesc(get('food')) || [];
+let diaperHistoric = sortByDateTimeDesc(get('diaper')) || [];
+let pumpHistoric = sortByDateTimeDesc(get('pump')) || [];
+let bathHistoric = sortByDateTimeDesc(get('bath')) || [];
 
 let newestFoodEntry = foodHistoric[0] || {};
 let newestDiaperEntry = diaperHistoric[0] || {};
@@ -30,10 +30,7 @@ function loadContent() {
     createBathPreview(bathPreviewContainer);
 }
 
-document.addEventListener("DOMContentLoaded", async () => {
-    //const loadPromises = TYPES.map(type => loadData(type));
-    //await Promise.all(loadPromises);
-    console.log('✅ All data loaded');
+document.addEventListener("DOMContentLoaded", () => {
     loadContent();
 });
 
@@ -49,7 +46,7 @@ function createFoodPreview(container) {
     }
     // create food resume content   
     const foodPreview = {
-        duration: foodHistoric?.length > 0 ? upsateLastMealTime(newestFoodEntry, 'preview') : 'à linstant',
+        duration: foodHistoric?.length > 0 ? updateLastMealTime(newestFoodEntry, 'preview') : 'à linstant',
         volume: totalVolume,
         times: totalTimes
     };
@@ -72,7 +69,7 @@ function createPoopPreview(container) {
     const diapersPreview = {
         pee: totalPeeTimes,
         poop: totalPoopTimes,
-        duration: diaperHistoric?.length > 0 ? upsateLastDiaperTime(newestDiaperEntry, 'preview') : 'à linstant'
+        duration: diaperHistoric?.length > 0 ? updateLastDiaperTime(newestDiaperEntry, 'preview') : 'à linstant'
     };
 
     container.appendChild(createDiapersPreviewContent(diapersPreview, newestDiaperEntry));
@@ -96,7 +93,7 @@ function createPumpPreview(container) {
     const pumpsPreview = {
         times: totalPumpTimes,
         volume: totalVolume,
-        duration: pumpHistoric?.length > 0 ? upsateLastPumpTime(newestPumpEntry) : `à l'instant`
+        duration: pumpHistoric?.length > 0 ? updateLastPumpTime(newestPumpEntry) : `à l'instant`
     };
 
     container.appendChild(createPumpPreviewContent(pumpsPreview));
@@ -115,7 +112,7 @@ function createBathPreview(container) {
     // create food preview content   
     const bathPreview = {
         times: totalBathTimes,
-        duration: bathHistoric?.length > 0 ? upsateLastBathTime(newestBathEntry) : `à l'instant`
+        duration: bathHistoric?.length > 0 ? updateLastBathTime(newestBathEntry) : `à l'instant`
     };
 
     container.appendChild(createBathPreviewContent(bathPreview));

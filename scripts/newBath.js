@@ -32,7 +32,8 @@ document.getElementById("saveBath").addEventListener("submit", function (e) {
 
     const formData = new FormData(this);
     const formObj = Object.fromEntries(formData.entries());
-    const data = loadData(formObj);;
+    const data = loadData(formObj);
+    data.p_operation;
 
     // Save
     save("bath", data);

@@ -1,4 +1,4 @@
-export const upsateLastMealTime = (newestMealEntry, view) => {
+export const updateLastMealTime = (newestMealEntry, view) => {
 
     let text = "Aucun repas enregistré";
     if (newestMealEntry?.date) {
@@ -15,7 +15,7 @@ export const upsateLastMealTime = (newestMealEntry, view) => {
     return text;
 }
 
-export const upsateLastDiaperTime = (newestDiaperEntry) => {
+export const updateLastDiaperTime = (newestDiaperEntry) => {
 
     let text = "Aucune couche enregistrée";
     if (newestDiaperEntry?.date) {
@@ -30,7 +30,7 @@ export const upsateLastDiaperTime = (newestDiaperEntry) => {
     return text;
 }
 
-export const upsateLastPumpTime = (newestPumpEntry, view) => {
+export const updateLastPumpTime = (newestPumpEntry, view) => {
     let text = "Aucun pompage enregistré";
     if (newestPumpEntry?.date) {
         const lastDiaperTime = new Date(`${newestPumpEntry.date}T${newestPumpEntry.time}`); 
@@ -46,7 +46,7 @@ export const upsateLastPumpTime = (newestPumpEntry, view) => {
     return text;
 }
 
-export const upsateLastBathTime = (newestBathEntry, view) => {
+export const updateLastBathTime = (newestBathEntry, view) => {
     let text = "Aucun bains enregistré";
     if (newestBathEntry?.date) {
         const lastDiaperTime = new Date(`${newestBathEntry.date}T${newestBathEntry.time}`); 

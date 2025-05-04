@@ -1,7 +1,7 @@
 import { createfoodResumeContent } from "../components/foodResume.component.js";
 import { createfoodRTodayResumeContent } from "../components/foodToday.component.js";
 import { createHistoriqueContent } from "../components/historique.component.js";
-import { upsateLastMealTime } from "../services/historique.js";
+import { updateLastMealTime } from "../services/historique.js";
 import { get } from "../config/db.js";
 import { changeDateFormat, isToday, sortByDateTimeDesc } from "../services/utils.js";
 
@@ -29,7 +29,7 @@ function createFoodRes(container) {
     // create food resume content
     if (newestFoodEntry) {
         const foodResume = {
-            lastTime: upsateLastMealTime(newestFoodEntry, 'resume'),
+            lastTime: updateLastMealTime(newestFoodEntry, 'resume'),
             type: newestFoodEntry.type,
         };
         container.appendChild(createfoodResumeContent(foodResume));
