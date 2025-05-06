@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const backBtn = document.querySelector("#back");
 
-backBtn.addEventListener("click", (event) => {
+backBtn.addEventListener("click", () => {
     window.location.href = "home.page.html";
 });
 
@@ -44,16 +44,16 @@ document.getElementById("savePump").addEventListener("submit", function (e) {
 
 document.getElementById("up-quantity").addEventListener("click", function (e) {
     e.preventDefault();
-    updatequantityQuantity();
+    updateQuantity();
 });
 
 document.getElementById("down-quantity").addEventListener("click", function (e) {
     e.preventDefault();
-    updatequantityQuantity(-5);
+    updateQuantity(-5);
 });
 
 // TODO: move to updateQuantity
-function updatequantityQuantity(step = 5) {
+function updateQuantity(step = 5) {
     const input = document.getElementById("volume");
     if (!input) {
         console.error("Input element with id 'volume' not found.");

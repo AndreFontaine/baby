@@ -15,7 +15,7 @@ export function createPumpPreviewContent(item) {
     header.appendChild(headerTitle);
 
     const action = actionBtn.cloneNode(true);
-    action.addEventListener("click", (event) => {
+    action.addEventListener("click", () => {
         window.location.href = "newPump.page.html";
     });
 
@@ -42,7 +42,7 @@ export function createPumpPreviewContent(item) {
 
     const actionContainer = document.createElement("div");
     actionContainer.appendChild(preview);
-    actionContainer.addEventListener("click", (event) => {
+    actionContainer.addEventListener("click", () => {
         window.location.href = "pump.page.html";
     });
 

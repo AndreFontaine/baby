@@ -13,7 +13,7 @@ export function createfoodPreviewContent(item) {
     headerTitle.textContent = "Repas";
     
     const action = actionBtn.cloneNode(true);
-    action.addEventListener("click", (event) => {
+    action.addEventListener("click", () => {
         window.location.href = "newFood.page.html";
     });
 
@@ -41,7 +41,7 @@ export function createfoodPreviewContent(item) {
 
     const actionContainer = document.createElement("div");
     actionContainer.appendChild(preview);
-    actionContainer.addEventListener("click", (event) => {
+    actionContainer.addEventListener("click", () => {
         window.location.href = "food.page.html";
     });
 

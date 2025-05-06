@@ -1,5 +1,5 @@
 import { save } from "../config/db.js";
-import { dateConfig, hourConfig, lHoursConfig, lMinutesConfig, lSecondsConfig, noteConfig, rHoursConfig, rMinutesConfig, rSecondsConfig, volumeConfig } from "../config/forms.js";
+import { dateConfig, hourConfig, lMinutesConfig, noteConfig, rMinutesConfig, volumeConfig } from "../config/forms.js";
 import { setInputAttributes } from "../services/formUtils.js";
 import { convertToInputDate, isEdit, loadDateAndTime, loadModal } from "../services/utils.js";
 
@@ -13,7 +13,6 @@ let type;
 let date;
 let time;
 let note;
-let durationParam;
 
 let params = null;
 
@@ -50,7 +49,7 @@ document.getElementById("down-milk").addEventListener("click", function (e) {
     updateMilkQuantity(-5);
 });
 
-document.querySelector("#back").addEventListener("click", (event) => {
+document.querySelector("#back").addEventListener("click", () => {
     window.location.href = "./home.page.html";
 });
 
@@ -77,13 +76,9 @@ function initForm() {
     const hourInput = document.getElementById("timeInput");
     // note: string
     const noteInput = document.getElementById("note");
-    // duration: r (right), l (left) both in hours, mibutes and seconds
-    const rHoursInput = document.getElementById("r-hours");
+    // duration: r (right), l (left) both in mibutes
     const rMinutesInput = document.getElementById("r-minutes");
-    const rSecondsInput = document.getElementById("r-seconds");
-    const lHoursInput = document.getElementById("l-hours");
     const lMinutesInput = document.getElementById("l-minutes");
-    const lSecondsInput = document.getElementById("l-seconds");
 
     loadDateAndTime(hourInput, dateInput);
 
@@ -115,12 +110,8 @@ function initForm() {
     if (foodTypeInput && foodTypeValue) foodTypeInput.checked = true;
     if (milkTypeInput && milkTypeValue) milkTypeInput.checked = true;
 
-    setInputAttributes(rHoursInput, rHoursConfig);
     setInputAttributes(rMinutesInput, rMinutesConfig);
-    setInputAttributes(rSecondsInput, rSecondsConfig);
-    setInputAttributes(lHoursInput, lHoursConfig);
     setInputAttributes(lMinutesInput, lMinutesConfig);
-    setInputAttributes(lSecondsInput, lSecondsConfig);
     setInputAttributes(volumeInput, volumeConfig);
     setInputAttributes(dateInput, dateConfig);
     setInputAttributes(hourInput, hourConfig);
@@ -144,8 +135,8 @@ function loadData(form) {
     data.note = form.note;
 
     if (form?.foodType === "breast") {
-        data.left_duration = parseInt((form["l-hours"] * 60), 10) + parseInt(form["l-minutes"], 10) + parseInt((form["l-seconds"] / 60), 10);
-        data.right_duration = parseInt((form["r-hours"] * 60), 10) + parseInt(form["r-minutes"], 10) + parseInt((form["r-seconds"] / 60), 10);
+        data.left_duration = parseInt(form["l-minutes"], 10);
+        data.right_duration = parseInt(form["r-minutes"], 10);
     }
 
     if (form?.foodType === "bottle") {
@@ -188,7 +179,6 @@ function setSelectedForm(rdioValue) {
 }
 
 function loadParams(params) {
-    let durationObj = {};
     let left;
     let right;
 
@@ -203,17 +193,8 @@ function loadParams(params) {
     date = params.get("date");
     time = params.get("time");
     note = params.get("note");
-    durationParam = params.get("duration");
-
-    try {
-        if (durationParam) {
-            durationObj = JSON.parse(durationParam);
-            left = durationObj.left;
-            right = durationObj.right;
-        }
-    } catch (e) {
-        console.error("Invalid duration object", e);
-    }
+    left = params.get("left");
+    right = params.get("right");
 
     if (milkType) foodObj.milkType = milkType;
     if (volume) foodObj.volume = volume;

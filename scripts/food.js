@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const backBtn = document.querySelector("#back");
 
-backBtn.addEventListener("click", (event) => {
+backBtn.addEventListener("click", () => {
     window.location.href = "home.page.html";
 });
 
@@ -66,7 +66,7 @@ function createfoodTodayResume(container) {
         },
         'breast': {
             duration: totalDuration,
-            times: totalBottleTimes
+            times: totalBreastTimes
         },
 
     }

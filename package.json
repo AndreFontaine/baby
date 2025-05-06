@@ -1,0 +1,27 @@
+{
+  "name": "baby",
+  "version": "1.0.0",
+  "description": "baby app suivi",
+  "main": "home.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndreFontaine/baby.git"
+  },
+  "keywords": [
+    "baby"
+  ],
+  "author": "andres gonzalez ud at gmail dot com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AndreFontaine/baby/issues"
+  },
+  "homepage": "https://github.com/AndreFontaine/baby#readme",
+  "devDependencies": {
+    "@eslint/js": "^9.26.0",
+    "eslint": "^9.26.0",
+    "globals": "^16.0.0"
+  }
+}

@@ -71,13 +71,16 @@ export const actionByType = (item) => {
     if (item.date) params.set("date", item.date);
     if (item.time) params.set("time", item.time);
     if (item.note) params.set("note", item.note);
-   
+
+    if (item.right_duration) params.set("right", item.right_duration);
+    if (item.left_duration) params.set("left", item.left_duration);
+
+   console.log("item => ", item);
  
     let page = 'home.html';
     switch (item.type) {
         case 'bottle':
         case 'breast':
-            if (item.duration) params.set("duration", JSON.stringify(item.duration));
             page = 'newFood';
             break;
         case 'pump':

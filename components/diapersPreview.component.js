@@ -15,7 +15,7 @@ export function createDiapersPreviewContent(item, newestDiaperEntry) {
     header.appendChild(headerTitle);
 
     const action = actionBtn.cloneNode(true);
-    action.addEventListener("click", (event) => {
+    action.addEventListener("click", () => {
         window.location.href = "newDiaper.page.html";
     });
 
@@ -47,7 +47,7 @@ export function createDiapersPreviewContent(item, newestDiaperEntry) {
 
     const actionContainer = document.createElement("div");
     actionContainer.appendChild(preview);
-    actionContainer.addEventListener("click", (event) => {
+    actionContainer.addEventListener("click", () => {
         window.location.href = "diapers.page.html";
     });
 

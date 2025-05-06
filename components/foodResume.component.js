@@ -32,7 +32,7 @@ export function createfoodResumeContent(item) {
     infoDiv.appendChild(contentDiv);
     const action = actionBtn.cloneNode(true);
 
-    action.addEventListener("click", (event) => {
+    action.addEventListener("click", () => {
         window.location.href = "newFood.page.html";
     });
 

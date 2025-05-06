@@ -4,64 +4,60 @@ import { createfoodPreviewContent } from "../components/foodPreview.component.js
 import { createPumpPreviewContent } from "../components/pumpPreview.component.js";
 import { updateLastBathTime, updateLastDiaperTime, updateLastMealTime, updateLastPumpTime } from "../services/historique.js";
 import { isThisMonth, isToday, sortByDateTimeDesc } from "../services/utils.js";
-import { get } from "../config/db.js";
+import { init } from "../config/db.js";
 
-let foodHistoric = sortByDateTimeDesc(get('food')) || [];
-let diaperHistoric = sortByDateTimeDesc(get('diaper')) || [];
-let pumpHistoric = sortByDateTimeDesc(get('pump')) || [];
-let bathHistoric = sortByDateTimeDesc(get('bath')) || [];
-
-let newestFoodEntry = foodHistoric[0] || {};
-let newestDiaperEntry = diaperHistoric[0] || {};
-let newestBathEntry =bathHistoric[0] || {};
-let newestPumpEntry = pumpHistoric[0] || {};
-
-function loadContent() {
+function loadContent(data) {
     const foodPreviewContainer = document.querySelector("#foodPreview");
-    createFoodPreview(foodPreviewContainer);
+    createFoodPreview(foodPreviewContainer, data.food);
 
     const diapersPreviewContainer = document.querySelector("#diapersPreview");
-    createPoopPreview(diapersPreviewContainer);
+    createPoopPreview(diapersPreviewContainer, data.diaper);
 
     const pumpPreviewContainer = document.querySelector("#pumpPreview");
-    createPumpPreview(pumpPreviewContainer);
+    createPumpPreview(pumpPreviewContainer, data.pump);
 
     const bathPreviewContainer = document.querySelector("#bathPreview");
-    createBathPreview(bathPreviewContainer);
+    createBathPreview(bathPreviewContainer, data.bath);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    loadContent();
+document.addEventListener("DOMContentLoaded", async () => {
+    const data = await init();
+    loadContent(data);
 });
 
-function createFoodPreview(container) {
+function createFoodPreview(container, historic) {
+
+    historic = sortByDateTimeDesc(historic);
     // take total today from historique
     let totalVolume = 0;
     let totalTimes = 0;
-    for (let i = 0; i < foodHistoric?.length; i++) {
-        if (foodHistoric[i].type === 'bottle' && isToday(foodHistoric[i].date)) {
-            totalVolume += parseInt(foodHistoric[i].volume);
+    for (let i = 0; i < historic?.length; i++) {
+        if (historic[i].type === 'bottle' && isToday(historic[i].date)) {
+            totalVolume += parseInt(historic[i].volume);
             totalTimes += 1;
         }
     }
     // create food resume content   
     const foodPreview = {
-        duration: foodHistoric?.length > 0 ? updateLastMealTime(newestFoodEntry, 'preview') : 'à linstant',
+        duration: historic?.length > 0 ? updateLastMealTime(historic[0] || {}, 'preview') : 'à linstant',
         volume: totalVolume,
         times: totalTimes
     };
     container.appendChild(createfoodPreviewContent(foodPreview));
 }
 
-function createPoopPreview(container) {
+function createPoopPreview(container, historic) {
     // take total today from historique
     let totalPoopTimes = 0;
     let totalPeeTimes = 0;
-    for (let i = 0; i < diaperHistoric?.length; i++) {
-        if (diaperHistoric[i].type === 'poop' && isToday(diaperHistoric[i].date)) {
+
+    historic = sortByDateTimeDesc(historic);
+
+    for (let i = 0; i < historic?.length; i++) {
+        if (historic[i].type === 'poop' && isToday(historic[i].date)) {
             totalPoopTimes += 1;
         }
-        if (diaperHistoric[i].type === 'pee' && isToday(diaperHistoric[i].date)) {
+        if (historic[i].type === 'pee' && isToday(historic[i].date)) {
             totalPeeTimes += 1;
         }
     }
@@ -69,23 +65,23 @@ function createPoopPreview(container) {
     const diapersPreview = {
         pee: totalPeeTimes,
         poop: totalPoopTimes,
-        duration: diaperHistoric?.length > 0 ? updateLastDiaperTime(newestDiaperEntry, 'preview') : 'à linstant'
+        duration: historic?.length > 0 ? updateLastDiaperTime(historic[0] || {}, 'preview') : 'à linstant'
     };
 
-    container.appendChild(createDiapersPreviewContent(diapersPreview, newestDiaperEntry));
+    container.appendChild(createDiapersPreviewContent(diapersPreview, historic[0] || {}));
 }
 
-function createPumpPreview(container) {
+function createPumpPreview(container, historic) {
 
-    console.log('createPumpPreview:', pumpHistoric);
+    historic = sortByDateTimeDesc(historic);
     // take total today from historique
     let totalPumpTimes = 0;
     let totalVolume = 0;
 
-    for (let i = 0; i < pumpHistoric?.length; i++) {
-        if (isToday(pumpHistoric[i].date)) {
+    for (let i = 0; i < historic?.length; i++) {
+        if (isToday(historic[i].date)) {
             totalPumpTimes += 1;
-            totalVolume += parseInt(pumpHistoric[i].volume);
+            totalVolume += parseInt(historic[i].volume);
         }
     }
 
@@ -93,18 +89,19 @@ function createPumpPreview(container) {
     const pumpsPreview = {
         times: totalPumpTimes,
         volume: totalVolume,
-        duration: pumpHistoric?.length > 0 ? updateLastPumpTime(newestPumpEntry) : `à l'instant`
+        duration: historic?.length > 0 ? updateLastPumpTime(historic[0] || {}) : `à l'instant`
     };
 
     container.appendChild(createPumpPreviewContent(pumpsPreview));
 }
 
-function createBathPreview(container) {
+function createBathPreview(container, historic) {
     // take total today from historique
+    historic = sortByDateTimeDesc(historic);
     let totalBathTimes = 0;
 
-    for (let i = 0; i < bathHistoric?.length; i++) {
-        if (isThisMonth(bathHistoric[i].date)) {
+    for (let i = 0; i < historic?.length; i++) {
+        if (isThisMonth(historic[i].date)) {
             totalBathTimes += 1;
         }
     }
@@ -112,7 +109,7 @@ function createBathPreview(container) {
     // create food preview content   
     const bathPreview = {
         times: totalBathTimes,
-        duration: bathHistoric?.length > 0 ? updateLastBathTime(newestBathEntry) : `à l'instant`
+        duration: historic?.length > 0 ? updateLastBathTime(historic[0] || {}) : `à l'instant`
     };
 
     container.appendChild(createBathPreviewContent(bathPreview));

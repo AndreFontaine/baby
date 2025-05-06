@@ -15,7 +15,7 @@ export function createBathPreviewContent(item) {
     header.appendChild(headerTitle);
 
     const action = actionBtn.cloneNode(true);
-    action.addEventListener("click", (event) => {
+    action.addEventListener("click", () => {
         window.location.href = "newBath.page.html";
     });
 
@@ -42,7 +42,7 @@ export function createBathPreviewContent(item) {
 
     const actionContainer = document.createElement("div");
     actionContainer.appendChild(preview);
-    actionContainer.addEventListener("click", (event) => {
+    actionContainer.addEventListener("click", () => {
         window.location.href = "bath.page.html";
     });
 
