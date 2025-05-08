@@ -18,6 +18,7 @@ backBtn.addEventListener("click", () => {
 function createHisPumpCon(container) {
     for (let i = 0; i < pumpH.length; i++) {
         pumpH[i].date = changeDateFormat(pumpH[i].date);
+        pumpH[i].time = pumpH[i].time.substring(0, 5);
         container.appendChild(createHistoriqueContent(pumpH[i]));
     }
 }

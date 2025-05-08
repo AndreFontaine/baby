@@ -19,6 +19,7 @@ function createHisPoopCon(container) {
     if(diaperH) {
         for (let i = 0; i < diaperH.length; i++) {
             diaperH[i].date = changeDateFormat(diaperH[i].date);
+            diaperH[i].time = diaperH[i].time.substring(0, 5);
             container.appendChild(createHistoriqueContent(diaperH[i]));
         }
     }

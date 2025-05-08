@@ -3,7 +3,8 @@ import { createfoodRTodayResumeContent } from "../components/foodToday.component
 import { createHistoriqueContent } from "../components/historique.component.js";
 import { updateLastMealTime } from "../services/historique.js";
 import { get } from "../config/db.js";
-import { changeDateFormat, isToday, sortByDateTimeDesc } from "../services/utils.js";
+import { isToday, sortByDateTimeDesc } from "../services/utils.js";
+import { historiqueContent } from "../services/templateUtils.js";
 
 const foodH = sortByDateTimeDesc(get("food") || []);
 const newestFoodEntry = foodH[0];
@@ -17,6 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const historiqueContainer = document.querySelector("#historiqueFood");
     historiqueContent(historiqueContainer);
+
+    historiqueContent(foodH, historiqueContainer, createHistoriqueContent);
 });
 
 const backBtn = document.querySelector("#back");
@@ -74,10 +77,19 @@ function createfoodTodayResume(container) {
     container.appendChild(createfoodRTodayResumeContent(todayResume));
 }
 
-function historiqueContent(container) {
-    for (let i = 0; i < foodH.length; i++) {
-        foodH[i].date = changeDateFormat(foodH[i].date);
-        container.appendChild(createHistoriqueContent(foodH[i]));
-    }
-}
+// function historiqueContent(container) {
+//     let currentDate = null;
+//     for (let i = 0; i < foodH.length; i++) {
+//         if (currentDate !== foodH[i].date) {
+//             currentDate = foodH[i].date;
+//             const dateDiv = document.createElement("div");
+//             const textContent = document.createTextNode(foodH[i].date);
+//             dateDiv.appendChild(textContent);
+//             container.appendChild(dateDiv); 
+//         }
+//         foodH[i].date = changeDateFormat(foodH[i].date);
+//         foodH[i].time = foodH[i].time.substring(0, 5);
+//         container.appendChild(createHistoriqueContent(foodH[i]));
+//     }
+// }
 

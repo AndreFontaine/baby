@@ -18,6 +18,11 @@ backBtn.addEventListener("click", () => {
 function createHisBathCon(container) {
     for (let i = 0; i < bathH.length; i++) {
         bathH[i].date = changeDateFormat(bathH[i].date);
+        bathH[i].time = bathH[i].time.substring(0, 5);
         container.appendChild(createHistoriqueContent(bathH[i]));
+        const dateDiv = document.createElement("div");
+        const textContent = document.createTextNode(bathH[i].date);
+        dateDiv.appendChild(textContent);
+        container.appendChild(dateDiv);
     }
 }

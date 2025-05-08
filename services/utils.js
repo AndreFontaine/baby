@@ -1,10 +1,12 @@
-export const changeDateFormat = (dateStr) => {
+export const changeDateFormat = (dateStr, weekday = false) => {
     const date = new Date(dateStr);
-    const formatted = new Intl.DateTimeFormat("fr-FR", {
+    const options = {
         day: "2-digit",
         month: "long",
         year: "numeric"
-    }).format(date);
+    };
+    if (weekday) options.weekday = "long";
+    const formatted = new Intl.DateTimeFormat("fr-FR", options).format(date);
     return formatted;
 };
 
