@@ -17,8 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
     createfoodTodayResume(foodTodayResumeContainer);
 
     const historiqueContainer = document.querySelector("#historiqueFood");
-    historiqueContent(historiqueContainer);
-
     historiqueContent(foodH, historiqueContainer, createHistoriqueContent);
 });
 
@@ -76,20 +74,3 @@ function createfoodTodayResume(container) {
 
     container.appendChild(createfoodRTodayResumeContent(todayResume));
 }
-
-// function historiqueContent(container) {
-//     let currentDate = null;
-//     for (let i = 0; i < foodH.length; i++) {
-//         if (currentDate !== foodH[i].date) {
-//             currentDate = foodH[i].date;
-//             const dateDiv = document.createElement("div");
-//             const textContent = document.createTextNode(foodH[i].date);
-//             dateDiv.appendChild(textContent);
-//             container.appendChild(dateDiv); 
-//         }
-//         foodH[i].date = changeDateFormat(foodH[i].date);
-//         foodH[i].time = foodH[i].time.substring(0, 5);
-//         container.appendChild(createHistoriqueContent(foodH[i]));
-//     }
-// }
-
