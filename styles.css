@@ -198,6 +198,7 @@ h1 {
     border-radius: 6px;
     font-family: unset;
     font-size: 0.7rem;
+    max-width: 126px;
 }
 
 .button-wrapper {
