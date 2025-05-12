@@ -1,6 +1,6 @@
 import { get } from "../config/db.js";
 
-const BASE_URL ='http://192.168.31.68/api/';
+const BASE_URL ='http://192.168.1.49/api/';
 
 export async function getDataByType(type) {
 

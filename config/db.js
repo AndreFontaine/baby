@@ -5,7 +5,7 @@ let initialDiaperData = [];
 let initialPumpData = [];
 let initialBathData = [];
 
-// const BASE_URL ='http://192.168.31.68/api/';
+// const BASE_URL ='http://192.168.1.49/api/';
 
 async function getInitialData() {
     initialFoodData = await getDataByType("food");
