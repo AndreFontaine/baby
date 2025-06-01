@@ -71,11 +71,38 @@ export function createfoodPreviewContent(item) {
 
     footer.appendChild(totalText);
 
+    const cheastCountIcon = document.createElement("span");
+    cheastCountIcon.textContent = "🤱";
+
+    const cheastCount = document.createElement("span");
+    cheastCount.textContent = item.breastTimes;
+
+    const timeIcon = document.createElement("span");
+    timeIcon.textContent = "⏰";
+
+    const timeAmountRight = document.createElement("span");
+    timeAmountRight.textContent = `| D ${item.rightTimes} min. `;
+
+    const timeAmountLeft = document.createElement("span");
+    timeAmountLeft.textContent = `| G ${item.leftTimes} min. `;
+
     quantitiesDiv.appendChild(bottleCountIcon);
     quantitiesDiv.appendChild(bottleCount);
     quantitiesDiv.appendChild(jarIcon);
     quantitiesDiv.appendChild(jarAmount);
+
     footer.appendChild(quantitiesDiv);
+
+    const quantitiesBDiv = document.createElement("div");
+    quantitiesBDiv.classList.add("quantities");
+
+    quantitiesBDiv.appendChild(cheastCountIcon);
+    quantitiesBDiv.appendChild(cheastCount);
+    quantitiesBDiv.appendChild(timeIcon);
+    quantitiesBDiv.appendChild(timeAmountRight);
+    quantitiesBDiv.appendChild(timeAmountLeft);
+
+    footer.appendChild(quantitiesBDiv);
 
     previewContainer.appendChild(header);
     previewContainer.appendChild(actionContainer);

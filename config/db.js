@@ -5,7 +5,7 @@ let initialDiaperData = [];
 let initialPumpData = [];
 let initialBathData = [];
 
-// const BASE_URL ='http://192.168.1.49/api/';
+const BASE_URL ='http://192.168.1.49/api/';
 
 async function getInitialData() {
     initialFoodData = await getDataByType("food");
@@ -47,10 +47,10 @@ export const save = async (type, newData) => {
 
     try {
         // save in DB
-        // TODO: check tomorro
-        // const res = await saveInDb(type, newData);
+        const res = await saveInDb(type, newData);
+        console.log("Response from DB:", res);
         // if (res === null) newData.p_operation = "yes"
-        newData.p_operation = "yes"; // delete this line
+        // newData.p_operation = "yes"; // delete this line
         // save in local storage
         saveInLocalStorage(type, newData);
         // return res;
@@ -59,23 +59,27 @@ export const save = async (type, newData) => {
     }
 }
 
-// async function saveInDb(type, data) {
-//     const response = await fetch(`${BASE_URL}${type}`, {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify(data)
-//     });
+async function saveInDb(type, data) {
+    console.log("type", type);
+    console.log("data", data);
+    const response = await fetch(`${BASE_URL}${type}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
 
-//     if (!response.ok) {
-//        return null;
-//     } else {
-//         const result = await response.json();
-//         console.log('✅ Data saved:', result);
-//     }
-//     return response;
-// }
+     console.log('response:', response);
+
+    if (!response.ok) {
+       return null;
+    } else {
+        // const result = await response.json();
+        console.log('✅ Data saved:', response);
+    }
+    return response;
+}
 
 function saveInLocalStorage(type, obj) {
     let data = JSON.parse(localStorage.getItem(type)) || [];

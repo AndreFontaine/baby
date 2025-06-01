@@ -60,6 +60,8 @@ document.getElementById("saveFood").addEventListener("submit", function (e) {
     const formObj = Object.fromEntries(formData.entries());
     const data = loadData(formObj);
 
+    console.log("data", data);
+
     // Save
     save("food", data);
     const modal = document.getElementById("successModal");

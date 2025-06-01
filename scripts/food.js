@@ -17,6 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
     createfoodTodayResume(foodTodayResumeContainer);
 
     const historiqueContainer = document.querySelector("#historiqueFood");
+    foodH.forEach((item) => {
+        item.milkType = item.milkType ? item.milkType : null;
+    });
     historiqueContent(foodH, historiqueContainer, createHistoriqueContent);
 });
 

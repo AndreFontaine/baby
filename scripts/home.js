@@ -31,17 +31,30 @@ function createFoodPreview(container, historic) {
     // take total today from historique
     let totalVolume = 0;
     let totalTimes = 0;
+    let breastTimes = 0;
+    let rightTimes = 0;
+    let leftTimes = 0;
+
     for (let i = 0; i < historic?.length; i++) {
         if (historic[i].type === 'bottle' && isToday(historic[i].date)) {
             totalVolume += parseInt(historic[i].volume);
             totalTimes += 1;
+        }
+        if (historic[i].type === 'breast' && isToday(historic[i].date)) {
+            console.log(historic[i]);
+            rightTimes += parseInt(historic[i].right_duration || 0);
+            leftTimes += parseInt(historic[i].left_duration || 0);
+            breastTimes += 1;
         }
     }
     // create food resume content   
     const foodPreview = {
         duration: historic?.length > 0 ? updateLastMealTime(historic[0] || {}, 'preview') : 'à linstant',
         volume: totalVolume,
-        times: totalTimes
+        times: totalTimes,
+        breastTimes,
+        rightTimes,
+        leftTimes
     };
     container.appendChild(createfoodPreviewContent(foodPreview));
 }
