@@ -13,6 +13,8 @@ let type;
 let date;
 let time;
 let note;
+let left;
+let right;
 
 let params = null;
 
@@ -181,9 +183,6 @@ function setSelectedForm(rdioValue) {
 }
 
 function loadParams(params) {
-    let left;
-    let right;
-
     const id = params.get("id");
     if (!id) return;
     foodObj.id = id;

@@ -12,7 +12,7 @@ let note;
 
 let params = null;
 
-const DEFAULT_DIAPER_TYPE = "poo"; // pee or poo
+const DEFAULT_DIAPER_TYPE = "poop"; // pee or poop
 
 let diaperTypeValue = DEFAULT_DIAPER_TYPE;
 
@@ -104,6 +104,8 @@ function initForm() {
         hourConfig.value = diaperObj.time;
         dateConfig.value = convertToInputDate(diaperObj.date);
         noteConfig.value = diaperObj.note ?? '';
+
+        diaperTypeValue = diaperObj.type;
     }
     // end update
 
